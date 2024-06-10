@@ -12,10 +12,10 @@ MLX_PATH = mlx/
 MLX_LIB = libmlx_Linux.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -lm
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c raycasting.c utils.c
+FILES = main.c raycasting.c player.c utils.c
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
@@ -23,7 +23,7 @@ BONUS_MODE = 0
 
 %.o: %.c
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Creating object$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -D BONUS_MODE=$(BONUS_MODE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -lm -D BONUS_MODE=$(BONUS_MODE)
 
 all: mlx $(NAME)
 
@@ -32,7 +32,7 @@ all: mlx $(NAME)
 
 $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lm -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
 bonus: BONUS_MODE = 1
