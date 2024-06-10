@@ -45,7 +45,7 @@ clean:
 fclean: clean
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing $(NAME)"
 	@rm -rf $(NAME)
-	//@make clean -sC $(MLX_PATH)
+#	@make clean -sC $(MLX_PATH)
 
 re: fclean all
 
