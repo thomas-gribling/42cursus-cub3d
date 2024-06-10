@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c
+FILES = main.c raycasting.c utils.c
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 

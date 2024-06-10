@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/10 08:22:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/10 08:55:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,29 @@
 #  define BONUS_MODE 0
 # endif // BONUS_MODE
 
+typedef struct s_map
+{
+	char	**content;
+}			t_map;
+
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	int	spawn_x;
+	int	spawn_y;
+}		t_player;
+
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-}			t_game;
+	void		*mlx;
+	void		*win;
+	t_map		*map;
+	t_player	*p;
+}				t_game;
+
+int		raycast(t_game *g);
+
+void	tab_free(char **tab);
 
 #endif // CUB3D_H
