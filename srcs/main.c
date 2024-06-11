@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/10 16:54:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 08:38:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_player(t_game *g)
 	g->p->cam->speed_r = 0.033 * 1.8;
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
+	g->p->cam->hit = 0;
 }
 
 int	main(int ac, char **av)
@@ -65,10 +66,10 @@ int	main(int ac, char **av)
 	g.map = malloc(sizeof(t_map)); // temporary
 	g.map->content = malloc(7 * sizeof(char *));
 	g.map->content[0] = "1111111111";
-	g.map->content[1] = "1000000001";
+	g.map->content[1] = "1000010001";
 	g.map->content[2] = "1000010001";
-	g.map->content[3] = "1000001001";
-	g.map->content[4] = "1000000001";
+	g.map->content[3] = "1000000101";
+	g.map->content[4] = "1000000101";
 	g.map->content[5] = "1111111111";
 	g.map->content[6] = NULL;
 	g.map->width = 10;

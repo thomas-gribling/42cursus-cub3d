@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/10 16:21:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 08:39:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	apply_moves(t_game *g, double *new)
 {
-	if (new[0] >= 1 && new[0] <= g->map->width)
+	if (g->map->content[(int)g->p->y][(int)new[0]] == '0')
 		g->p->x = new[0];
-	if (new[1] >= 1 && new[1] <= g->map->height)
-		g->p->y = new[1];
+	if (g->map->content[(int)new[1]][(int)g->p->x] == '0')
+		g->p->y = new[1];	
 }
 
 void	move_player(t_game *g, t_cam *c, int keycode)

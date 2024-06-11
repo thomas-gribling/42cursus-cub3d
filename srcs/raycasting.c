@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/10 16:50:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 08:39:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	raycast_draw(t_game *g, t_cam *c, int x)
 	int	color;
 	int	y;
 	
-	printf("dist: %f\n", c->perp_wall_dist);
-	printf("pos:  %f, %f\n", g->p->x, g->p->y);
-	printf("rot:  %f, %f\n", c->dir_x, c->dir_y);
 	if (!c->perp_wall_dist)
 		c->line_h = HEIGHT;
 	else
@@ -41,6 +38,7 @@ void	raycast_draw(t_game *g, t_cam *c, int x)
 
 void	raycast_dda(t_game *g, t_cam *c)
 {
+	(void)g;
 	while (!c->hit)
 	{
 		if (c->side_dist_x < c->side_dist_y)
@@ -96,6 +94,9 @@ int	raycast(t_game *g, t_cam *c)
 	x = -1;
 	while (++x < WIDTH)
 	{	
+		c->hit = 0;
+		c->map_x = (int)g->p->x;
+		c->map_y = (int)g->p->y;
 		c->cam_x = 2.0 * x / (double)WIDTH - 1.0;
 		c->ray_dir_x = c->dir_x + c->plane_x * c->cam_x;
 		c->ray_dir_y = c->dir_y + c->plane_y * c->cam_x;
