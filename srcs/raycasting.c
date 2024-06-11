@@ -6,14 +6,14 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 08:39:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:11:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d.h"
 
-void	raycast_draw(t_game *g, t_cam *c, int x)
+static void	raycast_draw(t_game *g, t_cam *c, int x)
 {
 	int	color;
 	int	y;
@@ -36,7 +36,17 @@ void	raycast_draw(t_game *g, t_cam *c, int x)
 		mlx_pixel_put(g->mlx, g->win, x, y, color);
 }
 
-void	raycast_dda(t_game *g, t_cam *c)
+static void	fix_fisheye(t_game *g, t_cam *c)
+{
+	double	tmp;
+	if (c->side == 0)
+		tmp = (c->map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+	else
+		tmp = (c->map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
+	c->perp_wall_dist = tmp;
+}
+
+static void	raycast_dda(t_game *g, t_cam *c)
 {
 	(void)g;
 	while (!c->hit)
@@ -56,13 +66,10 @@ void	raycast_dda(t_game *g, t_cam *c)
 		if (g->map->content[c->map_y][c->map_x] == '1')
 			c->hit = 1;
 	}
-	if (c->side == 0)
-		c->perp_wall_dist = (c->side_dist_x - c->delta_dist_x);
-	else
-		c->perp_wall_dist = (c->side_dist_y - c->delta_dist_y);
+	fix_fisheye(g, c);
 }
 
-void	raycast_dist(t_game *g, t_cam *c)
+static void	raycast_dist(t_game *g, t_cam *c)
 {
 	if (c->ray_dir_x < 0)
 	{

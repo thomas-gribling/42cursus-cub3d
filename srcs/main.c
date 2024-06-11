@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 08:38:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:02:16 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 
 int	close_game(t_game *g)
 {
-	//tab_free(g->map->content);
+	int	i;
+	
+	//tab_free(g->map->content); // not possible for now
+	free(g->map->content);
+	free(g->p->cam);
+	free(g->p);
+	i = -1;
+	while (++i < TEX_AMT)
+		mlx_destroy_image(g->mlx, g->tex[i].ptr);
+	free(g->tex);
 	mlx_destroy_window(g->mlx, g->win);
 	if (g->mlx)
 		mlx_destroy_display(g->mlx);
@@ -74,6 +83,7 @@ int	main(int ac, char **av)
 	g.map->content[6] = NULL;
 	g.map->width = 10;
 	g.map->height = 6;
+	load_assets(&g);
 	init_player(&g);
 	raycast(&g, g.p->cam);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
