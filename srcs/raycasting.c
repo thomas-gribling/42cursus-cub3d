@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 10:06:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:44:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 static void	raycast_draw(t_game *g, t_cam *c, int x)
 {
-	int	color;
+	//int	color;
 	int		y;
-	//t_tex	tex;
+	t_tex	tex;
+	(void)x;
 	
-	//tex = g->tex[TEX_WALL];
+	tex = g->tex[TEX_WALL];
 	if (!c->perp_wall_dist)
 		c->line_h = HEIGHT;
 	else
@@ -30,21 +31,24 @@ static void	raycast_draw(t_game *g, t_cam *c, int x)
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[1] >= HEIGHT)
 		c->bounds[1] = HEIGHT - 1;
-	/*c->step = 1.0 * tex.height / c->line_h;
+	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0];
 	while (++y < c->bounds[1])
 	{
 		c->tex_y = (int)c->tex_pos & (tex.height - 1);
 		c->tex_pos += c->step;
-		c->color = mlx_get
-	}*/
-	color = 0xFFFFFF;
+		c->color = 0xFFFFFF;
+		if (c->side == 1)
+			c->color = (c->color >> 1) & 0x7F7F7F;
+		
+	}
+	/*color = 0xFFFFFF;
 	if (c->side == 1)
 		color = 0xAAAAAA;
 	y = c->bounds[0];
 	while (++y <= c->bounds[1])
-		mlx_pixel_put(g->mlx, g->win, x, y, color);
+		mlx_pixel_put(g->mlx, g->win, x, y, color);*/
 }
 
 static void raycast_tex(t_game *g, t_cam *c)

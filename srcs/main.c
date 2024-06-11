@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 10:01:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:47:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	close_game(t_game *g)
 	
 	//tab_free(g->map->content); // not possible for now
 	free(g->map->content);
+	free(g->map);
 	free(g->p->cam);
 	free(g->p);
 	i = -1;
@@ -73,7 +74,7 @@ int	main(int ac, char **av)
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	g.map = malloc(sizeof(t_map)); // temporary
-	g.map->content = malloc(10 * sizeof(char *));
+	g.map->content = malloc(11 * sizeof(char *));
 	g.map->content[0] = "1111111111";
 	g.map->content[1] = "1110000111";
 	g.map->content[2] = "1100000011";
