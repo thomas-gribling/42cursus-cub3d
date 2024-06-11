@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 09:02:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:01:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	init_player(t_game *g)
 {
 	g->p = malloc(sizeof(t_player));
 	g->p->cam = malloc(sizeof(t_cam));
-	g->p->x = 3;
-	g->p->y = 3;
+	g->p->x = 5;
+	g->p->y = 5;
 	g->p->cam->dir_x = -1;
 	g->p->cam->dir_y = 0;
 	g->p->cam->plane_x = 0;
@@ -73,16 +73,20 @@ int	main(int ac, char **av)
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	g.map = malloc(sizeof(t_map)); // temporary
-	g.map->content = malloc(7 * sizeof(char *));
+	g.map->content = malloc(10 * sizeof(char *));
 	g.map->content[0] = "1111111111";
-	g.map->content[1] = "1000010001";
-	g.map->content[2] = "1000010001";
-	g.map->content[3] = "1000000101";
-	g.map->content[4] = "1000000101";
-	g.map->content[5] = "1111111111";
-	g.map->content[6] = NULL;
+	g.map->content[1] = "1110000111";
+	g.map->content[2] = "1100000011";
+	g.map->content[3] = "1000000001";
+	g.map->content[4] = "1000000001";
+	g.map->content[5] = "1000000001";
+	g.map->content[6] = "1000000001";
+	g.map->content[7] = "1100000011";
+	g.map->content[8] = "1110000111";
+	g.map->content[9] = "1111111111";
+	g.map->content[10] = NULL;
 	g.map->width = 10;
-	g.map->height = 6;
+	g.map->height = 10;
 	load_assets(&g);
 	init_player(&g);
 	raycast(&g, g.p->cam);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 09:11:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 10:06:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 static void	raycast_draw(t_game *g, t_cam *c, int x)
 {
 	int	color;
-	int	y;
+	int		y;
+	//t_tex	tex;
 	
+	//tex = g->tex[TEX_WALL];
 	if (!c->perp_wall_dist)
 		c->line_h = HEIGHT;
 	else
@@ -28,6 +30,15 @@ static void	raycast_draw(t_game *g, t_cam *c, int x)
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[1] >= HEIGHT)
 		c->bounds[1] = HEIGHT - 1;
+	/*c->step = 1.0 * tex.height / c->line_h;
+	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
+	y = c->bounds[0];
+	while (++y < c->bounds[1])
+	{
+		c->tex_y = (int)c->tex_pos & (tex.height - 1);
+		c->tex_pos += c->step;
+		c->color = mlx_get
+	}*/
 	color = 0xFFFFFF;
 	if (c->side == 1)
 		color = 0xAAAAAA;
@@ -36,19 +47,22 @@ static void	raycast_draw(t_game *g, t_cam *c, int x)
 		mlx_pixel_put(g->mlx, g->win, x, y, color);
 }
 
-static void	fix_fisheye(t_game *g, t_cam *c)
+static void raycast_tex(t_game *g, t_cam *c)
 {
-	double	tmp;
 	if (c->side == 0)
-		tmp = (c->map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
 	else
-		tmp = (c->map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
-	c->perp_wall_dist = tmp;
+		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x;
+	c->wall_x -= floor(c->wall_x);
+	c->tex_x = (int)(c->wall_x * (double)g->tex[TEX_WALL].width);
+	if ((!c->side && c->ray_dir_x > 0) || (c->side == 1 && c->ray_dir_y < 0))
+		c->tex_x = g->tex[TEX_WALL].width - c->tex_x - 1;
 }
 
 static void	raycast_dda(t_game *g, t_cam *c)
 {
-	(void)g;
+	double	tmp;
+	
 	while (!c->hit)
 	{
 		if (c->side_dist_x < c->side_dist_y)
@@ -66,7 +80,11 @@ static void	raycast_dda(t_game *g, t_cam *c)
 		if (g->map->content[c->map_y][c->map_x] == '1')
 			c->hit = 1;
 	}
-	fix_fisheye(g, c);
+	if (c->side == 0)
+		tmp = (c->map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+	else
+		tmp = (c->map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
+	c->perp_wall_dist = tmp;
 }
 
 static void	raycast_dist(t_game *g, t_cam *c)
@@ -117,6 +135,7 @@ int	raycast(t_game *g, t_cam *c)
 			c->delta_dist_y = sqrt(1 + (c->ray_dir_x * c->ray_dir_x) / (c->ray_dir_y * c->ray_dir_y));
 		raycast_dist(g, c);
 		raycast_dda(g, c);
+		raycast_tex(g, c);
 		raycast_draw(g, c, x);
 	}
 	return (0);

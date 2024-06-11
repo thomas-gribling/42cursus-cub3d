@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 08:52:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:40:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,43 @@ typedef struct s_map
 
 typedef struct s_cam
 {
-	double		dist[25];
-	double		cam_x;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	int			step_x;
-	int			step_y;
-	int			map_x;
-	int			map_y;
-	int			hit;
-	int			side;
-	double		perp_wall_dist;
-	int			line_h;
-	int			bounds[2];
-	double		speed_m;
-	double		speed_r;
-}				t_cam;
+	double	dist[25];
+	double	cam_x;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_h;
+	int		bounds[2];
+	double	speed_m;
+	double	speed_r;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+	__uint32_t	color;
+}			t_cam;
 
 typedef struct s_tex
 {
 	void	*ptr;
 	int		width;
 	int		height;
+	int		bpp;
 }			t_tex;
 
 typedef struct s_player
