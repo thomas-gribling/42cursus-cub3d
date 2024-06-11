@@ -33,7 +33,7 @@ all: mlx $(NAME)
 $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lm -I$(MLX_PATH) -I$(INCLUDE)
-	@echo "$(BOLD_GREEN)Done!$(RESET)"
+	@echo "\n$(BOLD_GREEN)=== $(NAME) successfully compiled! ===$(RESET)\n"
 
 bonus: BONUS_MODE = 1
 bonus: clean mlx $(NAME)
