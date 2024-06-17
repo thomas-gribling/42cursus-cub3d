@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 10:09:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:22:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <fcntl.h>
 
 # define GAME_TITLE "Shoot the bullies"
 # define WIDTH 1200
@@ -43,6 +44,7 @@
 typedef struct s_map
 {
 	char	**content;
+	char	*tex_paths;
 	int		width;
 	int		height;
 }			t_map;
@@ -109,6 +111,9 @@ typedef struct s_game
 	int			colors[2];
 }				t_game;
 
+int				check_map_format(char *map);
+int				load_map(t_game *g, char *path);
+
 void			load_assets(t_game *g);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
@@ -119,5 +124,9 @@ void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 
 void			tab_free(char **tab);
+int				put_error(char *s);
+int				ft_strncmp(char *s1, char *s2, size_t n);
+int				color_atoi(char *line, int start);
+int				rgb_to_hex(int *rgb);
 
 #endif // CUB3D_H

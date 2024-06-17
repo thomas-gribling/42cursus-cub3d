@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 14:19:52 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:55:07 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,14 @@ int	main(int ac, char **av)
 {
 	t_game		g;
 
-	(void)ac;
-	(void)av;
+	if (ac != 2)
+		return (put_error("Arguments error!\nUsage: ./cub3d <map.cub>\n"));
+	if (check_map_format(av[1]))
+		return (put_error("Map is not a .cub file!\n"));
+	if (load_map(&g, av[1]))
+		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
-	g.map = malloc(sizeof(t_map)); // temporary
-	g.map->content = malloc(11 * sizeof(char *));
-	g.map->content[0] = "1111111111";
-	g.map->content[1] = "1000000111";
-	g.map->content[2] = "1010000011";
-	g.map->content[3] = "1000000001";
-	g.map->content[4] = "1000000001";
-	g.map->content[5] = "1000000001";
-	g.map->content[6] = "1000000001";
-	g.map->content[7] = "1100000011";
-	g.map->content[8] = "1110000111";
-	g.map->content[9] = "1111111111";
-	g.map->content[10] = NULL;
-	g.map->width = 10;
-	g.map->height = 10;
 	load_assets(&g);
 	init_player(&g);
 	raycast(&g, g.p->cam);
