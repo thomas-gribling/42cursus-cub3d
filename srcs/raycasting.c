@@ -6,19 +6,57 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 10:44:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 09:15:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d.h"
 
-static void	raycast_draw(t_game *g, t_cam *c, int x)
+void	buffer_pixel_put(t_buffer *buff, int x, int y, int color)
 {
-	//int	color;
-	int		y;
+    char    *pixel;
+
+    pixel = buff->addr + (y * buff->line_len + x * (buff->bpp / 8));
+    *(int *)pixel = color;
+}
+
+void	reset_buffer(t_game *g, t_buffer *buff)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < WIDTH)
+	{
+		y = -1;
+		while (++y < HEIGHT)
+		{
+			buffer_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
+		}
+	}
+}
+
+static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
+{
+	int	y;
 	t_tex	tex;
-	(void)x;
+	
+	tex = g->tex[TEX_WALL];
+	y = c->bounds[0];
+	while (++y < c->bounds[1])
+	{
+		c->tex_y = (int)c->tex_pos & (tex.height - 1);
+		c->tex_pos += c->step;
+		c->color = 0xFFFFFF; // here get the pixel color from the image
+		if (c->side == 1)
+			c->color = (c->color >> 1) & 0x7F7F7F;
+		buffer_pixel_put(&c->buff, x, y, c->color);
+	}
+}
+static void	raycast_get_pixels(t_game *g, t_cam *c, int x)
+{
+	t_tex	tex;
 	
 	tex = g->tex[TEX_WALL];
 	if (!c->perp_wall_dist)
@@ -33,25 +71,10 @@ static void	raycast_draw(t_game *g, t_cam *c, int x)
 		c->bounds[1] = HEIGHT - 1;
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
-	y = c->bounds[0];
-	while (++y < c->bounds[1])
-	{
-		c->tex_y = (int)c->tex_pos & (tex.height - 1);
-		c->tex_pos += c->step;
-		c->color = 0xFFFFFF;
-		if (c->side == 1)
-			c->color = (c->color >> 1) & 0x7F7F7F;
-		
-	}
-	/*color = 0xFFFFFF;
-	if (c->side == 1)
-		color = 0xAAAAAA;
-	y = c->bounds[0];
-	while (++y <= c->bounds[1])
-		mlx_pixel_put(g->mlx, g->win, x, y, color);*/
+	raycast_fill_buffer(g, c, x);
 }
 
-static void raycast_tex(t_game *g, t_cam *c)
+static void raycast_tex(t_game *g, t_cam *c, int x)
 {
 	if (c->side == 0)
 		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
@@ -61,9 +84,10 @@ static void raycast_tex(t_game *g, t_cam *c)
 	c->tex_x = (int)(c->wall_x * (double)g->tex[TEX_WALL].width);
 	if ((!c->side && c->ray_dir_x > 0) || (c->side == 1 && c->ray_dir_y < 0))
 		c->tex_x = g->tex[TEX_WALL].width - c->tex_x - 1;
+	raycast_get_pixels(g, c, x);
 }
 
-static void	raycast_dda(t_game *g, t_cam *c)
+static void	raycast_dda(t_game *g, t_cam *c, int x)
 {
 	double	tmp;
 	
@@ -89,9 +113,10 @@ static void	raycast_dda(t_game *g, t_cam *c)
 	else
 		tmp = (c->map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
 	c->perp_wall_dist = tmp;
+	raycast_tex(g, c, x);
 }
 
-static void	raycast_dist(t_game *g, t_cam *c)
+static void	raycast_dist(t_game *g, t_cam *c, int x)
 {
 	if (c->ray_dir_x < 0)
 	{
@@ -113,6 +138,7 @@ static void	raycast_dist(t_game *g, t_cam *c)
 		c->step_y = 1;
 		c->side_dist_y = (c->map_y + 1.0 - g->p->y) * c->delta_dist_y;
 	}
+	raycast_dda(g, c, x);
 }
 
 int	raycast(t_game *g, t_cam *c)
@@ -120,6 +146,7 @@ int	raycast(t_game *g, t_cam *c)
 	int	x;
 
 	mlx_clear_window(g->mlx, g->win);
+	reset_buffer(g, &c->buff);
 	x = -1;
 	while (++x < WIDTH)
 	{	
@@ -137,10 +164,8 @@ int	raycast(t_game *g, t_cam *c)
 			c->delta_dist_y = 1e30;
 		else
 			c->delta_dist_y = sqrt(1 + (c->ray_dir_x * c->ray_dir_x) / (c->ray_dir_y * c->ray_dir_y));
-		raycast_dist(g, c);
-		raycast_dda(g, c);
-		raycast_tex(g, c);
-		raycast_draw(g, c, x);
+		raycast_dist(g, c, x);
 	}
+	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/11 10:18:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 08:37:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_tex	load_tex(t_game *g, char *path, int width, int height)
 
 	s.width = width;
 	s.height = height;
-	s.bpp = 8;
 	s.ptr = mlx_xpm_file_to_image(g->mlx, path, &s.width, &s.height);
 	return (s);
 }
