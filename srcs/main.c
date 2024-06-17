@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 09:15:40 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 09:23:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ int	close_game(t_game *g)
 	//tab_free(g->map->content); // not possible for now
 	free(g->map->content);
 	free(g->map);
+	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
 	free(g->p->cam);
 	free(g->p);
 	i = -1;
-	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
-	free(g->p->cam->buff.addr);
 	while (++i < TEX_AMT)
 		mlx_destroy_image(g->mlx, g->tex[i].ptr);
 	free(g->tex);
@@ -74,7 +73,7 @@ void	init_player(t_game *g)
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
-	g->colors[0] = 0x00FFFF;
+	g->colors[0] = 0x00FFFF; // will be taken directly from map
 	g->colors[1] = 0x00FF00;
 	init_buffer(g);
 }
