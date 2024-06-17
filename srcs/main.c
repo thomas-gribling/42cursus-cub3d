@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 10:49:45 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:14:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	close_game(t_game *g)
 {
 	int	i;
-	
+
 	//tab_free(g->map->content); // not possible for now
 	free(g->map->content);
 	free(g->map);

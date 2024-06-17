@@ -6,14 +6,14 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 10:53:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:15:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d.h"
 
-static int	get_wall_tex(t_cam *c) // TODO
+static int	get_wall_tex(t_cam *c)
 {
 	int	tex;
 
@@ -30,9 +30,9 @@ static int	get_wall_tex(t_cam *c) // TODO
 
 static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 {
-	int	y;
+	int		y;
 	t_tex	tex;
-	
+
 	tex = g->tex[get_wall_tex(c)];
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
@@ -61,7 +61,7 @@ static void	raycast_get_pixels(t_game *g, t_cam *c, int x)
 	raycast_fill_buffer(g, c, x);
 }
 
-static void raycast_tex(t_game *g, t_cam *c, int x)
+static void	raycast_tex(t_game *g, t_cam *c, int x)
 {
 	t_tex	tex;
 
@@ -80,7 +80,7 @@ static void raycast_tex(t_game *g, t_cam *c, int x)
 static void	raycast_dda(t_game *g, t_cam *c, int x)
 {
 	double	tmp;
-	
+
 	while (!c->hit)
 	{
 		if (c->side_dist_x < c->side_dist_y)
