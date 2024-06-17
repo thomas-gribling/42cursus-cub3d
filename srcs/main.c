@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 11:14:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:19:52 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	init_player(t_game *g)
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
-	g->colors[0] = 0xF3F462; // will be taken directly from map
-	g->colors[1] = 0x62F4AC;
+	g->colors[0] = 0x6AC9FB; // will be taken directly from map
+	g->colors[1] = 0x00DD00;
 	init_buffer(g);
 }
 
