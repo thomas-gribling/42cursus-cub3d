@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 09:57:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:31:08 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	main(int ac, char **av)
 	g.map = malloc(sizeof(t_map)); // temporary
 	g.map->content = malloc(11 * sizeof(char *));
 	g.map->content[0] = "1111111111";
-	g.map->content[1] = "1110000111";
-	g.map->content[2] = "1100000011";
+	g.map->content[1] = "1000000111";
+	g.map->content[2] = "1010000011";
 	g.map->content[3] = "1000000001";
 	g.map->content[4] = "1000000001";
 	g.map->content[5] = "1000000001";
