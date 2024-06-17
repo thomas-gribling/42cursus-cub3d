@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 08:37:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:15:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,47 @@ t_tex	load_tex(t_game *g, char *path, int width, int height)
 	s.width = width;
 	s.height = height;
 	s.ptr = mlx_xpm_file_to_image(g->mlx, path, &s.width, &s.height);
+	s.addr = mlx_get_data_addr(s.ptr, &s.bpp, &s.line_len, &s.endian);
 	return (s);
 }
 
 void	load_assets(t_game *g)
 {
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
-	g->tex[TEX_WALL] = load_tex(g, "assets/wall.xpm", 160, 160);
-	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 160, 160);
-	g->tex[TEX_CEIL] = load_tex(g, "assets/ceil.xpm", 160, 160);
+	g->tex[TEX_WALL_N] = load_tex(g, "assets/wall_n.xpm", 100, 100);
+	g->tex[TEX_WALL_E] = load_tex(g, "assets/wall_e.xpm", 100, 100);
+	g->tex[TEX_WALL_S] = load_tex(g, "assets/wall_s.xpm", 100, 100);
+	g->tex[TEX_WALL_W] = load_tex(g, "assets/wall_w.xpm", 100, 100);
+}
+
+void	tex_pixel_put(t_tex *tex, int x, int y, int color)
+{
+	char	*pixel;
+
+	pixel = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
+	*(int *)pixel = color;
+}
+
+unsigned int	tex_get_pixel(t_tex *tex, int x, int y)
+{
+	char	*pixel;
+
+	//x %= tex->width;
+	//y %= tex->height;
+	pixel = tex->addr + (y * tex->line_len) + (x * tex->bpp / 8);
+	return (*(unsigned int *)pixel);
+}
+
+void	reset_buffer(t_game *g, t_tex *buff)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < WIDTH)
+	{
+		y = -1;
+		while (++y < HEIGHT)
+			tex_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
+	}
 }

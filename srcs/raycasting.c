@@ -6,59 +6,36 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 09:15:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:12:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d.h"
 
-void	buffer_pixel_put(t_buffer *buff, int x, int y, int color)
-{
-    char    *pixel;
-
-    pixel = buff->addr + (y * buff->line_len + x * (buff->bpp / 8));
-    *(int *)pixel = color;
-}
-
-void	reset_buffer(t_game *g, t_buffer *buff)
-{
-	int	x;
-	int	y;
-
-	x = -1;
-	while (++x < WIDTH)
-	{
-		y = -1;
-		while (++y < HEIGHT)
-		{
-			buffer_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
-		}
-	}
-}
-
 static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 {
 	int	y;
 	t_tex	tex;
 	
-	tex = g->tex[TEX_WALL];
+	tex = g->tex[TEX_WALL_N];
 	y = c->bounds[0];
 	while (++y < c->bounds[1])
 	{
-		c->tex_y = (int)c->tex_pos & (tex.height - 1);
+		c->tex_y = (int)c->tex_pos & (tex.line_len - 1);
 		c->tex_pos += c->step;
-		c->color = 0xFFFFFF; // here get the pixel color from the image
+		c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
 		if (c->side == 1)
-			c->color = (c->color >> 1) & 0x7F7F7F;
-		buffer_pixel_put(&c->buff, x, y, c->color);
+			c->color = tex_get_pixel(&g->tex[TEX_WALL_E], c->tex_x, c->tex_y);
+		tex_pixel_put(&c->buff, x, y, c->color);
 	}
 }
+
 static void	raycast_get_pixels(t_game *g, t_cam *c, int x)
 {
 	t_tex	tex;
 	
-	tex = g->tex[TEX_WALL];
+	tex = g->tex[TEX_WALL_N];
 	if (!c->perp_wall_dist)
 		c->line_h = HEIGHT;
 	else
@@ -81,9 +58,9 @@ static void raycast_tex(t_game *g, t_cam *c, int x)
 	else
 		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x;
 	c->wall_x -= floor(c->wall_x);
-	c->tex_x = (int)(c->wall_x * (double)g->tex[TEX_WALL].width);
+	c->tex_x = (int)(c->wall_x * (double)g->tex[TEX_WALL_N].width);
 	if ((!c->side && c->ray_dir_x > 0) || (c->side == 1 && c->ray_dir_y < 0))
-		c->tex_x = g->tex[TEX_WALL].width - c->tex_x - 1;
+		c->tex_x = g->tex[TEX_WALL_N].width - c->tex_x - 1;
 	raycast_get_pixels(g, c, x);
 }
 

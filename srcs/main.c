@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 09:23:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 09:57:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	key_pressed(int keycode, t_game *g)
 
 void	init_buffer(t_game *g)
 {
-	t_buffer	*b;
+	t_tex	*b;
 
 	b = &g->p->cam->buff;
 	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
@@ -73,8 +73,8 @@ void	init_player(t_game *g)
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
-	g->colors[0] = 0x00FFFF; // will be taken directly from map
-	g->colors[1] = 0x00FF00;
+	g->colors[0] = 0x00AAAA; // will be taken directly from map
+	g->colors[1] = 0x00AA00;
 	init_buffer(g);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 09:13:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:09:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@
 #  define BONUS_MODE 0
 # endif // BONUS_MODE
 
-# define TEX_AMT 3
-# define TEX_WALL 0
-# define TEX_FLOOR 1
-# define TEX_CEIL 2
+# define TEX_AMT 4
+# define TEX_WALL_N 0
+# define TEX_WALL_E 1
+# define TEX_WALL_S 2
+# define TEX_WALL_W 3
 
 typedef struct s_map
 {
@@ -46,14 +47,16 @@ typedef struct s_map
 	int		height;
 }			t_map;
 
-typedef struct s_buffer
+typedef struct s_tex
 {
 	void	*ptr;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}			t_buffer;
+}			t_tex;
 
 typedef struct s_cam
 {
@@ -85,16 +88,8 @@ typedef struct s_cam
 	double			step;
 	double			tex_pos;
 	unsigned int	color;
-	t_buffer		buff;
+	t_tex			buff;
 }					t_cam;
-
-typedef struct s_tex
-{
-	void	*ptr;
-	int		width;
-	int		height;
-	int		bpp;
-}			t_tex;
 
 typedef struct s_player
 {
@@ -114,11 +109,15 @@ typedef struct s_game
 	int			colors[2];
 }				t_game;
 
-void	load_assets(t_game *g);
-int		raycast(t_game *g, t_cam *c);
-void	move_player(t_game *g, t_cam *c, int keycode);
-void	rotate_player(t_cam *c, int keycode);
+void			load_assets(t_game *g);
+void			tex_pixel_put(t_tex *tex, int x, int y, int color);
+unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
+void			reset_buffer(t_game *g, t_tex *buff);
 
-void	tab_free(char **tab);
+int				raycast(t_game *g, t_cam *c);
+void			move_player(t_game *g, t_cam *c, int keycode);
+void			rotate_player(t_cam *c, int keycode);
+
+void			tab_free(char **tab);
 
 #endif // CUB3D_H
