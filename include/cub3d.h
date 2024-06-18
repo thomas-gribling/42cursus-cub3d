@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 15:22:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 09:23:14 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 typedef struct s_map
 {
 	char	**content;
-	char	*tex_paths;
 	int		width;
 	int		height;
 }			t_map;
@@ -109,12 +108,14 @@ typedef struct s_game
 	t_player	*p;
 	t_tex		*tex;
 	int			colors[2];
+	char		**tex_paths;
 }				t_game;
 
 int				check_map_format(char *map);
 int				load_map(t_game *g, char *path);
 
 void			load_assets(t_game *g);
+t_tex			load_tex(t_game *g, char *path, int width, int height);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_game *g, t_tex *buff);
