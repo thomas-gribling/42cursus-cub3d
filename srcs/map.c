@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 09:43:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:58:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ static int	get_texture(t_game *g, char *line)
 	while (line[i] && line[i] == ' ')
 		i++;
 	j = i;
-	while (line[j])
+	while (line[j] && line[j] != '\n')
 		j++;
 	g->tex_paths[tex] = malloc(j - i + 1);
-	j = i;
-	while (line[++j])
+	j = i - 1;
+	while (line[++j] && line[j] != '\n')
 		g->tex_paths[tex][j - i] = line[j];
 	g->tex_paths[tex][j - i] = '\0';
 	return (0);
