@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 16:58:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:59:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	check_map_format(char *map)
 				if (map[i - 3] == '.')
 					return (0);
 	return (1);
-		
 }
 
 static int	get_color(t_game *g, char *line)
@@ -107,7 +106,7 @@ static int	parse_map(t_game *g, char *path)
 				error += get_color(g, line);
 			if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 				|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
-					error += get_texture(g, line);
+				error += get_texture(g, line);
 		}
 		free(line);
 		line = get_next_line(f);

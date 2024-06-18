@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 11:15:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:59:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	raycast(t_game *g, t_cam *c)
 	reset_buffer(g, &c->buff);
 	x = -1;
 	while (++x < WIDTH)
-	{	
+	{
 		c->hit = 0;
 		c->map_x = (int)g->p->x;
 		c->map_y = (int)g->p->y;
