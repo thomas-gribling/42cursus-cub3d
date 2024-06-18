@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 15:27:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 09:05:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ static int	get_color(t_game *g, char *line)
 	if (!line[i++])
 		return (1);
 	rgb[2] = color_atoi(line, i);
-	while (line[++i])
-		if (line[i] != ' ' && (line[i] < '0' || line[i] > '9'))
-			return (1);
-	if (!ft_strncmp(line, "C ", 3))
+	if (!ft_strncmp(line, "F ", 2))
 		g->colors[0] = rgb_to_hex(rgb);
-	if (!ft_strncmp(line, "F ", 3))
+	if (!ft_strncmp(line, "C ", 2))
 		g->colors[1] = rgb_to_hex(rgb);
 	return (0);
 }
@@ -72,7 +69,7 @@ static int	read_map(t_game *g, char *path)
 	line = get_next_line(f);
 	while (line)
 	{
-		if (!ft_strncmp(line, "C ", 3) || !ft_strncmp(line, "F ", 3))
+		if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 			get_color(g, line);
 		free(line);
 		line = get_next_line(f);
@@ -82,6 +79,8 @@ static int	read_map(t_game *g, char *path)
 
 int	load_map(t_game *g, char *path)
 {
+	g->colors[0] = 0;
+	g->colors[1] = 0;
 	if (read_map(g, path))
 		return (1);
 	g->map = malloc(sizeof(t_map));

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:41:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 15:22:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/18 09:04:26 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	color_atoi(char *line, int start)
 		i++;
 	if (i - start > 3 || i - start < 1)
 		return (-1);
-	if (line[i] && line[i] != ',' && line[i] != ' ')
+	if (line[i] && line[i] != ',' && line[i] != ' ' && line[i] != '\n')
 		return (-1);
 	out = 0;
 	i = start - 1;
@@ -73,6 +73,5 @@ int	color_atoi(char *line, int start)
 
 int	rgb_to_hex(int *rgb)
 {
-	(void)rgb;
-	return (0x000000);
+	return (rgb[2] + rgb[1] * 16 * 16 + rgb[0] * 16 * 16 * 16 * 16);
 }
