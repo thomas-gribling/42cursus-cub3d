@@ -70,8 +70,8 @@ typedef struct s_cam
 	double			ray_dir_y;
 	double			side_dist_x;
 	double			side_dist_y;
-	double			delta_dist_x;
-	double			delta_dist_y;
+	double			delta_x;
+	double			delta_y;
 	int				step_x;
 	int				step_y;
 	int				map_x;

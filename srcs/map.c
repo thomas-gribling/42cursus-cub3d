@@ -125,9 +125,9 @@ static int	parse_map(t_game *g, char *path)
 
 static int	parse_layout(t_game *g, char *path)
 {
-	char *line;
+	char	*line;
 	int		f;
-	
+
 	f = open(path, O_RDONLY);
 	if (f < 0)
 		return (put_error("Error: unable to open the map!\n"));
