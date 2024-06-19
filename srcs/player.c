@@ -14,9 +14,9 @@
 
 void	apply_moves(t_game *g, double *new)
 {
-	if (g->map->content[(int)g->p->y][(int)new[0]] == '0')
+	if (g->map->content[(int)g->p->y][(int)new[0]] != '1')
 		g->p->x = new[0];
-	if (g->map->content[(int)new[1]][(int)g->p->x] == '0')
+	if (g->map->content[(int)new[1]][(int)g->p->x] != '1')
 		g->p->y = new[1];
 }
 
