@@ -20,6 +20,7 @@ int	close_game(t_game *g)
 	//tab_free(g->map->content); // not possible for now
 	free(g->map->content);
 	free(g->map);
+	tab_free(g->tex_paths);
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
 	free(g->p->cam);
 	free(g->p);
@@ -85,7 +86,7 @@ int	main(int ac, char **av)
 	if (check_map_format(av[1]))
 		return (put_error("Map is not a .cub file!\n"));
 	if (load_map(&g, av[1]))
-		return (1);
+		return (tab_free(g.tex_paths), 1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	load_assets(&g);

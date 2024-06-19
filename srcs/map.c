@@ -74,7 +74,7 @@ static int	get_texture(t_game *g, char *line)
 	if (!ft_strncmp(line, "EA ", 3))
 		tex = 3;
 	i = 2;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	j = i;
 	while (line[j] && line[j] != '\n')
@@ -92,8 +92,10 @@ static int	parse_map(t_game *g, char *path)
 	int		f;
 	char	*line;
 	int		error;
+	int		elements;
 
 	error = 0;
+	elements = 0;
 	f = open(path, O_RDONLY);
 	if (f < 0)
 		return (put_error("Error: unable to open the map!\n"));
@@ -103,25 +105,46 @@ static int	parse_map(t_game *g, char *path)
 		if (!error)
 		{
 			if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
+			{
 				error += get_color(g, line);
+				elements++;
+			}
 			if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 				|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
+			{
 				error += get_texture(g, line);
+				elements++;
+			}
 		}
 		free(line);
 		line = get_next_line(f);
 	}
-	return (error > 0);
+	close(f);
+	return (error > 0 || elements < 6);
 }
 
-int	load_map(t_game *g, char *path)
+static int	parse_layout(t_game *g, char *path)
 {
-	g->colors[0] = 0;
-	g->colors[1] = 0;
-	g->tex_paths = malloc(4 * sizeof(char *));
-	if (parse_map(g, path))
-		return (put_error("Error while parsing the map!\n"));
+	char *line;
+	int		f;
+	
+	f = open(path, O_RDONLY);
+	if (f < 0)
+		return (put_error("Error: unable to open the map!\n"));
 	g->map = malloc(sizeof(t_map));
+	g->map->height = 0;
+	g->map->width = 0;
+	line = get_next_line(f);
+	while (line)
+	{
+		g->map->height++;
+		if ((int)ft_strlen(line) > g->map->width)
+			g->map->width = ft_strlen(line);
+		free(line);
+		line = get_next_line(f);
+	}
+	g->map->height = 10;
+	g->map->width = 10;
 	g->map->content = malloc(11 * sizeof(char *));
 	g->map->content[0] = "1111111111";
 	g->map->content[1] = "1000000111";
@@ -134,7 +157,18 @@ int	load_map(t_game *g, char *path)
 	g->map->content[8] = "1110000111";
 	g->map->content[9] = "1111111111";
 	g->map->content[10] = NULL;
-	g->map->width = 10;
-	g->map->height = 10;
+	return (0);
+}
+
+int	load_map(t_game *g, char *path)
+{
+	g->colors[0] = 0;
+	g->colors[1] = 0;
+	g->tex_paths = malloc(5 * sizeof(char *));
+	g->tex_paths[4] = NULL;
+	if (parse_map(g, path))
+		return (put_error("Error while parsing the map!\n"));
+	if (parse_layout(g, path))
+		return (put_error("Error while parsing the map!\n"));
 	return (0);
 }
