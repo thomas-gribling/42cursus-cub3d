@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 16:59:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:18:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int	get_color(t_game *g, char *line)
 	if (rgb[0] < 0 || rgb[1] < 0 || rgb[2] < 0)
 		return (1);
 	if (!ft_strncmp(line, "F ", 2))
-		g->colors[0] = rgb_to_hex(rgb);
-	if (!ft_strncmp(line, "C ", 2))
 		g->colors[1] = rgb_to_hex(rgb);
+	if (!ft_strncmp(line, "C ", 2))
+		g->colors[0] = rgb_to_hex(rgb);
 	return (0);
 }
 
