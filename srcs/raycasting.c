@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 11:00:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:20:52 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0] - 1;
-	while (++y < c->bounds[1])
+	while (++y <= c->bounds[1])
 	{
 		c->tex_y = (int)c->tex_pos & (tex.endian - 1);
 		c->tex_pos += c->step;
