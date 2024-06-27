@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:22:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:51:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ static int	parse_layout(t_game *g, char *path)
 		if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)
 			|| !ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 			|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
-				elements++;
+			elements++;
 		free(line);
 		line = get_next_line(f);
 	}

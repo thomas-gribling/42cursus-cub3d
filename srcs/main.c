@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:44:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,57 +49,6 @@ int	key_pressed(int keycode, t_game *g)
 	return (0);
 }
 
-void	init_buffer(t_game *g)
-{
-	t_tex	*b;
-
-	b = &g->p->cam->buff;
-	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
-	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
-}
-
-void	init_cam(t_game *g)
-{
-	g->p->cam->speed_m = 0.1;
-	g->p->cam->speed_r = 0.033 * 1.8;
-	g->p->cam->map_x = (int)g->p->x;
-	g->p->cam->map_y = (int)g->p->y;
-	g->p->cam->hit = 0;
-}
-
-void	get_player_spawn(t_game *g, int x, int y) // TODO : direction
-{
-	g->p->cam->dir_x = 1;
-	g->p->cam->dir_y = 0;
-	g->p->cam->plane_x = 0;
-	g->p->cam->plane_y = 0.66;
-	g->p->x = x + 0.5;
-	g->p->y = y + 0.5;
-}
-
-void	init_player(t_game *g)
-{
-	int	x;
-	int	y;
-	
-	g->p = malloc(sizeof(t_player));
-	g->p->cam = malloc(sizeof(t_cam));
-	y = -1;
-	while (g->map->content[++y])
-	{
-		x = -1;
-		while (g->map->content[y][++x])
-		{
-			if (g->map->content[y][x] == 'N' || g->map->content[y][x] == 'S'
-				|| g->map->content[y][x] == 'E' || g->map->content[y][x] == 'W')
-				get_player_spawn(g, x, y);
-		}
-				
-	}
-	init_cam(g);
-	init_buffer(g);
-}
-
 int	main(int ac, char **av)
 {
 	t_game		g;
@@ -113,7 +62,7 @@ int	main(int ac, char **av)
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	load_assets(&g);
-	init_player(&g);
+	init_values(&g);
 	raycast(&g, g.p->cam);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);

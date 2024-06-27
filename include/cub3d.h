@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:48:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:50:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define GAME_TITLE "Shoot the bullies"
+# define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200
 # define HEIGHT 900
 
@@ -113,6 +113,8 @@ typedef struct s_game
 
 int				check_map_format(char *map);
 int				load_map(t_game *g, char *path);
+
+void			init_values(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path, int width, int height);
