@@ -6,13 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:44:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 14:50:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:53:36 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/gnl.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -56,27 +56,6 @@ void	*free_null(void *ptr1, void *ptr2)
 	if (ptr2)
 		free(ptr2);
 	return (NULL);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	char	*dest;
-
-	i = 0;
-	while (s[i])
-		i++;
-	dest = malloc(i + 1);
-	if (dest == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		dest[i] = s[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }
 
 char	*ft_strchr(const char *s, int c)

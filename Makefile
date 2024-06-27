@@ -15,7 +15,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c map.c assets.c player.c raycasting.c utils.c gnl.c utils_gnl.c
+FILES = main.c map.c assets.c player.c raycasting.c \
+		utils_1.c utils_2.c gnl.c utils_gnl.c
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 

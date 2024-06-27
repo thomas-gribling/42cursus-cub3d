@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 09:23:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:48:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,12 @@ int				raycast(t_game *g, t_cam *c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 
-void			tab_free(char **tab);
 int				put_error(char *s);
 int				ft_strncmp(char *s1, char *s2, size_t n);
 int				color_atoi(char *line, int start);
 int				rgb_to_hex(int *rgb);
+char			*ft_strdup(char *s);
+void			tab_free(char **tab);
+char			**tab_append(char **old, char *s, int do_free);
 
 #endif // CUB3D_H

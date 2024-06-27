@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/26 10:18:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:38:11 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,41 +123,52 @@ static int	parse_map(t_game *g, char *path)
 	return (error > 0 || elements < 6);
 }
 
+static int	read_layout(t_game *g, char *line, int f)
+{
+	if (!line)
+		return (put_error("Error: missing map in file.\n"));
+	g->map = malloc(sizeof(t_map));
+	g->map->height = 0;
+	g->map->width = 0;
+	g->map->content = NULL;
+	while (line)
+	{
+		if (ft_strlen(line) > g->map->width)
+			g->map->width = ft_strlen(line);
+		g->map->content = tab_append(g->map->content, line, 1);
+		g->map->height++;
+		line = get_next_line(f);
+	}
+	close(f);
+	return (0);
+}
+
 static int	parse_layout(t_game *g, char *path)
 {
 	char	*line;
 	int		f;
+	int		elements;
 
 	f = open(path, O_RDONLY);
 	if (f < 0)
 		return (put_error("Error: unable to open the map!\n"));
-	g->map = malloc(sizeof(t_map));
-	g->map->height = 0;
-	g->map->width = 0;
+	elements = 0;
 	line = get_next_line(f);
-	while (line)
+	while (line && elements != 6)
 	{
-		g->map->height++;
-		if ((int)ft_strlen(line) > g->map->width)
-			g->map->width = ft_strlen(line);
+		if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)
+			|| !ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
+			|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
+				elements++;
 		free(line);
 		line = get_next_line(f);
 	}
-	g->map->height = 10;
-	g->map->width = 10;
-	g->map->content = malloc(11 * sizeof(char *));
-	g->map->content[0] = "1111111111";
-	g->map->content[1] = "1000000111";
-	g->map->content[2] = "1010000011";
-	g->map->content[3] = "1000000001";
-	g->map->content[4] = "1000000001";
-	g->map->content[5] = "1000000001";
-	g->map->content[6] = "1000000001";
-	g->map->content[7] = "1100000011";
-	g->map->content[8] = "1110000111";
-	g->map->content[9] = "1111111111";
-	g->map->content[10] = NULL;
-	return (0);
+	while (line && !ft_strncmp(line, "\n", 1))
+	{
+		free(line);
+		line = get_next_line(f);
+	}
+	return (read_layout(g, line, f));
 }
 
 int	load_map(t_game *g, char *path)

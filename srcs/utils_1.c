@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:41:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 09:04:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:48:16 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	tab_free(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
 
 int	put_error(char *s)
 {
@@ -74,4 +64,22 @@ int	color_atoi(char *line, int start)
 int	rgb_to_hex(int *rgb)
 {
 	return (rgb[2] + rgb[1] * 16 * 16 + rgb[0] * 16 * 16 * 16 * 16);
+}
+
+char	*ft_strdup(char *s)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	while (s[i])
+		i++;
+	dest = malloc(i + 1);
+	if (dest == NULL)
+		return (NULL);
+	i = -1;
+	while (s[++i])
+		dest[i] = s[i];
+	dest[i] = '\0';
+	return (dest);
 }

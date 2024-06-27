@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/18 08:51:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:33:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	close_game(t_game *g)
 {
 	int	i;
 
-	//tab_free(g->map->content); // not possible for now
-	free(g->map->content);
+	tab_free(g->map->content);
 	free(g->map);
 	tab_free(g->tex_paths);
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
@@ -59,14 +58,8 @@ void	init_buffer(t_game *g)
 	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
 }
 
-void	init_player(t_game *g)
+void	init_cam(t_game *g)
 {
-	g->p = malloc(sizeof(t_player));
-	g->p->cam = malloc(sizeof(t_cam));
-	g->p->x = 5;
-	g->p->y = 5;
-	g->p->cam->dir_x = -1;
-	g->p->cam->dir_y = 0;
 	g->p->cam->plane_x = 0;
 	g->p->cam->plane_y = 0.66;
 	g->p->cam->speed_m = 0.1;
@@ -74,6 +67,57 @@ void	init_player(t_game *g)
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
+}
+
+void	get_player_spawn(t_game *g, int x, int y)
+{
+	char	c;
+
+	c = g->map->content[y][x];
+	if (c == 'N')
+	{
+		g->p->cam->dir_x = -1;
+		g->p->cam->dir_y = 0;
+	}
+	if (c == 'S')
+	{
+		g->p->cam->dir_x = -1;
+		g->p->cam->dir_y = 0;
+	}
+	if (c == 'E')
+	{
+		g->p->cam->dir_x = -1;
+		g->p->cam->dir_y = 0;
+	}
+	if (c == 'W')
+	{
+		g->p->cam->dir_x = -1;
+		g->p->cam->dir_y = 0;
+	}
+	g->p->x = x + 0.5;
+	g->p->y = y + 0.5;
+}
+
+void	init_player(t_game *g)
+{
+	int	x;
+	int	y;
+	
+	g->p = malloc(sizeof(t_player));
+	g->p->cam = malloc(sizeof(t_cam));
+	y = -1;
+	while (g->map->content[++y])
+	{
+		x = -1;
+		while (g->map->content[y][++x])
+		{
+			if (g->map->content[y][x] == 'N' || g->map->content[y][x] == 'S'
+				|| g->map->content[y][x] == 'E' || g->map->content[y][x] == 'W')
+				get_player_spawn(g, x, y);
+		}
+				
+	}
+	init_cam(g);
 	init_buffer(g);
 }
 
