@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 09:33:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:27:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,10 @@ void	init_cam(t_game *g)
 	g->p->cam->hit = 0;
 }
 
-void	get_player_spawn(t_game *g, int x, int y)
+void	get_player_spawn(t_game *g, int x, int y) // TODO : direction
 {
-	char	c;
-
-	c = g->map->content[y][x];
-	if (c == 'N')
-	{
-		g->p->cam->dir_x = -1;
-		g->p->cam->dir_y = 0;
-	}
-	if (c == 'S')
-	{
-		g->p->cam->dir_x = -1;
-		g->p->cam->dir_y = 0;
-	}
-	if (c == 'E')
-	{
-		g->p->cam->dir_x = -1;
-		g->p->cam->dir_y = 0;
-	}
-	if (c == 'W')
-	{
-		g->p->cam->dir_x = -1;
-		g->p->cam->dir_y = 0;
-	}
+	g->p->cam->dir_x = 1;
+	g->p->cam->dir_y = 0;
 	g->p->x = x + 0.5;
 	g->p->y = y + 0.5;
 }

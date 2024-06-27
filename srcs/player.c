@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:27:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:28:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	move_player(t_game *g, t_cam *c, int keycode)
 	}
 	if (keycode == KEY_A)
 	{
-		new[0] = g->p->x - c->dir_y * c->speed_m;
-		new[1] = g->p->y + c->dir_x * c->speed_m;
+		new[0] = g->p->x + c->dir_y * c->speed_m;
+		new[1] = g->p->y - c->dir_x * c->speed_m;
 	}
 	if (keycode == KEY_D)
 	{
-		new[0] = g->p->x + c->dir_y * c->speed_m;
-		new[1] = g->p->y - c->dir_x * c->speed_m;
+		new[0] = g->p->x - c->dir_y * c->speed_m;
+		new[1] = g->p->y + c->dir_x * c->speed_m;
 	}
 	apply_moves(g, new);
 }
@@ -51,7 +51,7 @@ void	rotate_player(t_cam *c, int keycode)
 {
 	double	tmp;
 
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_RIGHT)
 	{
 		tmp = c->dir_x;
 		c->dir_x = tmp * cos(c->speed_r) - c->dir_y * sin(c->speed_r);
@@ -60,7 +60,7 @@ void	rotate_player(t_cam *c, int keycode)
 		c->plane_x = tmp * cos(c->speed_r) - c->plane_y * sin(c->speed_r);
 		c->plane_y = tmp * sin(c->speed_r) + c->plane_y * cos(c->speed_r);
 	}
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_LEFT)
 	{
 		tmp = c->dir_x;
 		c->dir_x = tmp * cos(-c->speed_r) - c->dir_y * sin(-c->speed_r);
