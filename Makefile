@@ -20,11 +20,9 @@ FILES = main.c map.c init.c assets.c player.c raycasting.c \
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
-BONUS_MODE = 0
-
 %.o: %.c
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Creating object$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -lm -D BONUS_MODE=$(BONUS_MODE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -lm
 
 all: mlx $(NAME)
 
@@ -35,9 +33,6 @@ $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lm -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "\n$(BOLD_GREEN)=== $(NAME) successfully compiled! ===$(RESET)\n"
-
-bonus: BONUS_MODE = 1
-bonus: clean mlx $(NAME)
 
 clean:
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing objects"

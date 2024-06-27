@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:50:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:04:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@
 # define KEY_D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-
-# ifndef BONUS_MODE
-#  define BONUS_MODE 0
-# endif // BONUS_MODE
 
 # define TEX_AMT 4
 # define TEX_WALL_N 0
