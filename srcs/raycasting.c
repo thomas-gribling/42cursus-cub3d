@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:24:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:32:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	get_wall_tex(t_cam *c)
 	int	tex;
 
 	if (c->side == 0 && c->ray_dir_x >= 0)
-		tex = TEX_WALL_N;
-	if (c->side == 0 && c->ray_dir_x < 0)
-		tex = TEX_WALL_S;
-	if (c->side == 1 && c->ray_dir_y >= 0)
 		tex = TEX_WALL_W;
-	if (c->side == 1 && c->ray_dir_y < 0)
+	if (c->side == 0 && c->ray_dir_x < 0)
 		tex = TEX_WALL_E;
+	if (c->side == 1 && c->ray_dir_y >= 0)
+		tex = TEX_WALL_N;
+	if (c->side == 1 && c->ray_dir_y < 0)
+		tex = TEX_WALL_S;
 	return (tex);
 }
 
