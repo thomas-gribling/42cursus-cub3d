@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:25:34 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:46:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	read_layout(t_game *g, char *line, int f)
 	return (0);
 }
 
-static int	parse_map_layout(t_game *g, char *path)
+int	parse_map_layout(t_game *g, char *path)
 {
 	char	*line;
 	int		f;
@@ -61,7 +61,7 @@ static int	parse_map_layout(t_game *g, char *path)
 	return (read_layout(g, line, f));
 }
 
-static int	check_map_chars(char **map)
+int	check_map_chars(char **map)
 {
 	int		x;
 	int		y;
@@ -90,48 +90,40 @@ static int	check_map_chars(char **map)
 	return (0);
 }
 
-static int	check_map_bounds(char **map)
+static int	check_bounds_loop(char **map, char *state, int x, int y)
+{
+	if (map[y][x] == '0' && state[x] != '1')
+		return (1);
+	if (map[y][x] == '1' && state[x] != '1')
+		state[x] = '1';
+	if (map[y][x] == ' ' && (map[y + 1][x] == '0'
+		|| map[y - 1][x] == '0' || (x > 0 && map[y][x - 1] == '0')
+		|| (x < ft_strlen(map[y]) && map[y][x + 1] == '0')))
+		return (1);
+	if ((x == first_map_char(map[y]) && map[y][x] == '0')
+		|| (x == ft_strlen(map[y]) - 1 && map[y][x] == '0'))
+		return (1);
+	return (0);
+}
+
+int	check_map_bounds(char **map, int y)
 {
 	int		x;
-	int		y;
 	char	*state;
 
 	state = ft_strdup(map[0]);
 	if (is_in_str(state, '0'))
 		return (free(state), 1);
-	y = 0;
 	while (map[++y + 1])
 	{
 		x = -1;
 		while (map[y][++x])
-		{
-			if (map[y][x] == '0' && state[x] != '1')
-				return (1);
-			if (map[y][x] == '1' && state[x] != '1')
-				state[x] = '1';
-			if ((x == first_map_char(map[y]) && map[y][x] == '0')
-				|| (x == ft_strlen(map[y]) - 1 && map[y][x] == '0'))
-				return (1);
-		}	
+			if (check_bounds_loop(map, state, x, y))
+				return (free(state), 1);
 	}
 	free(state);
 	state = ft_strdup(map[y]);
 	if (is_in_str(state, '0'))
 		return (free(state), 1);
 	return (free(state), 0);
-}
-
-int	load_map(t_game *g, char *path)
-{
-	g->colors[0] = 0;
-	g->colors[1] = 0;
-	g->tex_paths = malloc(5 * sizeof(char *));
-	g->tex_paths[4] = NULL;
-	if (parse_map_infos(g, path))
-		return (put_error("Error while parsing the map!\n"));
-	if (parse_map_layout(g, path))
-		return (put_error("Error while parsing the map!\n"));
-	if (check_map_bounds(g->map->content))
-		return (put_error("Error: map bounds must be walls!\n"));
-	return (check_map_chars(g->map->content));
 }
