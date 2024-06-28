@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:46:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:16:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,17 @@ int	load_map(t_game *g, char *path)
 	if (parse_map_infos(g, path))
 		return (put_error("Error while parsing the map!\n"));
 	if (parse_map_layout(g, path))
+	{
+		tab_free(g->map->content);
+		free(g->map);
 		return (put_error("Error while parsing the map!\n"));
+	}
 	if (check_map_bounds(g->map->content, 0))
+	{
+		tab_free(g->map->content);
+		free(g->map);
 		return (put_error("Error: map bounds must be walls!\n"));
+	}
 	return (check_map_chars(g->map->content));
 }
 
