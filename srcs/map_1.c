@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 09:52:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:19:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,33 @@ static int	check_map_chars(char **map)
 
 static int	check_map_bounds(char **map)
 {
-	(void)map;
-	return (0);
+	int		x;
+	int		y;
+	char	*state;
+
+	state = ft_strdup(map[0]);
+	if (is_in_str(state, '0'))
+		return (free(state), 1);
+	y = 0;
+	while (map[++y + 1])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == '0' && state[x] != '1')
+				return (1);
+			if (map[y][x] == '1' && state[x] != '1')
+				state[x] = '1';
+			if ((x == 0 && map[y][x] == '0')
+				|| (x == ft_strlen(map[y]) - 1 && map[y][x] == '0'))
+				return (1);
+		}	
+	}
+	free(state);
+	state = ft_strdup(map[y]);
+	if (is_in_str(state, '0'))
+		return (free(state), 1);
+	return (free(state), 0);
 }
 
 int	load_map(t_game *g, char *path)
