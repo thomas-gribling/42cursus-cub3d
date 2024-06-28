@@ -6,27 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 08:46:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:57:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d.h"
-
-static int	get_wall_tex(t_cam *c)
-{
-	int	tex;
-
-	if (c->side == 0 && c->ray_dir_x >= 0)
-		tex = TEX_WALL_W;
-	if (c->side == 0 && c->ray_dir_x < 0)
-		tex = TEX_WALL_E;
-	if (c->side == 1 && c->ray_dir_y >= 0)
-		tex = TEX_WALL_N;
-	if (c->side == 1 && c->ray_dir_y < 0)
-		tex = TEX_WALL_S;
-	return (tex);
-}
 
 static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 {

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 11:04:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:57:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_game
 
 int				check_map_format(char *map);
 int				load_map(t_game *g, char *path);
+int				parse_map_infos(t_game *g, char *path);
 
 void			init_values(t_game *g);
 
@@ -119,6 +120,7 @@ unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_game *g, t_tex *buff);
 
 int				raycast(t_game *g, t_cam *c);
+int				get_wall_tex(t_cam *c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 
@@ -129,5 +131,6 @@ int				rgb_to_hex(int *rgb);
 char			*ft_strdup(char *s);
 void			tab_free(char **tab);
 char			**tab_append(char **old, char *s, int do_free);
+char			*ft_strdup_endl(char *s);
 
 #endif // CUB3D_H
