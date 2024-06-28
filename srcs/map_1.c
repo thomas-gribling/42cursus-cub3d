@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:19:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:25:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static int	check_map_bounds(char **map)
 				return (1);
 			if (map[y][x] == '1' && state[x] != '1')
 				state[x] = '1';
-			if ((x == 0 && map[y][x] == '0')
+			if ((x == first_map_char(map[y]) && map[y][x] == '0')
 				|| (x == ft_strlen(map[y]) - 1 && map[y][x] == '0'))
 				return (1);
 		}	

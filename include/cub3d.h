@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:09:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:25:17 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void			tab_free(char **tab);
 char			**tab_append(char **old, char *s, int do_free);
 char			*ft_strdup_endl(char *s);
 int				is_in_str(char *s, char c);
+int				first_map_char(char *s);
 
 #endif // CUB3D_H
