@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 11:53:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:57:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	apply_moves(t_game *g, double *new)
 {
-	if (g->map->content[(int)g->p->y][(int)new[0]] != '1')
+	if (is_prohibited_char(g->map->content[(int)g->p->y][(int)new[0]]))
 		g->p->x = new[0];
-	if (g->map->content[(int)new[1]][(int)g->p->x] != '1')
+	if (is_prohibited_char(g->map->content[(int)new[1]][(int)g->p->x]))
 		g->p->y = new[1];
 }
 

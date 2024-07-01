@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 11:16:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:09:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	key_pressed(int keycode, t_game *g)
 		move_player(g, g->p->cam, keycode);
 	if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		rotate_player(g->p->cam, keycode);
-	raycast(g, g->p->cam);
+	raycast(g, g->p->cam, -1);
 	return (0);
 }
 
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	load_assets(&g);
 	init_values(&g);
-	raycast(&g, g.p->cam);
+	raycast(&g, g.p->cam, -1);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_loop(g.mlx);

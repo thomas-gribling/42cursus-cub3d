@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 12:18:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:09:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200
 # define HEIGHT 900
+
+// amount of pixels in each half were the mouse can move without affecting cam
+// a sixth of the width
+# define CAM_DEADZONE 200
 
 # define KEY_ESCAPE 65307
 # define KEY_W 119
@@ -104,7 +108,6 @@ typedef struct s_game
 	t_tex		*tex;
 }				t_game;
 
-int				check_map_format(char *map);
 int				parse_map_layout(t_game *g, char *path);
 int				check_map_bounds(char **map, int y);
 int				check_map_chars(char **map);
@@ -117,7 +120,7 @@ void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
 
-int				raycast(t_game *g, t_cam *c);
+int				raycast(t_game *g, t_cam *c, int x);
 int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);

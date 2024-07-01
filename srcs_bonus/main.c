@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 12:12:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:10:11 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,27 @@ int	key_pressed(int keycode, t_game *g)
 		move_player(g, g->p->cam, keycode);
 	if (keycode == KEY_A || keycode == KEY_D)
 		move_player(g, g->p->cam, keycode);
-	if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		rotate_player(g->p->cam, keycode);
-	raycast(g, g->p->cam);
+	raycast(g, g->p->cam, -1);
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_game *g)
+{
+	int	move;
+
+	(void)y;
+	move = 0;
+
+	//mlx_mouse_move(g->mlx, g->win, WIDTH / 2, HEIGHT / 2);
+	if (x > WIDTH / 2)
+		move = KEY_RIGHT;
+	else if (x < WIDTH / 2)
+		move = KEY_LEFT;
+	if (move)
+	{
+		rotate_player(g->p->cam, move);
+		raycast(g, g->p->cam, -1);
+	}
 	return (0);
 }
 
@@ -65,23 +83,21 @@ int	load_map(t_game *g, char *path)
 	return (check_map_chars(g->map->content));
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	t_game		g;
 
-	if (ac != 2)
-		return (put_error("Arguments error!\nUsage: ./cub3d <map.cub>\n"));
-	if (check_map_format(av[1]))
-		return (put_error("Map is not a .cub file!\n"));
-	if (load_map(&g, av[1]))
+	if (load_map(&g, "maps/bonus/test.cub"))
 		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	load_assets(&g);
 	init_values(&g);
-	raycast(&g, g.p->cam);
+	raycast(&g, g.p->cam, -1);
+	mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
+	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop(g.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:59:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 11:50:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:51:08 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # endif
 
 # ifndef CUB3D_BONUS_H
-# 	include "cub3d.h"
+#  include "cub3d.h"
 # else
 #  include "cub3d_bonus.h"
 # endif

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 11:57:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:09:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_game *g, t_tex *buff);
 
-int				raycast(t_game *g, t_cam *c);
+int				raycast(t_game *g, t_cam *c, int x);
 int				get_wall_tex(t_cam *c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);

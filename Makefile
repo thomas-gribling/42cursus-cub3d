@@ -20,7 +20,7 @@ FILES = main.c map_1.c map_2.c init.c  \
 		assets.c player.c raycasting.c \
 		utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
-FILES_BONUS = main.c map_1.c map_2.c init.c  \
+FILES_BONUS = main.c map.c init.c  \
 			assets.c player.c raycasting.c get_texture.c \
 			utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
 OBJECTS_BONUS = $(addprefix $(SRCS_BONUS), $(FILES_BONUS:.c=.o))
@@ -54,5 +54,7 @@ fclean: clean
 #	@make clean -sC $(MLX_PATH)
 
 re: fclean all
+
+rebonus: fclean bonus
 
 .PHONY: mlx
