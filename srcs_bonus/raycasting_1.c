@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:10:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:44:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,11 @@ static void	raycast_dist(t_game *g, t_cam *c, int x)
 	raycast_dda(g, c, x);
 }
 
-int	raycast(t_game *g, t_cam *c, int x)
+void	raycast(t_game *g, t_cam *c, int x)
 {
 	mlx_clear_window(g->mlx, g->win);
 	reset_buffer(&c->buff);
+	raycast_floor_ceiling(g, c);
 	while (++x < WIDTH)
 	{
 		c->hit = 0;
@@ -135,5 +136,4 @@ int	raycast(t_game *g, t_cam *c, int x)
 	}
 	mlx_clear_window(g->mlx, g->win);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
-	return (0);
 }

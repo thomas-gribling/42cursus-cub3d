@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:09:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:53:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-# define TEX_AMT 4
+# define TEX_AMT 6
 # define TEX_WALL 0
 # define TEX_DOOR 1
 # define TEX_WINDOW 2
-# define TEX_NB_JERAU 3
+# define TEX_FLOOR 3
+# define TEX_CEILING 4
+# define TEX_NB_JERAU 5
 
 typedef struct s_map
 {
@@ -90,6 +92,21 @@ typedef struct s_cam
 	double			tex_pos;
 	unsigned int	color;
 	t_tex			buff;
+	double			ray_dir_x_0;
+	double			ray_dir_x_1;
+	double			ray_dir_y_0;
+	double			ray_dir_y_1;
+	int				p;
+	double			pos_z;
+	double			row_distance;
+	double			floor_step_x;
+	double			floor_step_y;
+	double			floor_x;
+	double			floor_y;
+	int				cell_x;
+	int				cell_y;
+	int				tx;
+	int				ty;
 }					t_cam;
 
 typedef struct s_player
@@ -120,7 +137,8 @@ void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
 
-int				raycast(t_game *g, t_cam *c, int x);
+void			raycast(t_game *g, t_cam *c, int x);
+void			raycast_floor_ceiling(t_game *g, t_cam *c);
 int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);

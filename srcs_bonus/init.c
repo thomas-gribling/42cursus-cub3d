@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 14:59:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:06:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	init_values(t_game *g)
 				get_player_spawn_ns(g, x, y);
 			if (g->map->content[y][x] == 'E' || g->map->content[y][x] == 'W')
 				get_player_spawn_ew(g, x, y);
-		}		
+		}
 	}
 	g->p->cam->speed_m = 0.1;
-	g->p->cam->speed_r = 0.033 * 1.8 / 4;
+	g->p->cam->speed_r = 0.033 * 1.8;
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;

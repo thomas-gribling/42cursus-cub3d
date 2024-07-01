@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:10:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:20:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	key_pressed(int keycode, t_game *g)
 		move_player(g, g->p->cam, keycode);
 	if (keycode == KEY_A || keycode == KEY_D)
 		move_player(g, g->p->cam, keycode);
+	if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
+		rotate_player(g->p->cam, keycode);
 	raycast(g, g->p->cam, -1);
 	return (0);
 }
 
-int	mouse_move(int x, int y, t_game *g)
+/*int	mouse_move(int x, int y, t_game *g)
 {
 	int	move;
 
@@ -64,7 +66,7 @@ int	mouse_move(int x, int y, t_game *g)
 		raycast(g, g->p->cam, -1);
 	}
 	return (0);
-}
+}*/
 
 int	load_map(t_game *g, char *path)
 {
@@ -97,7 +99,7 @@ int	main(void)
 	mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
-	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
+	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop(g.mlx);
 	return (0);
 }

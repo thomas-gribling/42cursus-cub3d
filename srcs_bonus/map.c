@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_1.c                                            :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 12:04:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:07:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	parse_map_layout(t_game *g, char *path)
 {
 	char	*line;
 	int		f;
-	
+
 	f = open(path, O_RDONLY);
 	if (f < 0)
 		return (put_error("Error: unable to open the map!\n"));
