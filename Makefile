@@ -7,7 +7,9 @@ YELLOW			= \033[0;33m
 RESET			= \033[0m
 
 SRCS = srcs/
+SRCS_BONUS = srcs_bonus/
 INCLUDE = include/
+INCLUDE_BONUS = include_bonus/
 MLX_PATH = mlx/
 MLX_LIB = libmlx_Linux.a
 
@@ -18,8 +20,11 @@ MLXFLAGS = -lX11 -lXext
 FILES = main.c map_1.c map_2.c init.c  \
 		assets.c player.c raycasting.c \
 		utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
-
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
+FILES_BONUS = main.c map_1.c map_2.c init.c  \
+			assets.c player.c raycasting.c \
+			utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
+OBJECTS_BONUS = $(addprefix $(SRCS_BONUS), $(FILES_BONUS:.c=.o))
 
 %.o: %.c
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Creating object$(RESET)"
@@ -33,6 +38,11 @@ all: mlx $(NAME)
 $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lm -I$(MLX_PATH) -I$(INCLUDE)
+	@echo "\n$(BOLD_GREEN)=== $@ successfully compiled! ===$(RESET)\n"
+
+bonus: $(OBJECTS_BONUS)
+	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$(NAME)$(RESET)] : $(YELLOW)Compiling $(NAME) (bonus)$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJECTS_BONUS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -lm -I$(MLX_PATH) -I$(INCLUDE_BONUS)
 	@echo "\n$(BOLD_GREEN)=== $(NAME) successfully compiled! ===$(RESET)\n"
 
 clean:
