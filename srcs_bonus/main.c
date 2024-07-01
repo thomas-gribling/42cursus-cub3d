@@ -6,12 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 11:16:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:12:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 int	close_game(t_game *g)
 {
@@ -19,7 +19,6 @@ int	close_game(t_game *g)
 
 	tab_free(g->map->content);
 	free(g->map);
-	tab_free(g->tex_paths);
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
 	free(g->p->cam);
 	free(g->p);
@@ -51,24 +50,18 @@ int	key_pressed(int keycode, t_game *g)
 
 int	load_map(t_game *g, char *path)
 {
-	g->colors[0] = 0;
-	g->colors[1] = 0;
-	g->tex_paths = malloc(5 * sizeof(char *));
-	g->tex_paths[4] = NULL;
-	if (parse_map_infos(g, path))
-		return (put_error("Error while parsing the map!\n"));
 	if (parse_map_layout(g, path))
 	{
 		tab_free(g->map->content);
 		free(g->map);
 		return (put_error("Error while parsing the map!\n"));
 	}
-	if (check_map_bounds(g->map->content, 0))
+	/*if (check_map_bounds(g->map->content, 0))
 	{
 		tab_free(g->map->content);
 		free(g->map);
 		return (put_error("Error: map bounds must be walls!\n"));
-	}
+	}*/
 	return (check_map_chars(g->map->content));
 }
 
@@ -81,7 +74,7 @@ int	main(int ac, char **av)
 	if (check_map_format(av[1]))
 		return (put_error("Map is not a .cub file!\n"));
 	if (load_map(&g, av[1]))
-		return (tab_free(g.tex_paths), 1);
+		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	load_assets(&g);

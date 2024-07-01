@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:51:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:00:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 #include "../mlx/mlx.h"
 
 t_tex	load_tex(t_game *g, char *path, int width, int height)
@@ -27,10 +27,10 @@ t_tex	load_tex(t_game *g, char *path, int width, int height)
 void	load_assets(t_game *g)
 {
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
-	g->tex[TEX_WALL_N] = load_tex(g, g->tex_paths[0], 100, 100);
-	g->tex[TEX_WALL_E] = load_tex(g, g->tex_paths[3], 100, 100);
-	g->tex[TEX_WALL_S] = load_tex(g, g->tex_paths[1], 100, 100);
-	g->tex[TEX_WALL_W] = load_tex(g, g->tex_paths[2], 100, 100);
+	g->tex[TEX_WALL] = load_tex(g, "assets/wall.xpm", 100, 100);
+	g->tex[TEX_DOOR] = load_tex(g, "assets/door.xpm", 100, 100);
+	g->tex[TEX_WINDOW] = load_tex(g, "assets/window.xpm", 100, 100);
+	g->tex[TEX_NB_JERAU] = load_tex(g, "assets/jerau.xpm", 100, 100);
 }
 
 void	tex_pixel_put(t_tex *tex, int x, int y, int color)
@@ -49,7 +49,7 @@ unsigned int	tex_get_pixel(t_tex *tex, int x, int y)
 	return (*(unsigned int *)pixel);
 }
 
-void	reset_buffer(t_game *g, t_tex *buff)
+void	reset_buffer(t_tex *buff)
 {
 	int	x;
 	int	y;
@@ -59,6 +59,6 @@ void	reset_buffer(t_game *g, t_tex *buff)
 	{
 		y = -1;
 		while (++y < HEIGHT)
-			tex_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
+			tex_pixel_put(buff, x, y, 0x000000);
 	}
 }

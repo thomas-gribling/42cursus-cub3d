@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:41:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:48:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:53:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 int	put_error(char *s)
 {

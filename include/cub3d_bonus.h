@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:46:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:18:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -32,10 +32,10 @@
 # define KEY_RIGHT 65363
 
 # define TEX_AMT 4
-# define TEX_WALL_N 0
-# define TEX_WALL_E 1
-# define TEX_WALL_S 2
-# define TEX_WALL_W 3
+# define TEX_WALL 0
+# define TEX_DOOR 1
+# define TEX_WINDOW 2
+# define TEX_NB_JERAU 3
 
 typedef struct s_map
 {
@@ -99,16 +99,12 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	int			time[2];
 	t_map		*map;
 	t_player	*p;
 	t_tex		*tex;
-	int			colors[2];
-	char		**tex_paths;
 }				t_game;
 
 int				check_map_format(char *map);
-int				parse_map_infos(t_game *g, char *path);
 int				parse_map_layout(t_game *g, char *path);
 int				check_map_bounds(char **map, int y);
 int				check_map_chars(char **map);
@@ -119,10 +115,10 @@ void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path, int width, int height);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
-void			reset_buffer(t_game *g, t_tex *buff);
+void			reset_buffer(t_tex *buff);
 
 int				raycast(t_game *g, t_cam *c);
-int				get_wall_tex(t_cam *c);
+int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 
@@ -134,7 +130,8 @@ char			*ft_strdup(char *s);
 void			tab_free(char **tab);
 char			**tab_append(char **old, char *s, int do_free);
 char			*ft_strdup_endl(char *s);
+int				is_prohibited_char(char c);
 int				is_in_str(char *s, char c);
 int				first_map_char(char *s);
 
-#endif // CUB3D_H
+#endif // CUB3D_BONUS_H

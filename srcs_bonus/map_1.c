@@ -6,21 +6,26 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:46:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:04:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 #include "../include/gnl.h"
 
-static int	read_layout(t_game *g, char *line, int f)
+int	parse_map_layout(t_game *g, char *path)
 {
-	if (!line)
-		return (put_error("Error: missing map in file.\n"));
+	char	*line;
+	int		f;
+	
+	f = open(path, O_RDONLY);
+	if (f < 0)
+		return (put_error("Error: unable to open the map!\n"));
 	g->map = malloc(sizeof(t_map));
 	g->map->height = 0;
 	g->map->width = 0;
 	g->map->content = NULL;
+	line = get_next_line(f);
 	while (line)
 	{
 		if (ft_strlen(line) > g->map->width)
@@ -31,34 +36,6 @@ static int	read_layout(t_game *g, char *line, int f)
 	}
 	close(f);
 	return (0);
-}
-
-int	parse_map_layout(t_game *g, char *path)
-{
-	char	*line;
-	int		f;
-	int		elements;
-
-	f = open(path, O_RDONLY);
-	if (f < 0)
-		return (put_error("Error: unable to open the map!\n"));
-	elements = 0;
-	line = get_next_line(f);
-	while (line && elements != 6)
-	{
-		if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)
-			|| !ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
-			|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
-			elements++;
-		free(line);
-		line = get_next_line(f);
-	}
-	while (line && !ft_strncmp(line, "\n", 1))
-	{
-		free(line);
-		line = get_next_line(f);
-	}
-	return (read_layout(g, line, f));
 }
 
 int	check_map_chars(char **map)
@@ -74,10 +51,6 @@ int	check_map_chars(char **map)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (map[y][x] != '1' && map[y][x] != '0' && map[y][x] != 'N'
-				&& map[y][x] != 'S' && map[y][x] != 'E' && map[y][x] != 'W'
-				&& map[y][x] != ' ')
-				return (put_error("Error: invalid characters in map!\n"));
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 				count++;

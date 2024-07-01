@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 08:59:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:53:45 by tgriblin         ###   ########.fr       */
+/*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
+/*   Updated: 2024/07/01 12:19:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
+#include "../include/cub3d_bonus.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-
-# include "cub3d.h"
-
-char	*get_next_line(int fd);
-int		ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-void	*free_null(void *ptr1, void *ptr2);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+int	get_texture(t_game *g, char c)
+{
+	(void)g;
+	if (c == '2')
+		return (TEX_DOOR);
+	if (c == '3')
+		return (TEX_WINDOW);
+	return (TEX_WALL);
+}

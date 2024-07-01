@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:41:49 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 09:58:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:14:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	tab_free(char **tab)
 {
@@ -75,17 +75,9 @@ char	*ft_strdup_endl(char *s)
 	return (dest);
 }
 
-int	get_wall_tex(t_cam *c)
+int	is_prohibited_char(char c)
 {
-	int	tex;
-
-	if (c->side == 0 && c->ray_dir_x >= 0)
-		tex = TEX_WALL_W;
-	if (c->side == 0 && c->ray_dir_x < 0)
-		tex = TEX_WALL_E;
-	if (c->side == 1 && c->ray_dir_y >= 0)
-		tex = TEX_WALL_N;
-	if (c->side == 1 && c->ray_dir_y < 0)
-		tex = TEX_WALL_S;
-	return (tex);
+	if (c == '0' || c == '\n' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
 }

@@ -6,12 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 09:57:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:20:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 {
@@ -28,7 +28,7 @@ static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[1] > HEIGHT)
 		c->bounds[1] = HEIGHT;
-	tex = g->tex[get_wall_tex(c)];
+	tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0] - 1;
@@ -45,7 +45,7 @@ static void	raycast_tex(t_game *g, t_cam *c, int x)
 {
 	t_tex	tex;
 
-	tex = g->tex[get_wall_tex(c)];
+	tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
 	if (c->side == 0)
 		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
 	else
@@ -75,7 +75,7 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 			c->map_y += c->step_y;
 			c->side = 1;
 		}
-		if (g->map->content[c->map_y][c->map_x] == '1')
+		if (!is_prohibited_char(g->map->content[c->map_y][c->map_x]))
 			c->hit = 1;
 	}
 	if (c->side == 0)
@@ -116,7 +116,7 @@ int	raycast(t_game *g, t_cam *c)
 	int	x;
 
 	mlx_clear_window(g->mlx, g->win);
-	reset_buffer(g, &c->buff);
+	reset_buffer(&c->buff);
 	x = -1;
 	while (++x < WIDTH)
 	{

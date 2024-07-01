@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:07:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:26:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:53:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 int	is_in_str(char *s, char c)
 {

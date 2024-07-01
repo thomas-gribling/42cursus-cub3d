@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 10:46:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:57:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	int			time[2];
 	t_map		*map;
 	t_player	*p;
 	t_tex		*tex;
