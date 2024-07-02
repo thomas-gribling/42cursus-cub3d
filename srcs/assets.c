@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:51:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:45:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	reset_buffer(t_game *g, t_tex *buff)
 	{
 		y = -1;
 		while (++y < HEIGHT)
-			tex_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
+			if ((int)tex_get_pixel(buff, x, y) != g->colors[y > HEIGHT / 2])
+				tex_pixel_put(buff, x, y, g->colors[y > HEIGHT / 2]);
 	}
 }

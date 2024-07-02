@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:44:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:48:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ static void	raycast_dist(t_game *g, t_cam *c, int x)
 
 void	raycast(t_game *g, t_cam *c, int x)
 {
-	mlx_clear_window(g->mlx, g->win);
 	reset_buffer(&c->buff);
 	raycast_floor_ceiling(g, c);
 	while (++x < WIDTH)

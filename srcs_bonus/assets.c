@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 16:04:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:48:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	reset_buffer(t_tex *buff)
 	{
 		y = -1;
 		while (++y < HEIGHT)
-			tex_pixel_put(buff, x, y, 0x000000);
+			if (tex_get_pixel(buff, x, y))
+				tex_pixel_put(buff, x, y, 0x000000);
 	}
 }
