@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:53:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:33:16 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 # define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200
 # define HEIGHT 900
-
-// amount of pixels in each half were the mouse can move without affecting cam
-// a sixth of the width
-# define CAM_DEADZONE 200
 
 # define KEY_ESCAPE 65307
 # define KEY_W 119
@@ -46,6 +42,7 @@
 typedef struct s_map
 {
 	char	**content;
+	int		*sizes;
 	int		width;
 	int		height;
 }			t_map;
@@ -105,8 +102,8 @@ typedef struct s_cam
 	double			floor_y;
 	int				cell_x;
 	int				cell_y;
-	int				tx;
-	int				ty;
+	int				tx[2];
+	int				ty[2];
 }					t_cam;
 
 typedef struct s_player

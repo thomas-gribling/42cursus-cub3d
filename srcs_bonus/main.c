@@ -6,18 +6,20 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:20:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:35:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d_bonus.h"
+#include "../include/gnl.h"
 
 int	close_game(t_game *g)
 {
 	int	i;
 
 	tab_free(g->map->content);
+	free(g->map->sizes);
 	free(g->map);
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
 	free(g->p->cam);
@@ -70,6 +72,8 @@ int	key_pressed(int keycode, t_game *g)
 
 int	load_map(t_game *g, char *path)
 {
+	int	i;
+
 	if (parse_map_layout(g, path))
 	{
 		tab_free(g->map->content);
@@ -82,6 +86,10 @@ int	load_map(t_game *g, char *path)
 		free(g->map);
 		return (put_error("Error: map bounds must be walls!\n"));
 	}*/
+	g->map->sizes = malloc(g->map->height * sizeof(int));
+	i = -1;
+	while (g->map->content[++i])
+		g->map->sizes[i] = ft_strlen(g->map->content[i]);
 	return (check_map_chars(g->map->content));
 }
 
