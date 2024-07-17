@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 14:40:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:32:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
 		tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
 	}
-	else
-	{
-		tex_pixel_put(&c->buff, x, y, 0x00DD00);
-		tex_pixel_put(&c->buff, x, HEIGHT - y - 1, 0x6AC9FB);
-	}
+	//else
+	//{
+	//	tex_pixel_put(&c->buff, x, y, 0x00DD00);
+	//	tex_pixel_put(&c->buff, x, HEIGHT - y - 1, 0x6AC9FB);
+	//}
 }
 
 static void	raycast_cell(t_game *g, t_cam *c, int y)
@@ -64,7 +64,7 @@ void	raycast_floor_ceiling(t_game *g, t_cam *c)
 {
 	int	y;
 
-	y = -1;
+	y = HEIGHT / 2 - 1;
 	while (++y < HEIGHT)
 	{
 		c->ray_dir_x_0 = c->dir_x - c->plane_x;

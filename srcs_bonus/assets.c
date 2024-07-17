@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 14:19:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:28:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	reset_buffer(t_tex *buff)
 		{
 			if (y < HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x6AC9FB)
 				tex_pixel_put(buff, x, y, 0x6AC9FB);
-			if (y > HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x00DD00)
+			if (y >= HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x00DD00)
 				tex_pixel_put(buff, x, y, 0x00DD00);
 		}
 	}
