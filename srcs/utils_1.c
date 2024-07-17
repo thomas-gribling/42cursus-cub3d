@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:41:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:48:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:11:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	put_error(char *s)
 {
 	int	i;
 
-	i = -1;
-	while (s[++i])
-		write(2, &s[i], 1);
+	i = 0;
+	while (s[i])
+		i += write(2, &s[i], 1);
 	return (1);
 }
 

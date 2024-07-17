@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 10:42:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:10:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	move_player(t_game *g, t_cam *c, int keycode)
 {
 	double	new[2];
 
+	new[0] = 0;
+	new[1] = 0;
 	if (keycode == KEY_W)
 	{
 		new[0] = g->p->x + c->dir_x * c->speed_m;
