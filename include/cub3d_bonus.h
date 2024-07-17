@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/05 00:33:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:11:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-# define TEX_AMT 6
+# define TEX_AMT 7
 # define TEX_WALL 0
 # define TEX_DOOR 1
 # define TEX_WINDOW 2
 # define TEX_FLOOR 3
 # define TEX_CEILING 4
-# define TEX_NB_JERAU 5
+# define TEX_GUI_UI 5
+# define TEX_NB_JERAU 6
 
 typedef struct s_map
 {
@@ -130,12 +131,14 @@ void			init_values(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path, int width, int height);
+void			tex_tex_put(t_tex *to, t_tex *from, int x, int y);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
 
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
+void			draw_gui(t_game *g, t_cam *c);
 int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);

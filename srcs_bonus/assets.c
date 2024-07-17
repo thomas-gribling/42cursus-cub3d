@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 15:28:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:10:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,31 @@ void	load_assets(t_game *g)
 	g->tex[TEX_WINDOW] = load_tex(g, "assets/window.xpm", 100, 100);
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 100, 100);
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm", 100, 100);
+	g->tex[TEX_GUI_UI] = load_tex(g, "assets/gui/ui.xpm", 100, 100);
 	g->tex[TEX_NB_JERAU] = load_tex(g, "assets/jerau.xpm", 100, 100);
+}
+
+void	tex_tex_put(t_tex *to, t_tex *from, int x, int y) // fix so it resizes if too big or small
+{
+	int	y_save;
+	int	from_x;
+	int	from_y;
+	
+	x -= 1;
+	y_save = y - 1;
+	from_x = -1;
+	from_y = -1;
+	while (++x < from->width)
+	{
+		from_x++;
+		from_y = -1;
+		y = y_save;
+		while (++y < from->height)
+		{
+			from_y++;
+			tex_pixel_put(to, x, y, tex_get_pixel(from, from_x, from_y));
+		}
+	}
 }
 
 void	tex_pixel_put(t_tex *tex, int x, int y, int color)
