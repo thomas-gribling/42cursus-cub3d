@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:56:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/17 14:50:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:38:41 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,22 +112,3 @@ char	*get_next_line(int fd)
 	stash = ft_del_line(stash);
 	return (line);
 }
-
-/*#include <fcntl.h>
-#include <stdio.h>
-
-int	main(void)
-{
-	int 	file;
-	char	*line;
-
-	file = open("file.txt", O_RDONLY);
-	line = get_next_line(file);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(file);
-	}
-	close(file);
-}*/

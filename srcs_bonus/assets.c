@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/05 00:24:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:19:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	load_assets(t_game *g)
 	g->tex[TEX_WALL] = load_tex(g, "assets/wall.xpm", 100, 100);
 	g->tex[TEX_DOOR] = load_tex(g, "assets/door.xpm", 100, 100);
 	g->tex[TEX_WINDOW] = load_tex(g, "assets/window.xpm", 100, 100);
-	g->tex[TEX_FLOOR] = load_tex(g, "assets/jerau.xpm", 100, 100);
-	g->tex[TEX_CEILING] = load_tex(g, "assets/jerau.xpm", 100, 100);
+	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 100, 100);
+	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm", 100, 100);
 	g->tex[TEX_NB_JERAU] = load_tex(g, "assets/jerau.xpm", 100, 100);
 }
 
@@ -65,7 +65,7 @@ void	reset_buffer(t_tex *buff)
 		{
 			if (y < HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x6AC9FB)
 				tex_pixel_put(buff, x, y, 0x6AC9FB);
-			if (y < HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x00DD00)
+			if (y > HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x00DD00)
 				tex_pixel_put(buff, x, y, 0x00DD00);
 		}
 	}
