@@ -1,6 +1,6 @@
-NO ./assets/jerau.xpm
+NO ./assets/ceiling.xpm
 SO ./assets/wall.xpm
-WE ./assets/window.xpm
+WE ./assets/floor.xpm
 EA ./assets/door.xpm
 
 F 0,221,0

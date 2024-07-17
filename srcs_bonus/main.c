@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 15:25:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:34:11 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(void)
 	load_assets(&g);
 	init_values(&g);
 	raycast(&g, g.p->cam, -1);
-	mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
+	//mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
