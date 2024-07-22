@@ -1,7 +1,7 @@
-NO ./assets/ceiling.xpm
+NO ./assets/wall_sign.xpm
 SO ./assets/wall.xpm
 WE ./assets/floor.xpm
-EA ./assets/door.xpm
+EA ./assets/ceiling.xpm
 
 F 0,221,0
 C 106,201,251
