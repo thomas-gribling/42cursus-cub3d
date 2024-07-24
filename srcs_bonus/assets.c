@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/24 14:59:52 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:37:41 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	load_assets(t_game *g)
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
 	g->tex[TEX_WALL] = load_tex(g, "assets/wall.xpm", 100, 100);
 	g->tex[TEX_WALL_SIGN] = load_tex(g, "assets/wall_sign.xpm", 100, 100);
-	g->tex[TEX_DOOR_C] = load_tex(g, "assets/doorc.xpm", 100, 100);
-	g->tex[TEX_DOOR_O] = load_tex(g, "assets/dooro.xpm", 100, 100);
+	g->tex[TEX_DOOR_C] = load_tex(g, "assets/door_c.xpm", 100, 100);
+	g->tex[TEX_DOOR_O] = load_tex(g, "assets/door_o.xpm", 100, 100);
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 100, 100);
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm", 100, 100);
 	g->tex[TEX_GUI_UI] = load_tex(g, "assets/gui/ui.xpm", 100, 100);
@@ -41,13 +41,14 @@ void	tex_tex_put(t_tex *to, t_tex *from, int x, int y)
 	int		y_save;
 	int		from_x;
 	int		from_y;
-	double	coeff;
+	double	coeff[2];
 	
 	x -= 1;
 	y_save = y - 1;
 	from_x = -1;
 	from_y = -1;
-	coeff = (double)from->width / (double)to->width;
+	coeff[0] = (double)from->width / (double)to->width;
+	coeff[1] = (double)from->height / (double)to->height;
 	while (++x < to->width)
 	{
 		from_x++;
@@ -56,7 +57,7 @@ void	tex_tex_put(t_tex *to, t_tex *from, int x, int y)
 		while (++y < to->height)
 		{
 			from_y++;
-			tex_pixel_put(to, x, y, tex_get_pixel(from, from_x * coeff, from_y * coeff));
+			tex_pixel_put(to, x, y, tex_get_pixel(from, from_x * coeff[0], from_y * coeff[1]));
 		}
 	}
 }
