@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 17:11:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:02:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@
 
 # define TEX_AMT 7
 # define TEX_WALL 0
-# define TEX_DOOR 1
-# define TEX_WINDOW 2
-# define TEX_FLOOR 3
-# define TEX_CEILING 4
-# define TEX_GUI_UI 5
-# define TEX_NB_JERAU 6
+# define TEX_WALL_SIGN 1
+# define TEX_DOOR_C 2
+# define TEX_DOOR_O 3
+# define TEX_FLOOR 4
+# define TEX_CEILING 5
+# define TEX_GUI_UI 6
 
 typedef struct s_map
 {

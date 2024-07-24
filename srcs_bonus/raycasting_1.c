@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 16:46:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:39:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 	{
 		c->tex_y = (int)c->tex_pos & (tex.endian - 1);
 		c->tex_pos += c->step;
-		c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
+		c->color = tex_get_pixel(&tex, tex.width - c->tex_x - 1, c->tex_y);
 		tex_pixel_put(&c->buff, x, y, c->color);
 	}
 }

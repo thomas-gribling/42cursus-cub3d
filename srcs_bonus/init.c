@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 16:06:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:42:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	init_buffer(t_game *g)
 	b = &g->p->cam->buff;
 	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
+	b->width = WIDTH;
+	b->height = HEIGHT;
 }
 
 static void	get_player_spawn_ew(t_game *g, int x, int y)
