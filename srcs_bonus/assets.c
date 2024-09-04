@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/24 15:37:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:54:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_tex	load_tex(t_game *g, char *path, int width, int height)
 void	load_assets(t_game *g)
 {
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
+	g->tex[TEX_MENU_BG] = load_tex(g, "assets/menu_bg.xpm", 1200, 900);
 	g->tex[TEX_WALL] = load_tex(g, "assets/wall.xpm", 100, 100);
 	g->tex[TEX_WALL_SIGN] = load_tex(g, "assets/wall_sign.xpm", 100, 100);
 	g->tex[TEX_DOOR_C] = load_tex(g, "assets/door_c.xpm", 100, 100);
@@ -42,7 +43,7 @@ void	tex_tex_put(t_tex *to, t_tex *from, int x, int y)
 	int		from_x;
 	int		from_y;
 	double	coeff[2];
-	
+
 	x -= 1;
 	y_save = y - 1;
 	from_x = -1;

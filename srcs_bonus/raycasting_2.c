@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/24 14:38:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:54:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 {
 	t_tex	tf;
-	t_tex	tc; 
+	t_tex	tc;
 
 	tf = g->tex[TEX_FLOOR];
 	tc = g->tex[TEX_CEILING];
@@ -25,10 +25,10 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 		&& c->cell_x < g->map->sizes[c->cell_y] && c->cell_y < g->map->height
 		&& is_prohibited_char(g->map->content[c->cell_y][c->cell_x]))
 	{
-	c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
-	tex_pixel_put(&c->buff, x, y, c->color);
-	c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
-	tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
+		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
+		tex_pixel_put(&c->buff, x, y, c->color);
+		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
+		tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
 	}
 }
 

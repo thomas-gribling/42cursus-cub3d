@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/24 15:02:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:38:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-# define TEX_AMT 7
-# define TEX_WALL 0
-# define TEX_WALL_SIGN 1
-# define TEX_DOOR_C 2
-# define TEX_DOOR_O 3
-# define TEX_FLOOR 4
-# define TEX_CEILING 5
-# define TEX_GUI_UI 6
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 3
+# define WHEEL_UP 4
+# define WHEEL_DOWN 5
+
+# define TEX_AMT 8
+# define TEX_MENU_BG 0
+# define TEX_WALL 1
+# define TEX_WALL_SIGN 2
+# define TEX_DOOR_C 3
+# define TEX_DOOR_O 4
+# define TEX_FLOOR 5
+# define TEX_CEILING 6
+# define TEX_GUI_UI 7
 
 typedef struct s_map
 {
@@ -121,6 +127,8 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*p;
 	t_tex		*tex;
+	t_tex		tmp_tex;
+	int			scene;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);
