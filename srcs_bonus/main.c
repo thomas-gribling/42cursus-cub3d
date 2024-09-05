@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/04 09:46:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/05 08:45:36 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	main(void)
 {
 	t_game		g;
 
-	if (load_map(&g, "maps/bonus/test.cub"))
+	if (load_map(&g, "maps/bonus/f1.cub"))
 		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);

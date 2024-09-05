@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/04 09:38:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/05 08:37:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,20 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 8
+# define TEX_AMT 13
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
 # define TEX_DOOR_C 3
 # define TEX_DOOR_O 4
-# define TEX_FLOOR 5
-# define TEX_CEILING 6
-# define TEX_GUI_UI 7
+# define TEX_WINDOW 5
+# define TEX_WALL_CLASS 6
+# define TEX_BOARD_1 7
+# define TEX_BOARD_2 8
+# define TEX_BOARD_3 9
+# define TEX_FLOOR 10
+# define TEX_CEILING 11
+# define TEX_GUI_UI 12
 
 typedef struct s_map
 {
