@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 08:52:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:39:52 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	init_buffer(t_game *g)
 	g->curr_slot = 0;
 	g->slots[0] = 0;
 	g->slots[1] = 0;
+	g->last_wheel = get_time();
 }
 
 static void	get_player_spawn_ew(t_game *g, int x, int y)

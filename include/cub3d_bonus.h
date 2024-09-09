@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 08:50:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:39:11 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include <sys/time.h>
 
 # define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200
@@ -136,15 +137,16 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_map		*map;
-	t_player	*p;
-	t_tex		*tex;
-	t_tex		tmp_tex;
-	int			scene;
-	int			curr_slot;
-	int			slots[2];
+	void			*mlx;
+	void			*win;
+	t_map			*map;
+	t_player		*p;
+	t_tex			*tex;
+	t_tex			tmp_tex;
+	int				scene;
+	int				curr_slot;
+	int				slots[2];
+	unsigned int	last_wheel;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);
@@ -179,5 +181,6 @@ char			*ft_strdup_endl(char *s);
 int				is_prohibited_char(char c);
 int				is_in_str(char *s, char c);
 int				first_map_char(char *s);
+unsigned int	get_time(void);
 
 #endif // CUB3D_BONUS_H

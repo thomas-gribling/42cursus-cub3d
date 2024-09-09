@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 08:50:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:42:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ int	mouse_click(int button, int x, int y, t_game *g)
 		raycast(g, g->p->cam, -1);
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	}
+	if (g->scene == 1 && (button == WHEEL_DOWN || button == WHEEL_UP))
+	{
+		if (get_time() - g->last_wheel > 1000)
+		{
+			g->last_wheel = get_time();
+			if (g->curr_slot == 0)
+				g->curr_slot = 1;
+			else
+				g->curr_slot = 0;
+		}
+	}
+	raycast(g, g->p->cam, -1);
 	return (0);
 }
 

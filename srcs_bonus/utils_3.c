@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:07:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 11:53:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:35:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ int	first_map_char(char *s)
 	while (s[i] && s[i] == ' ')
 		i++;
 	return (i);
+}
+
+unsigned int	get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
