@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/05 08:39:17 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 08:43:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ void	load_assets(t_game *g)
 	g->tex[TEX_BOARD_3] = load_tex(g, "assets/board_3.xpm", 100, 100);
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 100, 100);
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm", 100, 100);
-	g->tex[TEX_GUI_UI] = load_tex(g, "assets/gui/ui.xpm", 100, 100);
+	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_00_1] = load_tex(g, "assets/gui/inv_00_1.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_10_0] = load_tex(g, "assets/gui/inv_10_0.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_10_1] = load_tex(g, "assets/gui/inv_10_1.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_01_0] = load_tex(g, "assets/gui/inv_01_0.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_01_1] = load_tex(g, "assets/gui/inv_01_1.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_11_0] = load_tex(g, "assets/gui/inv_11_0.xpm", 1200, 900);
+	g->tex[TEX_GUI_INV_11_1] = load_tex(g, "assets/gui/inv_11_1.xpm", 1200, 900);
 }
 
 void	tex_tex_put(t_tex *to, t_tex *from, int x, int y)

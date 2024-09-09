@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/05 08:37:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 08:50:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@
 # define KEY_D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+# define KEY_1 49
+# define KEY_2 50
 
 # define LEFT_CLICK 1
 # define RIGHT_CLICK 3
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 13
+# define TEX_AMT 20
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -49,7 +51,14 @@
 # define TEX_BOARD_3 9
 # define TEX_FLOOR 10
 # define TEX_CEILING 11
-# define TEX_GUI_UI 12
+# define TEX_GUI_INV_00_0 12
+# define TEX_GUI_INV_00_1 13
+# define TEX_GUI_INV_10_0 14
+# define TEX_GUI_INV_10_1 15
+# define TEX_GUI_INV_01_0 16
+# define TEX_GUI_INV_01_1 17
+# define TEX_GUI_INV_11_0 18
+# define TEX_GUI_INV_11_1 19
 
 typedef struct s_map
 {
@@ -134,6 +143,8 @@ typedef struct s_game
 	t_tex		*tex;
 	t_tex		tmp_tex;
 	int			scene;
+	int			curr_slot;
+	int			slots[2];
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);
@@ -155,6 +166,7 @@ void			draw_gui(t_game *g, t_cam *c);
 int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
+void			switch_slots(t_game *g, int keycode);
 
 int				put_error(char *s);
 int				ft_strncmp(char *s1, char *s2, size_t n);

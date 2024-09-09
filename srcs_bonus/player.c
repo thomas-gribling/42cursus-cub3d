@@ -6,11 +6,19 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 16:12:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/09 08:51:07 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
+
+void	switch_slots(t_game *g, int keycode)
+{
+	if (keycode == KEY_1)
+		g->curr_slot = 0;
+	else
+		g->curr_slot = 1;
+}
 
 void	apply_moves(t_game *g, double *new)
 {
