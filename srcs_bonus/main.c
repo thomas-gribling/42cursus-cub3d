@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 09:42:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:39:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	key_pressed(int keycode, t_game *g)
 		rotate_player(g->p->cam, keycode);
 	if (keycode == KEY_1 || keycode == KEY_2)
 		switch_slots(g, keycode);
-	raycast(g, g->p->cam, -1);
+	//raycast(g, g->p->cam, -1);
 	return (0);
 }
 
@@ -77,7 +77,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 				g->curr_slot = 0;
 		}
 	}
-	raycast(g, g->p->cam, -1);
+	//raycast(g, g->p->cam, -1);
 	return (0);
 }
 
@@ -124,6 +124,13 @@ int	load_map(t_game *g, char *path)
 	return (check_map_chars(g->map->content));
 }
 
+int	main_loop(t_game *g)
+{
+	if (g->scene == 1)
+		update_screen(g);
+	return (0);
+}
+
 int	main(void)
 {
 	t_game		g;
@@ -139,11 +146,11 @@ int	main(void)
 	init_values(&g);
 	if (g.scene == 0)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
-	//raycast(&g, g.p->cam, -1);
 	//mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
+	mlx_loop_hook(g.mlx, main_loop, &g);
 	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop(g.mlx);
 	return (0);

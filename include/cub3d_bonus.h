@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 09:39:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:39:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_game
 	int				curr_slot;
 	int				slots[2];
 	unsigned int	last_wheel;
+	unsigned int	start;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);
@@ -162,9 +163,9 @@ void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
 
+void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
-void			draw_gui(t_game *g, t_cam *c);
 int				get_texture(t_game *g, char c);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
