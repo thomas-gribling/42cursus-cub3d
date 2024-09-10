@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 13:21:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:59:05 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	key_pressed(int keycode, t_game *g)
 		rotate_player(g->p->cam, keycode);
 	if (keycode == KEY_1 || keycode == KEY_2)
 		switch_slots(g, keycode);
-	//raycast(g, g->p->cam, -1);
 	return (0);
 }
 
@@ -69,7 +68,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 	}
 	if (g->scene == 1 && (button == WHEEL_DOWN || button == WHEEL_UP))
 	{
-		if (get_time() - g->last_wheel > 1000)
+		if (get_time() - g->last_wheel > 300)
 		{
 			g->last_wheel = get_time();
 			if (g->curr_slot == 0)
@@ -78,7 +77,6 @@ int	mouse_click(int button, int x, int y, t_game *g)
 				g->curr_slot = 0;
 		}
 	}
-	//raycast(g, g->p->cam, -1);
 	return (0);
 }
 
