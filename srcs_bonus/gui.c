@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 15:59:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:45:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 
 void	draw_gui(t_game *g, t_cam *c)
 {
+	int	time_left;
+
 	if (!g->slots[0] && !g->slots[1])
 		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_00_0 + g->curr_slot], 0, 0);
 	if (g->slots[0] && !g->slots[1])
@@ -50,8 +52,9 @@ void	draw_gui(t_game *g, t_cam *c)
 	if (g->slots[0] && g->slots[1])
 		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_11_0 + g->curr_slot], 0, 0);
 	draw_digits(g, &c->buff, 42, 0);
-	draw_digits(g, &c->buff, (get_time() - g->start) / 1000 % 60, 1);
-	draw_digits(g, &c->buff, (get_time() - g->start) / 1000 / 60, 2);
+	time_left = ft_max(COPS_TIMER - ((get_time() - g->start) / 1000), 0);
+	draw_digits(g, &c->buff, time_left % 60, 1);
+	draw_digits(g, &c->buff, time_left / 60, 2);
 }
 
 void	update_screen(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 13:25:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:46:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200
 # define HEIGHT 900
+
+# define COPS_TIMER 300
 
 # define KEY_ESCAPE 65307
 # define KEY_W 119
@@ -193,7 +195,8 @@ char			*ft_strdup_endl(char *s);
 int				is_prohibited_char(char c);
 int				is_in_str(char *s, char c);
 int				first_map_char(char *s);
-int				int_len(long n);
 unsigned int	get_time(void);
+int				int_len(long n);
+int				ft_max(int a, int b);
 
 #endif // CUB3D_BONUS_H

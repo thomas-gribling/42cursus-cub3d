@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:07:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 13:25:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:43:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ int	first_map_char(char *s)
 	return (i);
 }
 
+unsigned int	get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
 int	int_len(long n)
 {
 	int	out;
@@ -51,11 +60,9 @@ int	int_len(long n)
 	return (out);
 }
 
-unsigned int	get_time(void)
+int	ft_max(int a, int b)
 {
-	struct timeval	tv;
-
-	if (gettimeofday(&tv, NULL))
-		return (0);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	if (a > b)
+		return (a);
+	return (b);
 }
