@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 09:39:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:21:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 	if (g->scene == 0 && button == LEFT_CLICK)
 	{
 		g->scene = 1;
+		g->start = get_time();
 		raycast(g, g->p->cam, -1);
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	}

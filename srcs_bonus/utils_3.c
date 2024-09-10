@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:07:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 11:09:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:25:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	first_map_char(char *s)
 	return (i);
 }
 
-int	int_len(int n)
+int	int_len(long n)
 {
 	int	out;
 
