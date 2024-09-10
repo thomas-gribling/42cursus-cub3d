@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 10:11:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:14:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ char			*ft_strdup_endl(char *s);
 int				is_prohibited_char(char c);
 int				is_in_str(char *s, char c);
 int				first_map_char(char *s);
+int				int_len(int n);
 unsigned int	get_time(void);
 
 #endif // CUB3D_BONUS_H

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:07:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 09:35:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:09:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ int	first_map_char(char *s)
 	while (s[i] && s[i] == ' ')
 		i++;
 	return (i);
+}
+
+int	int_len(int n)
+{
+	int	out;
+
+	out = 1;
+	if (n < 0)
+	{
+		n = -n;
+		out += 1;
+	}
+	while (n > 9)
+	{
+		out++;
+		n /= 10;
+	}
+	return (out);
 }
 
 unsigned int	get_time(void)
