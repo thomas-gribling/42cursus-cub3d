@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 16:45:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:48:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 	long	tmp;
 	int		i;
 
-	digit_w = 34;
+	digit_w = g->tex[TEX_GUI_0].width;
 	tmp = digits;
 	i = -1;
 	while (++i < int_len(digits))

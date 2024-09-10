@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 16:46:10 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:49:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WIDTH 1200
 # define HEIGHT 900
 
-# define COPS_TIMER 300
+# define COPS_TIMER 420
 
 # define KEY_ESCAPE 65307
 # define KEY_W 119
