@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 09:39:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:11:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 20
+# define TEX_AMT 30
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -60,6 +60,16 @@
 # define TEX_GUI_INV_01_1 17
 # define TEX_GUI_INV_11_0 18
 # define TEX_GUI_INV_11_1 19
+# define TEX_GUI_0 20
+# define TEX_GUI_1 21
+# define TEX_GUI_2 22
+# define TEX_GUI_3 23
+# define TEX_GUI_4 24
+# define TEX_GUI_5 25
+# define TEX_GUI_6 26
+# define TEX_GUI_7 27
+# define TEX_GUI_8 28
+# define TEX_GUI_9 29
 
 typedef struct s_map
 {
@@ -158,7 +168,8 @@ void			init_values(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path, int width, int height);
-void			tex_tex_put(t_tex *to, t_tex *from, int x, int y);
+void			tex_put(t_tex *to, t_tex *from, int x, int y);
+void			tex_put_scale(t_tex *to, t_tex *from, int x, int y);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);

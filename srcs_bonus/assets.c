@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/09 08:43:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:07:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,28 @@ t_tex	load_tex(t_game *g, char *path, int width, int height)
 	return (s);
 }
 
+void	load_assets_gui(t_game *g)
+{
+	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_00_1] = load_tex(g, "assets/gui/inv_00_1.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_10_0] = load_tex(g, "assets/gui/inv_10_0.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_10_1] = load_tex(g, "assets/gui/inv_10_1.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_01_0] = load_tex(g, "assets/gui/inv_01_0.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_01_1] = load_tex(g, "assets/gui/inv_01_1.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_11_0] = load_tex(g, "assets/gui/inv_11_0.xpm", 600, 450);
+	g->tex[TEX_GUI_INV_11_1] = load_tex(g, "assets/gui/inv_11_1.xpm", 600, 450);
+	g->tex[TEX_GUI_0] = load_tex(g, "assets/gui/0.xpm", 34, 60);
+	g->tex[TEX_GUI_1] = load_tex(g, "assets/gui/1.xpm", 34, 60);
+	g->tex[TEX_GUI_2] = load_tex(g, "assets/gui/2.xpm", 34, 60);
+	g->tex[TEX_GUI_3] = load_tex(g, "assets/gui/3.xpm", 34, 60);
+	g->tex[TEX_GUI_4] = load_tex(g, "assets/gui/4.xpm", 34, 60);
+	g->tex[TEX_GUI_5] = load_tex(g, "assets/gui/5.xpm", 34, 60);
+	g->tex[TEX_GUI_6] = load_tex(g, "assets/gui/6.xpm", 34, 60);
+	g->tex[TEX_GUI_7] = load_tex(g, "assets/gui/7.xpm", 34, 60);
+	g->tex[TEX_GUI_8] = load_tex(g, "assets/gui/8.xpm", 34, 60);
+	g->tex[TEX_GUI_9] = load_tex(g, "assets/gui/9.xpm", 34, 60);
+}
+
 void	load_assets(t_game *g)
 {
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
@@ -39,78 +61,5 @@ void	load_assets(t_game *g)
 	g->tex[TEX_BOARD_3] = load_tex(g, "assets/board_3.xpm", 100, 100);
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm", 100, 100);
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm", 100, 100);
-	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_00_1] = load_tex(g, "assets/gui/inv_00_1.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_10_0] = load_tex(g, "assets/gui/inv_10_0.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_10_1] = load_tex(g, "assets/gui/inv_10_1.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_01_0] = load_tex(g, "assets/gui/inv_01_0.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_01_1] = load_tex(g, "assets/gui/inv_01_1.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_11_0] = load_tex(g, "assets/gui/inv_11_0.xpm", 1200, 900);
-	g->tex[TEX_GUI_INV_11_1] = load_tex(g, "assets/gui/inv_11_1.xpm", 1200, 900);
-}
-
-void	tex_tex_put(t_tex *to, t_tex *from, int x, int y)
-{
-	int		y_save;
-	int		from_x;
-	int		from_y;
-	double	coeff[2];
-
-	x -= 1;
-	y_save = y - 1;
-	from_x = -1;
-	from_y = -1;
-	coeff[0] = (double)from->width / (double)to->width;
-	coeff[1] = (double)from->height / (double)to->height;
-	while (++x < to->width)
-	{
-		from_x++;
-		from_y = -1;
-		y = y_save;
-		while (++y < to->height)
-		{
-			from_y++;
-			tex_pixel_put(to, x, y, tex_get_pixel(from, from_x * coeff[0], from_y * coeff[1]));
-		}
-	}
-}
-
-void	tex_pixel_put(t_tex *tex, int x, int y, int color)
-{
-	char	*pixel;
-
-	if (x < 0 || x >= tex->width || y < 0 || y > tex->height)
-		return ;
-	pixel = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
-	if (color != 0xFF00FF)
-		*(int *)pixel = color;
-}
-
-unsigned int	tex_get_pixel(t_tex *tex, int x, int y)
-{
-	char	*pixel;
-
-	if (x < 0 || x >= tex->width || y < 0 || y > tex->height)
-		return (0x000000);
-	pixel = tex->addr + (y * tex->line_len) + (x * tex->bpp / 8);
-	return (*(unsigned int *)pixel);
-}
-
-void	reset_buffer(t_tex *buff)
-{
-	int	x;
-	int	y;
-
-	x = -1;
-	while (++x < WIDTH)
-	{
-		y = -1;
-		while (++y < HEIGHT)
-		{
-			if (y < HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x6AC9FB)
-				tex_pixel_put(buff, x, y, 0x6AC9FB);
-			if (y >= HEIGHT / 2 && tex_get_pixel(buff, x, y) != 0x00DD00)
-				tex_pixel_put(buff, x, y, 0x00DD00);
-		}
-	}
+	load_assets_gui(g);
 }
