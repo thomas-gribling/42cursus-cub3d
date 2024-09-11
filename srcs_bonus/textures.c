@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:03:06 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 10:24:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 08:45:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	tex_put(t_tex *to, t_tex *from, int x, int y)
 {
 	int	from_x;
 	int	from_y;
+	int	save_y;
 
 	x -= 1;
 	from_x = -1;
+	save_y = y - 1;
 	while (++from_x < from->width)
 	{
 		x++;
-		y = -1;
+		y = save_y;
 		from_y = -1;
 		while (++from_y < from->height)
 		{
