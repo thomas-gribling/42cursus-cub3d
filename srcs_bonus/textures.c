@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:03:06 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 08:45:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:38:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ unsigned int	tex_get_pixel(t_tex *tex, int x, int y)
 	char	*pixel;
 
 	if (x < 0 || x >= tex->width || y < 0 || y > tex->height)
-		return (0x000000);
+		return (0xFF00FF);
 	pixel = tex->addr + (y * tex->line_len) + (x * tex->bpp / 8);
 	return (*(unsigned int *)pixel);
 }
