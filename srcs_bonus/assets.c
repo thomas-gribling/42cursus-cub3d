@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 10:07:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 08:50:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	load_assets_gui(t_game *g)
 	g->tex[TEX_GUI_7] = load_tex(g, "assets/gui/7.xpm", 34, 60);
 	g->tex[TEX_GUI_8] = load_tex(g, "assets/gui/8.xpm", 34, 60);
 	g->tex[TEX_GUI_9] = load_tex(g, "assets/gui/9.xpm", 34, 60);
+	g->tex[TEX_GUI_MAPWALL] = load_tex(g, "assets/gui/minimap_wall.xpm", 10, 10);
+	g->tex[TEX_GUI_MAPPLAYER] = load_tex(g, "assets/gui/minimap_player.xpm", 10, 10);
 }
 
 void	load_assets(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 16:49:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:00:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define COPS_TIMER 420
 
 # define KEY_ESCAPE 65307
+# define KEY_TAB 65289
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -41,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 30
+# define TEX_AMT 32
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -72,6 +73,8 @@
 # define TEX_GUI_7 27
 # define TEX_GUI_8 28
 # define TEX_GUI_9 29
+# define TEX_GUI_MAPWALL 30
+# define TEX_GUI_MAPPLAYER 31
 
 typedef struct s_map
 {
@@ -160,6 +163,7 @@ typedef struct s_game
 	int				slots[2];
 	unsigned int	last_wheel;
 	unsigned int	start;
+	int				show_map;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);

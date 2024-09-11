@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 14:59:05 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:00:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	key_pressed(int keycode, t_game *g)
 		rotate_player(g->p->cam, keycode);
 	if (keycode == KEY_1 || keycode == KEY_2)
 		switch_slots(g, keycode);
+	if (keycode == KEY_TAB)
+		g->show_map = !g->show_map;
 	return (0);
 }
 

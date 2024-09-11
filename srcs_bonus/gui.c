@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/10 16:48:40 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 08:58:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,27 @@ void	draw_gui(t_game *g, t_cam *c)
 	draw_digits(g, &c->buff, time_left / 60, 2);
 }
 
+void	draw_minimap(t_game *g, t_cam *c)
+{
+	int		x;
+	int		y;
+	t_tex	tex[2];
+
+	tex[0] = g->tex[TEX_GUI_MAPWALL];
+	tex[1] = g->tex[TEX_GUI_0];
+	y = -1;
+	while (g->map->content[++y])
+	{
+		x = -1;
+		while (g->map->content[y][++x])
+			if (!is_prohibited_char(g->map->content[y][x]))
+				tex_put(&c->buff, &tex[0], 10 * (x + 1), tex[1].height + 10 * (y + 1));
+	}
+	x = 10 * ((int)g->p->x + 1);
+	y = tex[1].height + 10 * ((int)g->p->y + 1);
+	tex_put(&c->buff, &g->tex[TEX_GUI_MAPPLAYER], x, y);
+}
+
 void	update_screen(t_game *g)
 {
 	t_cam	*c;
@@ -66,6 +87,8 @@ void	update_screen(t_game *g)
 	reset_buffer(&c->buff);
 	raycast(g, c, -1);
 	draw_gui(g, c);
+	if (g->show_map)
+		draw_minimap(g, c);
 	mlx_clear_window(g->mlx, g->win);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
 }
