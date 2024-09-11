@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 08:58:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:30:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 			tex_put(to, &g->tex[TEX_GUI_0 + tmp % 10], WIDTH - digit_w * (i + 1), 0);
 		}
 		else if (align == 2)
+		{
+			tex_put(to, &g->tex[TEX_GUI_SEP], WIDTH - digit_w * (i + 2) - digit_w / 2, 0);
 			tex_put(to, &g->tex[TEX_GUI_0 + tmp % 10], WIDTH - digit_w * (i + 3) - digit_w / 2, 0);
-			
+		}	
 		tmp /= 10;
 	}
 }
@@ -70,7 +72,7 @@ void	draw_minimap(t_game *g, t_cam *c)
 	{
 		x = -1;
 		while (g->map->content[y][++x])
-			if (!is_prohibited_char(g->map->content[y][x]))
+			if (!is_prohibited_char(g->map->content[y][x]) && g->map->content[y][x] != ' ')
 				tex_put(&c->buff, &tex[0], 10 * (x + 1), tex[1].height + 10 * (y + 1));
 	}
 	x = 10 * ((int)g->p->x + 1);

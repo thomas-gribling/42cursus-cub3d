@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 09:00:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:14:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 		if (get_time() - g->last_wheel > 300)
 		{
 			g->last_wheel = get_time();
-			if (g->curr_slot == 0)
-				g->curr_slot = 1;
-			else
-				g->curr_slot = 0;
+			g->curr_slot = !g->curr_slot;
 		}
 	}
 	return (0);
