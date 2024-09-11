@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 09:20:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:03:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,40 +42,41 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 33
+# define TEX_AMT 34
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
 # define TEX_DOOR_C 3
 # define TEX_DOOR_O 4
 # define TEX_WINDOW 5
-# define TEX_WALL_CLASS 6
-# define TEX_BOARD_1 7
-# define TEX_BOARD_2 8
-# define TEX_BOARD_3 9
-# define TEX_FLOOR 10
-# define TEX_CEILING 11
-# define TEX_GUI_INV_00_0 12
-# define TEX_GUI_INV_00_1 13
-# define TEX_GUI_INV_10_0 14
-# define TEX_GUI_INV_10_1 15
-# define TEX_GUI_INV_01_0 16
-# define TEX_GUI_INV_01_1 17
-# define TEX_GUI_INV_11_0 18
-# define TEX_GUI_INV_11_1 19
-# define TEX_GUI_0 20
-# define TEX_GUI_1 21
-# define TEX_GUI_2 22
-# define TEX_GUI_3 23
-# define TEX_GUI_4 24
-# define TEX_GUI_5 25
-# define TEX_GUI_6 26
-# define TEX_GUI_7 27
-# define TEX_GUI_8 28
-# define TEX_GUI_9 29
-# define TEX_GUI_SEP 30
-# define TEX_GUI_MAPWALL 31
-# define TEX_GUI_MAPPLAYER 32
+# define TEX_FENCE 6
+# define TEX_WALL_CLASS 7
+# define TEX_BOARD_1 8
+# define TEX_BOARD_2 9
+# define TEX_BOARD_3 10
+# define TEX_FLOOR 11
+# define TEX_CEILING 12
+# define TEX_GUI_INV_00_0 13
+# define TEX_GUI_INV_00_1 14
+# define TEX_GUI_INV_10_0 15
+# define TEX_GUI_INV_10_1 16
+# define TEX_GUI_INV_01_0 17
+# define TEX_GUI_INV_01_1 18
+# define TEX_GUI_INV_11_0 19
+# define TEX_GUI_INV_11_1 20
+# define TEX_GUI_0 21
+# define TEX_GUI_1 22
+# define TEX_GUI_2 23
+# define TEX_GUI_3 24
+# define TEX_GUI_4 25
+# define TEX_GUI_5 26
+# define TEX_GUI_6 27
+# define TEX_GUI_7 28
+# define TEX_GUI_8 29
+# define TEX_GUI_9 30
+# define TEX_GUI_SEP 31
+# define TEX_GUI_MAPWALL 32
+# define TEX_GUI_MAPPLAYER 33
 
 typedef struct s_map
 {
@@ -165,6 +166,7 @@ typedef struct s_game
 	unsigned int	last_wheel;
 	unsigned int	start;
 	int				show_map;
+	int				is_timer_red;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);

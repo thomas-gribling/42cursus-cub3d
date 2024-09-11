@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/04 09:54:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:06:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	tc = g->tex[TEX_CEILING];
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_x < g->map->sizes[c->cell_y] && c->cell_y < g->map->height
-		&& is_prohibited_char(g->map->content[c->cell_y][c->cell_x]))
+		&& is_prohibited_char(g->map->content[c->cell_y][c->cell_x])
+		&& g->map->content[c->cell_y][c->cell_x] != 'O')
 	{
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:41:49 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 12:14:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:06:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	*ft_strdup_endl(char *s)
 int	is_prohibited_char(char c)
 {
 	if (c == '0' || c == '\n' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	if (c == 'O')
 		return (1);
 	return (0);
 }

@@ -1,9 +1,11 @@
 0: empty
+O: empty (no floor/ceiling)
 1 / unassigned: wall.xpm (default)
 2: wall_sign.xpm
 3: door_c.xpm
-4: window.xpm (TODO)
-5: wall_class.xpm (TODO)
-6: board_1.xpm (TODO)
-7: board_2.xpm (TODO)
-8: board_3.xpm (TODO)
+4: window.xpm
+5: wall_class.xpm
+6: board_1.xpm
+7: board_2.xpm
+8: board_3.xpm
+9: fence.xpm
