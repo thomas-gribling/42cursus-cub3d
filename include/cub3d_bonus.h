@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 11:03:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/12 09:34:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define TEX_DOOR_C 3
 # define TEX_DOOR_O 4
 # define TEX_WINDOW 5
-# define TEX_FENCE 6
+# define TEX_WALL_BRICKS 6
 # define TEX_WALL_CLASS 7
 # define TEX_BOARD_1 8
 # define TEX_BOARD_2 9

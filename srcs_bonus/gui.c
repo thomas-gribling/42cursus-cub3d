@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 10:49:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/12 09:41:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ void	update_screen(t_game *g)
 	t_cam	*c;
 
 	c = g->p->cam;
-	mlx_do_sync(g->mlx);
+	//mlx_do_sync(g->mlx);
 	reset_buffer(&c->buff);
+	raycast_floor_ceiling(g, c);
 	raycast(g, c, -1);
 	draw_gui(g, c);
 	if (g->show_map)
