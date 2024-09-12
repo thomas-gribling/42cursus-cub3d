@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/12 09:34:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:18:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int				check_map_chars(char **map);
 void			init_values(t_game *g);
 
 void			load_assets(t_game *g);
-t_tex			load_tex(t_game *g, char *path, int width, int height);
+t_tex			load_tex(t_game *g, char *path);
 void			tex_put(t_tex *to, t_tex *from, int x, int y);
 void			tex_put_scale(t_tex *to, t_tex *from, int x, int y);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
