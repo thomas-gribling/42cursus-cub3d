@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/12 09:41:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 08:38:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 			c->map_y += c->step_y;
 			c->side = 1;
 		}
-		if (!is_prohibited_char(g->map->content[c->map_y][c->map_x]))
+		if (is_collision(g->map->content[c->map_y][c->map_x]))
 			c->hit = 1;
 	}
 	if (c->side == 0)

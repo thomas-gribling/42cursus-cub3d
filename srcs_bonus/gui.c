@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/12 09:41:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 08:38:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	draw_minimap(t_game *g, t_cam *c)
 	{
 		x = -1;
 		while (g->map->content[y][++x])
-			if (!is_prohibited_char(g->map->content[y][x]) && g->map->content[y][x] != ' ')
+			if (is_collision(g->map->content[y][x]) && g->map->content[y][x] != ' ')
 				tex_put(&c->buff, &tex[0], 10 * (x + 1), tex[1].height + 10 * (y + 1));
 	}
 	x = 10 * ((int)g->p->x + 1);
