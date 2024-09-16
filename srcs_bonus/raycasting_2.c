@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 08:36:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:17:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	tc = g->tex[TEX_CEILING];
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_x < g->map->sizes[c->cell_y] && c->cell_y < g->map->height
-		&& !is_collision(g->map->content[c->cell_y][c->cell_x])
-		&& g->map->content[c->cell_y][c->cell_x] != 'O')
+		&& ((!is_collision(g->map->content[c->cell_y][c->cell_x])
+			&& g->map->content[c->cell_y][c->cell_x] != 'O')
+		|| is_transparent(g->map->content[c->cell_y][c->cell_x])))
 	{
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);
@@ -70,8 +71,10 @@ void	raycast_floor_ceiling(t_game *g, t_cam *c)
 		c->p = y - (HEIGHT - 1) / 2;
 		c->pos_z = 0.5 * (HEIGHT - 1);
 		c->row_distance = c->pos_z / c->p;
-		c->floor_step_x = c->row_distance * (c->ray_dir_x_1 - c->ray_dir_x_0) / WIDTH;
-		c->floor_step_y = c->row_distance * (c->ray_dir_y_1 - c->ray_dir_y_0) / WIDTH;
+		c->floor_step_x = c->row_distance
+			* (c->ray_dir_x_1 - c->ray_dir_x_0) / WIDTH;
+		c->floor_step_y = c->row_distance
+			* (c->ray_dir_y_1 - c->ray_dir_y_0) / WIDTH;
 		c->floor_x = g->p->x + c->row_distance * c->ray_dir_x_0;
 		c->floor_y = g->p->y + c->row_distance * c->ray_dir_y_0;
 		raycast_cell(g, c, y);

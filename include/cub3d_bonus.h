@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 08:38:40 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:19:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 34
+# define TEX_AMT 35
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -50,6 +50,7 @@
 # define TEX_DOOR_O 4
 # define TEX_WINDOW 5
 # define TEX_WALL_BRICKS 6
+# define TEX_BUSH 34
 # define TEX_WALL_CLASS 7
 # define TEX_BOARD_1 8
 # define TEX_BOARD_2 9
@@ -97,6 +98,13 @@ typedef struct s_tex
 	int		endian;
 }			t_tex;
 
+typedef struct s_coll
+{
+	int		map_x;
+	int		map_y;
+	int		side;
+}			t_coll;
+
 typedef struct s_cam
 {
 	double			cam_x;
@@ -116,6 +124,8 @@ typedef struct s_cam
 	int				map_y;
 	int				hit;
 	int				side;
+	t_coll			*colls;
+	int				colls_amt;
 	double			perp_wall_dist;
 	int				line_h;
 	int				bounds[2];
@@ -205,5 +215,9 @@ unsigned int	get_time(void);
 int				int_len(long n);
 int				ft_max(int a, int b);
 int				is_collision(char c);
+int				is_transparent(char c);
+int				is_bounds(t_game *g, int x, int y);
+t_coll			*append_colls(t_coll *old, t_cam *c);
+void			raycast_step(t_cam *c);
 
 #endif // CUB3D_BONUS_H

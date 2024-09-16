@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/12 09:34:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:18:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	get_texture(t_game *g, char c)
 		return (TEX_BOARD_1 + c - '0' - 6);
 	if (c == '9')
 		return (TEX_WALL_BRICKS);
+	if (c == 'A')
+		return (TEX_BUSH);
 	return (TEX_WALL);
 }

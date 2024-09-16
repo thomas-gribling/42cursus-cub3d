@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 08:38:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:19:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 		{
 			tex_put(to, &g->tex[TEX_GUI_SEP], WIDTH - digit_w * (i + 2) - digit_w / 2, 0);
 			tex_put(to, &g->tex[TEX_GUI_0 + tmp % 10], WIDTH - digit_w * (i + 3) - digit_w / 2, 0);
-		}	
+		}
 		tmp /= 10;
 	}
 }
@@ -87,10 +87,12 @@ void	update_screen(t_game *g)
 	t_cam	*c;
 
 	c = g->p->cam;
-	//mlx_do_sync(g->mlx);
 	reset_buffer(&c->buff);
 	raycast_floor_ceiling(g, c);
 	raycast(g, c, -1);
+	if (c->colls)
+		free(c->colls);
+	c->colls = NULL;
 	draw_gui(g, c);
 	if (g->show_map)
 		draw_minimap(g, c);

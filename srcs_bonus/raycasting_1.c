@@ -6,29 +6,27 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 08:38:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:18:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d_bonus.h"
 
-static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
+static void	raycast_fill_buffer(t_game *g, t_cam *c, int x, int curr)
 {
 	int		y;
+	t_coll	co;
 	t_tex	tex;
 
-	if (!c->perp_wall_dist)
-		c->line_h = HEIGHT;
-	else
-		c->line_h = (int)(HEIGHT / c->perp_wall_dist);
+	co = c->colls[curr];
 	c->bounds[0] = -c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[0] < 0)
 		c->bounds[0] = 0;
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[1] > HEIGHT)
 		c->bounds[1] = HEIGHT;
-	tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
+	tex = g->tex[get_texture(g, g->map->content[co.map_y][co.map_x])];
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0] - 1;
@@ -41,49 +39,56 @@ static void	raycast_fill_buffer(t_game *g, t_cam *c, int x)
 	}
 }
 
-static void	raycast_tex(t_game *g, t_cam *c, int x)
+static void	raycast_tex(t_game *g, t_cam *c, int x, int curr)
 {
 	t_tex	tex;
+	t_coll	co;
+	double	tmp;
 
-	tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
-	if (c->side == 0)
+	co = c->colls[curr];
+	if (co.side == 0)
+		tmp = (co.map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+	else
+		tmp = (co.map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
+	c->perp_wall_dist = tmp;
+	tex = g->tex[get_texture(g, g->map->content[co.map_y][co.map_x])];
+	if (co.side == 0)
 		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
 	else
 		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x;
 	c->wall_x -= floor(c->wall_x);
 	c->tex_x = (int)(c->wall_x * (double)tex.width);
-	if ((!c->side && c->ray_dir_x > 0) || (c->side == 1 && c->ray_dir_y < 0))
+	if ((!co.side && c->ray_dir_x > 0) || (co.side == 1 && c->ray_dir_y < 0))
 		c->tex_x = tex.width - c->tex_x - 1;
-	raycast_fill_buffer(g, c, x);
+	if (!c->perp_wall_dist)
+		c->line_h = HEIGHT;
+	else
+		c->line_h = (int)(HEIGHT / c->perp_wall_dist);
+	raycast_fill_buffer(g, c, x, curr);
 }
 
 static void	raycast_dda(t_game *g, t_cam *c, int x)
 {
-	double	tmp;
+	int	i;
 
 	while (!c->hit)
 	{
-		if (c->side_dist_x < c->side_dist_y)
-		{
-			c->side_dist_x += c->delta_x;
-			c->map_x += c->step_x;
-			c->side = 0;
-		}
-		else
-		{
-			c->side_dist_y += c->delta_y;
-			c->map_y += c->step_y;
-			c->side = 1;
-		}
-		if (is_collision(g->map->content[c->map_y][c->map_x]))
+		raycast_step(c);
+		if (is_bounds(g, c->map_x, c->map_y))
 			c->hit = 1;
+		if (is_collision(g->map->content[c->map_y][c->map_x]))
+		{
+			c->colls = append_colls(c->colls, c);
+			if (!is_transparent(g->map->content[c->map_y][c->map_x]))
+				c->hit = 1;
+			while (c->map_x == c->colls[c->colls_amt].map_x
+				&& c->map_y == c->colls[c->colls_amt].map_y)
+				raycast_step(c);
+		}
 	}
-	if (c->side == 0)
-		tmp = (c->map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
-	else
-		tmp = (c->map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
-	c->perp_wall_dist = tmp;
-	raycast_tex(g, c, x);
+	i = c->colls_amt;
+	while (--i >= 0)
+		raycast_tex(g, c, x, i);
 }
 
 static void	raycast_dist(t_game *g, t_cam *c, int x)
@@ -121,6 +126,7 @@ void	raycast(t_game *g, t_cam *c, int x)
 		c->cam_x = 2.0 * x / (double)WIDTH - 1.0;
 		c->ray_dir_x = c->dir_x + c->plane_x * c->cam_x;
 		c->ray_dir_y = c->dir_y + c->plane_y * c->cam_x;
+		c->colls_amt = 0;
 		if (!c->ray_dir_x)
 			c->delta_x = 1e30;
 		else
