@@ -6,13 +6,20 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 11:18:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:02:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
 int	is_collision(char c)
+{
+	if (c == '3')
+		return (0);
+	return (is_castable(c));
+}
+
+int	is_castable(char c)
 {
 	if (c >= '1' && c <= '9')
 		return (1);
@@ -25,6 +32,8 @@ int	is_transparent(char c)
 {
 	if (c == '3' || c == '4')
 		return (1);
+	if (c == '9')
+		return (2);
 	return (0);
 }
 
@@ -38,7 +47,7 @@ int	is_bounds(t_game *g, int x, int y)
 	return (0);
 }
 
-t_coll	*append_colls(t_coll *old, t_cam *c)
+t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 {
 	t_coll	*new;
 	int		i;
@@ -55,11 +64,13 @@ t_coll	*append_colls(t_coll *old, t_cam *c)
 			new[i].map_x = old[i].map_x;
 			new[i].map_y = old[i].map_y;
 			new[i].side = old[i].side;
+			new[i].tex = old[i].tex;
 		}
 	}
 	new[i].map_x = c->map_x;
 	new[i].map_y = c->map_y;
 	new[i].side = c->side;
+	new[i].tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
 	c->colls_amt++;
 	free(old);
 	return (new);

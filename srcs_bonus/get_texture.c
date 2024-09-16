@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 10:18:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:58:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_texture(t_game *g, char c)
 	if (c == '2')
 		return (TEX_WALL_SIGN);
 	if (c == '3')
-		return (TEX_DOOR_C);
+		return (TEX_DOOR_C + 1 * (g->p->cam->perp_wall_dist < 0.7));
 	if (c == '4')
 		return (TEX_WINDOW);
 	if (c == '5')

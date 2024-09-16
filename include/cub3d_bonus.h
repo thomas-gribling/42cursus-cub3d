@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 11:19:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:02:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_coll
 	int		map_x;
 	int		map_y;
 	int		side;
+	t_tex	tex;
 }			t_coll;
 
 typedef struct s_cam
@@ -215,9 +216,10 @@ unsigned int	get_time(void);
 int				int_len(long n);
 int				ft_max(int a, int b);
 int				is_collision(char c);
+int				is_castable(char c);
 int				is_transparent(char c);
 int				is_bounds(t_game *g, int x, int y);
-t_coll			*append_colls(t_coll *old, t_cam *c);
+t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 void			raycast_step(t_cam *c);
 
 #endif // CUB3D_BONUS_H
