@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 14:02:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:34:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 			new[i].map_y = old[i].map_y;
 			new[i].side = old[i].side;
 			new[i].tex = old[i].tex;
+			new[i].tex_id = old[i].tex_id;
 		}
 	}
 	new[i].map_x = c->map_x;
 	new[i].map_y = c->map_y;
 	new[i].side = c->side;
-	new[i].tex = g->tex[get_texture(g, g->map->content[c->map_y][c->map_x])];
+	new[i].tex = g->tex[get_texture(g, c->map_x, c->map_y)];
+	new[i].tex_id = get_texture(g, c->map_x, c->map_y);
 	c->colls_amt++;
 	free(old);
 	return (new);

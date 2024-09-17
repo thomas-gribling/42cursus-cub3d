@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 14:02:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:33:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 35
+# define TEX_AMT 39
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -55,6 +55,10 @@
 # define TEX_BOARD_1 8
 # define TEX_BOARD_2 9
 # define TEX_BOARD_3 10
+# define TEX_WALL_OUTSIDE 35
+# define TEX_WINDOW_OUTSIDE 36
+# define TEX_DOOR_C_OUTSIDE 37
+# define TEX_DOOR_O_OUTSIDE 38
 # define TEX_FLOOR 11
 # define TEX_CEILING 12
 # define TEX_GUI_INV_00_0 13
@@ -103,6 +107,7 @@ typedef struct s_coll
 	int		map_x;
 	int		map_y;
 	int		side;
+	int		tex_id;
 	t_tex	tex;
 }			t_coll;
 
@@ -197,7 +202,7 @@ void			reset_buffer(t_tex *buff);
 void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
-int				get_texture(t_game *g, char c);
+int				get_texture(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			switch_slots(t_game *g, int keycode);
