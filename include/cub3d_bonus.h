@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 10:36:34 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:20:16 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct s_game
 	unsigned int	last_frame;
 	unsigned int	last_fps_update;
 	double			fps;
+	int				mouse_middle_x;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);

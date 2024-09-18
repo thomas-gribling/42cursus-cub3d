@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 08:37:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:28:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,9 @@ void	init_values(t_game *g)
 				get_player_spawn_ew(g, x, y);
 		}
 	}
+	g->mouse_middle_x = WIDTH / 2;
 	g->p->cam->speed_m = 0.1;
-	g->p->cam->speed_r = 0.033 * 1.8;
+	g->p->cam->speed_r = 0.033 * 1.8 / 4;
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 08:40:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:28:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,25 @@ int	mouse_click(int button, int x, int y, t_game *g)
 	return (0);
 }
 
-/*int	mouse_move(int x, int y, t_game *g)
+int	mouse_move(int x, int y, t_game *g)
 {
 	int	move;
 
 	(void)y;
 	move = 0;
 
-	//mlx_mouse_move(g->mlx, g->win, WIDTH / 2, HEIGHT / 2);
-	if (x > WIDTH / 2)
+	if (x > g->mouse_middle_x || x > WIDTH - 11)
 		move = KEY_RIGHT;
-	else if (x < WIDTH / 2)
+	else if (x < g->mouse_middle_x || x < 10)
 		move = KEY_LEFT;
 	if (move)
 	{
 		rotate_player(g->p->cam, move);
+		g->mouse_middle_x = x;
 		raycast(g, g->p->cam, -1);
 	}
 	return (0);
-}*/
+}
 
 int	load_map(t_game *g, char *path)
 {
@@ -125,8 +125,15 @@ int	load_map(t_game *g, char *path)
 
 int	main_loop(t_game *g)
 {
+	int	pos[2];
+
 	if (g->scene == 1)
+	{
 		update_screen(g);
+		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
+		if (pos[0] < 10 || pos[0] > WIDTH - 11)
+			mouse_move(pos[0], pos[1], g);
+	}
 	return (0);
 }
 
@@ -145,12 +152,12 @@ int	main(void)
 	init_values(&g);
 	if (g.scene == 0)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
-	//mlx_mouse_move(g.mlx, g.win, WIDTH / 2, HEIGHT / 2);
+	//mlx_mouse_hide(g.mlx, g.win);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
+	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop_hook(g.mlx, main_loop, &g);
-	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop(g.mlx);
 	return (0);
 }
