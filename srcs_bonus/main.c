@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 15:28:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:50:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,20 @@ int	load_map(t_game *g, char *path)
 	i = -1;
 	while (g->map->content[++i])
 		g->map->sizes[i] = ft_strlen(g->map->content[i]);
+	read_spr(g, g->map);
 	return (check_map_chars(g->map->content));
 }
 
 int	main_loop(t_game *g)
 {
-	int	pos[2];
+	//int	pos[2];
 
 	if (g->scene == 1)
 	{
 		update_screen(g);
-		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
-		if (pos[0] < 10 || pos[0] > WIDTH - 11)
-			mouse_move(pos[0], pos[1], g);
+		//mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
+		//if (pos[0] < 10 || pos[0] > WIDTH - 11)
+		//	mouse_move(pos[0], pos[1], g);
 	}
 	return (0);
 }
@@ -156,7 +157,7 @@ int	main(void)
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
-	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
+	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop_hook(g.mlx, main_loop, &g);
 	mlx_loop(g.mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 16:07:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:25:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,21 @@ int	check_map_bounds(char **map, int y)
 	if (is_in_str(state, '0'))
 		return (free(state), 1);
 	return (free(state), 0);
+}
+
+void	read_spr(t_game *g, t_map *map)
+{
+	int	x;
+	int	y;
+
+	map->spr_amt = 0;
+	map->spr = NULL;
+	y = -1;
+	while (map->content[++y])
+	{
+		x = -1;
+		while (map->content[y][++x])
+			if (is_sprite(map->content[y][x]))
+				append_spr(g, map, x, y);
+	}
 }

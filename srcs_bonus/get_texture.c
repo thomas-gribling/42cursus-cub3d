@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 10:36:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:53:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	get_texture(t_game *g, int x, int y)
 
 	c = g->p->cam;
 	ch = g->map->content[y][x];
-	if (ch == 'T')
-		return (TEX_GUI_0);
 	if (is_outside(g, c, x, y) && ch != '9' && ch != 'A')
 		return (get_texture_outside(g, ch, x, y));
 	if (ch == '2')

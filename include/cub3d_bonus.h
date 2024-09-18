@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 15:20:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:33:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 41
+# define TEX_AMT 43
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -63,35 +63,29 @@
 # define TEX_GROUND 17
 # define TEX_GRASS 18
 # define TEX_CEILING 19
-# define TEX_GUI_INV_00_0 20
-# define TEX_GUI_INV_00_1 21
-# define TEX_GUI_INV_10_0 22
-# define TEX_GUI_INV_10_1 23
-# define TEX_GUI_INV_01_0 24
-# define TEX_GUI_INV_01_1 25
-# define TEX_GUI_INV_11_0 26
-# define TEX_GUI_INV_11_1 27
-# define TEX_GUI_0 28
-# define TEX_GUI_1 29
-# define TEX_GUI_2 30
-# define TEX_GUI_3 31
-# define TEX_GUI_4 32
-# define TEX_GUI_5 33
-# define TEX_GUI_6 34
-# define TEX_GUI_7 35
-# define TEX_GUI_8 36
-# define TEX_GUI_9 37
-# define TEX_GUI_SEP 38
-# define TEX_GUI_MAPWALL 39
-# define TEX_GUI_MAPPLAYER 40
-
-typedef struct s_map
-{
-	char	**content;
-	int		*sizes;
-	int		width;
-	int		height;
-}			t_map;
+# define TEX_SPR_TREE_0 20
+# define TEX_SPR_TREE_1 21
+# define TEX_GUI_INV_00_0 22
+# define TEX_GUI_INV_00_1 23
+# define TEX_GUI_INV_10_0 24
+# define TEX_GUI_INV_10_1 25
+# define TEX_GUI_INV_01_0 26
+# define TEX_GUI_INV_01_1 27
+# define TEX_GUI_INV_11_0 28
+# define TEX_GUI_INV_11_1 29
+# define TEX_GUI_0 30
+# define TEX_GUI_1 31
+# define TEX_GUI_2 32
+# define TEX_GUI_3 33
+# define TEX_GUI_4 34
+# define TEX_GUI_5 35
+# define TEX_GUI_6 36
+# define TEX_GUI_7 37
+# define TEX_GUI_8 38
+# define TEX_GUI_9 39
+# define TEX_GUI_SEP 40
+# define TEX_GUI_MAPWALL 41
+# define TEX_GUI_MAPPLAYER 42
 
 typedef struct s_tex
 {
@@ -104,6 +98,24 @@ typedef struct s_tex
 	int		endian;
 }			t_tex;
 
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	double	dist;
+	int		tex_id;
+}				t_sprite;
+
+typedef struct s_map
+{
+	char		**content;
+	int			*sizes;
+	int			width;
+	int			height;
+	t_sprite	*spr;
+	int			spr_amt;
+}			t_map;
+
 typedef struct s_coll
 {
 	int		map_x;
@@ -111,11 +123,7 @@ typedef struct s_coll
 	int		side;
 	int		tex_id;
 	t_tex	tex;
-	int		type;
 }			t_coll;
-
-# define WALL 0
-# define SPRITE 1
 
 typedef struct s_cam
 {
@@ -165,6 +173,17 @@ typedef struct s_cam
 	int				cell_y;
 	int				tx[2];
 	int				ty[2];
+	double			z_buffer[WIDTH];
+	double			spr_x;
+	double			spr_y;
+	int				i_det;
+	double			transf_x;
+	double			transf_y;
+	int				spr_screen_x;
+	int				spr_h;
+	int				draw_y[2];
+	int				spr_w;
+	int				draw_x[2];
 }					t_cam;
 
 typedef struct s_player
@@ -197,6 +216,7 @@ typedef struct s_game
 int				parse_map_layout(t_game *g, char *path);
 int				check_map_bounds(char **map, int y);
 int				check_map_chars(char **map);
+void			read_spr(t_game *g, t_map *map);
 
 void			init_values(t_game *g);
 
@@ -211,6 +231,7 @@ void			reset_buffer(t_tex *buff);
 void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
+void			raycast_sprites(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
 double			dist_to_tile(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
@@ -234,7 +255,9 @@ int				is_collision(char c);
 int				is_castable(char c);
 int				is_transparent(char c);
 int				is_bounds(t_game *g, int x, int y);
-t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
+int				is_sprite(char c);
 void			raycast_step(t_cam *c);
+t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
+void			append_spr(t_game *g, t_map *map, int x, int y);
 
 #endif // CUB3D_BONUS_H
