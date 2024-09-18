@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/17 10:34:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:57:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_collision(char c)
 {
-	if (c == '3')
+	if (c == '3' || c == 'T')
 		return (0);
 	return (is_castable(c));
 }
@@ -23,14 +23,14 @@ int	is_castable(char c)
 {
 	if (c >= '1' && c <= '9')
 		return (1);
-	if (c == 'A')
+	if (c == 'A' || c == 'T')
 		return (1);
 	return (0);
 }
 
 int	is_transparent(char c)
 {
-	if (c == '3' || c == '4')
+	if (c == '3' || c == '4' || c == 'T')
 		return (1);
 	if (c == '9')
 		return (2);
@@ -66,6 +66,7 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 			new[i].side = old[i].side;
 			new[i].tex = old[i].tex;
 			new[i].tex_id = old[i].tex_id;
+			new[i].type = old[i].type;
 		}
 	}
 	new[i].map_x = c->map_x;
@@ -73,6 +74,9 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 	new[i].side = c->side;
 	new[i].tex = g->tex[get_texture(g, c->map_x, c->map_y)];
 	new[i].tex_id = get_texture(g, c->map_x, c->map_y);
+	new[i].type = WALL;
+	if (g->map->content[c->map_y][c->map_x] == 'T')
+		new[i].type = SPRITE;
 	c->colls_amt++;
 	free(old);
 	return (new);

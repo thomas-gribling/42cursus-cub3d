@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 10:29:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:36:14 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_outside(t_game *g, t_cam *c, int x, int y)
 	return (0);
 }
 
-static double	dist_to_tile(t_game *g, int x, int y)
+double	dist_to_tile(t_game *g, int x, int y)
 {
 	double	dist;
 	int		delta[2];

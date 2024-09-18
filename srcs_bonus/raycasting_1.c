@@ -6,12 +6,62 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 09:11:39 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:09:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/cub3d_bonus.h"
+
+static void	raycast_fill_buffer_spr(t_cam *c, int x, int curr)
+{
+	int		y;
+	t_coll	co;
+
+	co = c->colls[curr];
+	c->bounds[0] = -c->line_h / 2 + HEIGHT / 2;
+	if (c->bounds[0] < 0)
+		c->bounds[0] = 0;
+	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
+	if (c->bounds[1] > HEIGHT)
+		c->bounds[1] = HEIGHT;
+	c->step = 1.0 * co.tex.height / c->line_h;
+	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
+	y = c->bounds[0] - 1;
+	while (++y < c->bounds[1])
+	{
+		c->tex_y = (int)c->tex_pos & (co.tex.endian - 1);
+		c->tex_pos += c->step;
+		c->color = tex_get_pixel(&co.tex, co.tex.width - c->tex_x - 1, c->tex_y);
+		tex_pixel_put(&c->buff, x, y, c->color);
+	}
+}
+
+static void	raycast_tex_spr(t_game *g, t_cam *c, int x, int curr)
+{
+	t_coll	co;
+	double	tmp;
+
+	co = c->colls[curr];
+	if (co.side == 0)
+		tmp = (co.map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+	else
+		tmp = (co.map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
+	c->perp_wall_dist = tmp;
+	if (co.side == 0)
+		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
+	else
+		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x;
+	c->wall_x -= floor(c->wall_x);
+	c->tex_x = (int)(c->wall_x * (double)co.tex.width);
+	if ((!co.side && c->ray_dir_x > 0) || (co.side == 1 && c->ray_dir_y < 0))
+		c->tex_x = co.tex.width - c->tex_x - 1;
+	if (!c->perp_wall_dist)
+		c->line_h = HEIGHT;
+	else
+		c->line_h = (int)(HEIGHT / c->perp_wall_dist);
+	raycast_fill_buffer_spr(c, x, curr);
+}
 
 static void	raycast_fill_buffer(t_cam *c, int x, int curr)
 {
@@ -97,7 +147,12 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 	}
 	i = c->colls_amt;
 	while (--i >= 0)
-		raycast_tex(g, c, x, i);
+	{
+		if (c->colls[i].type == WALL)
+			raycast_tex(g, c, x, i);
+		else
+			raycast_tex_spr(g, c, x, i);
+	}
 }
 
 static void	raycast_dist(t_game *g, t_cam *c, int x)
