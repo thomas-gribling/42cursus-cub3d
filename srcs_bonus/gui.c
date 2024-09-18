@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 08:38:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 08:40:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	update_screen(t_game *g)
 		draw_minimap(g, c);
 	//mlx_clear_window(g->mlx, g->win);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
-	if (get_time() - g->last_fps_update >= 500)
+	if (get_time() - g->last_fps_update >= 500.0)
 	{
 		g->fps = (get_time() - g->last_frame) / 1000.0;
 		g->last_fps_update = get_time();
