@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/17 10:47:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:11:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,35 @@ static void	raycast_fill_buffer(t_cam *c, int x, int curr)
 {
 	int		y;
 	t_coll	co;
+	t_tex	tex;
 
 	co = c->colls[curr];
+	tex = co.tex;
 	c->bounds[0] = -c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[0] < 0)
 		c->bounds[0] = 0;
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
 	if (c->bounds[1] > HEIGHT)
 		c->bounds[1] = HEIGHT;
-	c->step = 1.0 * co.tex.height / c->line_h;
+	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0] - 1;
 	/*if (co.tex_id == TEX_WALL_OUTSIDE || co.tex_id == TEX_WINDOW_OUTSIDE
 		|| co.tex_id == TEX_DOOR_C_OUTSIDE)
-		y = c->bounds[0] - c->line_h * 2 - 1;*/
+		y = c->bounds[0] - c->line_h * 3 - 1;*/
 	while (++y < c->bounds[1])
 	{
 		c->tex_y = (int)c->tex_pos & (co.tex.endian - 1);
-		//if (c->tex_y < co.tex.height * 3)
-		//	c->tex_y %= co.tex.height;
+		/*if (y < c->bounds[0] - c->line_h * 2 - 1)
+			tex = g->tex[TEX_WINDOW];
+		else if (y < c->bounds[0])
+			tex = g->tex[TEX_WALL_OUTSIDE];
+		else
+			tex = co.tex;
+		if (c->tex_y < tex.height * 4)
+			c->tex_y %= tex.height;*/
 		c->tex_pos += c->step;
-		c->color = tex_get_pixel(&co.tex, co.tex.width - c->tex_x - 1, c->tex_y);
+		c->color = tex_get_pixel(&tex, tex.width - c->tex_x - 1, c->tex_y);
 		tex_pixel_put(&c->buff, x, y, c->color);
 	}
 }

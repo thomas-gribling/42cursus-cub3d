@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 13:35:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:28:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,19 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	tc = g->tex[TEX_CEILING];
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_x < g->map->sizes[c->cell_y] && c->cell_y < g->map->height
-		&& ((!is_collision(g->map->content[c->cell_y][c->cell_x])
-			&& g->map->content[c->cell_y][c->cell_x] != 'O')
+		&& (!is_collision(g->map->content[c->cell_y][c->cell_x])
 		|| is_transparent(g->map->content[c->cell_y][c->cell_x]) == 1))
 	{
+		if (g->map->content[c->cell_y][c->cell_x] == 'O')
+			tf = g->tex[TEX_GROUND];
+		if (g->map->content[c->cell_y][c->cell_x] == 'G')
+			tf = g->tex[TEX_GRASS];
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);
 		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
-		tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
+		if (g->map->content[c->cell_y][c->cell_x] != 'O'
+			&& g->map->content[c->cell_y][c->cell_x] != 'G')
+			tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
 	}
 }
 
