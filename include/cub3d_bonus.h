@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 19:33:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:54:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ typedef struct s_cam
 	double			z_buffer[WIDTH];
 	double			spr_x;
 	double			spr_y;
-	int				i_det;
+	double			i_det;
 	double			transf_x;
 	double			transf_y;
 	int				spr_screen_x;
@@ -184,6 +184,9 @@ typedef struct s_cam
 	int				draw_y[2];
 	int				spr_w;
 	int				draw_x[2];
+	int				pix_x;
+	int				pix_y;
+	int				d;
 }					t_cam;
 
 typedef struct s_player
