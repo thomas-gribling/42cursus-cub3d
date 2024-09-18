@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/17 10:31:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:29:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,21 @@ static int	is_outside(t_game *g, t_cam *c, int x, int y)
 	return (0);
 }
 
-static int	get_texture_outside(char c)
+static double	dist_to_tile(t_game *g, int x, int y)
+{
+	double	dist;
+	int		delta[2];
+
+	delta[0] = fabs(x + 0.5 - g->p->x);
+	delta[1] = fabs(y + 0.5 - g->p->y);
+	dist = sqrt(pow(delta[0], 2) + pow(delta[1], 2));
+	return (dist);
+}
+
+static int	get_texture_outside(t_game *g, char c, int x, int y)
 {
 	if (c == '3')
-		return (TEX_DOOR_C_OUTSIDE);
+		return (TEX_DOOR_C_OUTSIDE + 1 * (dist_to_tile(g, x, y) < 1.25));
 	if (c == '4')
 		return (TEX_WINDOW_OUTSIDE);
 	return (TEX_WALL_OUTSIDE);
@@ -45,12 +56,14 @@ int	get_texture(t_game *g, int x, int y)
 
 	c = g->p->cam;
 	ch = g->map->content[y][x];
+	if (ch == 'T')
+		return (TEX_GUI_0);
 	if (is_outside(g, c, x, y) && ch != '9' && ch != 'A')
-		return (get_texture_outside(ch));
+		return (get_texture_outside(g, ch, x, y));
 	if (ch == '2')
 		return (TEX_WALL_SIGN);
 	if (ch == '3')
-		return (TEX_DOOR_C);
+		return (TEX_DOOR_C + 1 * (dist_to_tile(g, x, y) < 1.25));
 	if (ch == '4')
 		return (TEX_WINDOW);
 	if (ch == '5')
