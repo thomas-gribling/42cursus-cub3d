@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/17 10:33:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 08:37:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,9 @@ typedef struct s_game
 	unsigned int	last_wheel;
 	unsigned int	start;
 	int				show_map;
-	int				is_timer_red;
+	unsigned int	last_frame;
+	unsigned int	last_fps_update;
+	double			fps;
 }				t_game;
 
 int				parse_map_layout(t_game *g, char *path);

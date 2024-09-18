@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 11:19:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 08:38:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 {
 	int		digit_w;
+	int		digit_h;
 	long	tmp;
 	int		i;
 
 	digit_w = g->tex[TEX_GUI_0].width;
+	digit_h = g->tex[TEX_GUI_0].height;
 	tmp = digits;
 	i = -1;
 	while (++i < int_len(digits))
@@ -37,6 +39,8 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 			tex_put(to, &g->tex[TEX_GUI_SEP], WIDTH - digit_w * (i + 2) - digit_w / 2, 0);
 			tex_put(to, &g->tex[TEX_GUI_0 + tmp % 10], WIDTH - digit_w * (i + 3) - digit_w / 2, 0);
 		}
+		else if (align == 3)
+			tex_put(to, &g->tex[TEX_GUI_0 + tmp % 10], WIDTH - digit_w * (i + 1), digit_h);
 		tmp /= 10;
 	}
 }
@@ -57,6 +61,7 @@ void	draw_gui(t_game *g, t_cam *c)
 	time_left = ft_max(COPS_TIMER - ((get_time() - g->start) / 1000), 0);
 	draw_digits(g, &c->buff, time_left % 60, 1);
 	draw_digits(g, &c->buff, time_left / 60, 2);
+	draw_digits(g, &c->buff, (int)floor(1.0 / g->fps), 3);
 	if (time_left == 0)
 		g->scene = 2;
 }
@@ -96,6 +101,12 @@ void	update_screen(t_game *g)
 	draw_gui(g, c);
 	if (g->show_map)
 		draw_minimap(g, c);
-	mlx_clear_window(g->mlx, g->win);
+	//mlx_clear_window(g->mlx, g->win);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
+	if (get_time() - g->last_fps_update >= 500)
+	{
+		g->fps = (get_time() - g->last_frame) / 1000.0;
+		g->last_fps_update = get_time();
+	}
+	g->last_frame = get_time();
 }
