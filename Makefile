@@ -7,7 +7,7 @@ YELLOW			= \033[0;33m
 RESET			= \033[0m
 
 SRCS = srcs/
-SRCS_BONUS = srcs_bonus/
+SRCS_BONUS = srcs_wip/
 INCLUDE = include/
 MLX_PATH = mlx/
 MLX_LIB = libmlx_Linux.a

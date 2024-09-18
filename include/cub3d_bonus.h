@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 09:31:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:36:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ typedef struct s_coll
 	int		side;
 	int		tex_id;
 	t_tex	tex;
+	int		type;
 }			t_coll;
+
+# define WALL 0
+# define SPRITE 1
 
 typedef struct s_cam
 {
@@ -207,6 +211,7 @@ void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
+double			dist_to_tile(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			switch_slots(t_game *g, int keycode);
