@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 20:05:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/19 08:22:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,25 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 	return (new);
 }
 
-int	get_texture_spr(char c)
+int	get_texture_spr(t_game *g, t_sprite spr)
 {
+	char	c;
+	int		x;
+	int		y;
+
+	x = (int)floor(spr.x);
+	y = (int)floor(spr.y);
+	c = g->map->content[y][x];
+	/*if (spr.x >= g->p->x && spr.y >= g->p->y)
+		return (TEX_SPR_TREE_0);
+	if (spr.x < g->p->x && spr.y >= g->p->y)
+		return (TEX_SPR_TREE_0);
+	if (spr.x >= g->p->x && spr.y < g->p->y)
+		return (TEX_SPR_TREE_1);
+	if (spr.x < g->p->x && spr.y < g->p->y)
+		return (TEX_SPR_TREE_1);*/
 	if (c == 'T')
-		return (TEX_SPR_TREE_0 + rand() % 2);
+		return (TEX_SPR_TREE_0 + (x + y) % 2);
 	return (TEX_SPR_TREE_0);
 }
 
@@ -53,6 +68,7 @@ void	append_spr(t_game *g, t_map *map, int x, int y)
 	t_sprite	*new;
 	int			i;
 
+	(void)g;
 	i = 0;
 	new = malloc((map->spr_amt + 1) * sizeof(t_sprite));
 	if (map->spr)
@@ -69,7 +85,7 @@ void	append_spr(t_game *g, t_map *map, int x, int y)
 	new[i].x = x + 0.5;
 	new[i].y = y + 0.5;
 	new[i].dist = 0.0;
-	new[i].tex_id = get_texture_spr(g->map->content[y][x]);
+	new[i].tex_id = 0;
 	map->spr_amt++;
 	free(map->spr);
 	map->spr = new;

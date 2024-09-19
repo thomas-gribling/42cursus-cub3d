@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 19:54:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/19 08:11:17 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ int				is_bounds(t_game *g, int x, int y);
 int				is_sprite(char c);
 void			raycast_step(t_cam *c);
 t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
+int				get_texture_spr(t_game *g, t_sprite spr);
 void			append_spr(t_game *g, t_map *map, int x, int y);
 
 #endif // CUB3D_BONUS_H
