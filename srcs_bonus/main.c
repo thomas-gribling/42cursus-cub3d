@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 18:50:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/19 09:43:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,29 @@ int	key_pressed(int keycode, t_game *g)
 		close_game(g);
 	if (g->scene != 1)
 		return (0);
-	if (keycode == KEY_W || keycode == KEY_S)
-		move_player(g, g->p->cam, keycode);
-	if (keycode == KEY_A || keycode == KEY_D)
-		move_player(g, g->p->cam, keycode);
-	if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
-		rotate_player(g->p->cam, keycode);
+	if ((keycode == KEY_W || keycode == KEY_S) && !g->p->moving_x)
+		g->p->moving_x = keycode;
+	if ((keycode == KEY_A || keycode == KEY_D) && !g->p->moving_y)
+		g->p->moving_y = keycode;
+	if ((keycode == KEY_RIGHT || keycode == KEY_LEFT) && !g->p->rotating)
+		g->p->rotating = keycode;
 	if (keycode == KEY_1 || keycode == KEY_2)
 		switch_slots(g, keycode);
 	if (keycode == KEY_TAB)
 		g->show_map = !g->show_map;
+	return (0);
+}
+
+int	key_released(int keycode, t_game *g)
+{
+	if (g->scene != 1)
+		return (0);
+	if ((keycode == KEY_W || keycode == KEY_S) && g->p->moving_x)
+		g->p->moving_x = 0;
+	if ((keycode == KEY_A || keycode == KEY_D) && g->p->moving_y)
+		g->p->moving_y = 0;
+	if ((keycode == KEY_RIGHT || keycode == KEY_LEFT) && g->p->rotating)
+		g->p->rotating = 0;
 	return (0);
 }
 
@@ -131,6 +144,16 @@ int	main_loop(t_game *g)
 	if (g->scene == 1)
 	{
 		update_screen(g);
+		if (g->p->moving_x && g->p->moving_y)
+			g->p->cam->speed_m = 0.05;
+		else
+			g->p->cam->speed_m = 0.1;
+		if (g->p->moving_x)
+			move_player(g, g->p->cam, g->p->moving_x);
+		if (g->p->moving_y)
+			move_player(g, g->p->cam, g->p->moving_y);
+		if (g->p->rotating)
+			rotate_player(g->p->cam, g->p->rotating);
 		//mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
 		//if (pos[0] < 10 || pos[0] > WIDTH - 11)
 		//	mouse_move(pos[0], pos[1], g);
@@ -155,6 +178,7 @@ int	main(void)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
 	//mlx_mouse_hide(g.mlx, g.win);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
+	mlx_hook(g.win, 3, 1L << 1, key_released, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
 	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);

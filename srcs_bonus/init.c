@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 15:28:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/19 09:45:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static void	init_buffer(t_game *g)
 	g->last_frame = get_time();
 	g->last_fps_update = get_time();
 	g->fps = 1.0;
+	g->p->moving_x = 0;
+	g->p->moving_y = 0;
+	g->p->rotating = 0;
 }
 
 static void	get_player_spawn_ew(t_game *g, int x, int y)
@@ -99,7 +102,7 @@ void	init_values(t_game *g)
 	}
 	g->mouse_middle_x = WIDTH / 2;
 	g->p->cam->speed_m = 0.1;
-	g->p->cam->speed_r = 0.033 * 1.8 / 4;
+	g->p->cam->speed_r = 0.033 * 1.8 / 1.5;
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
