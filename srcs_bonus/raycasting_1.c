@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 18:41:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 08:45:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	raycast_fill_buffer(t_cam *c, int x, int curr)
 		c->color = tex_get_pixel(&tex, tex.width - c->tex_x - 1, c->tex_y);
 		tex_pixel_put(&c->buff, x, y, c->color);
 	}
-	if (curr == 0)
+	if (curr == c->colls_amt - 1)
 		c->z_buffer[x] = c->perp_wall_dist;
 }
 

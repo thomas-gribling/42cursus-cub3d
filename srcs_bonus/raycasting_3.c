@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/19 08:08:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 08:47:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	raycast_spr_draw(t_game *g, t_cam *c, int i)
 				c->d = c->pix_y * 256 - HEIGHT * 128 + c->spr_h * 128;
 				c->tex_y = ((c->d * tex.height) / c->spr_h) / 256;
 				c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
-				tex_pixel_put(&c->buff, c->pix_x, c->pix_y, c->color);
+				if (tex_get_pixel(&c->buff, c->pix_x, c->pix_y) != 0xDBC545)
+					tex_pixel_put(&c->buff, c->pix_x, c->pix_y, c->color);
 			}
 		}
 	}

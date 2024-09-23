@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/19 09:43:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 08:30:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,6 @@ int	load_map(t_game *g, char *path)
 		free(g->map);
 		return (put_error("Error while parsing the map!\n"));
 	}
-	/*if (check_map_bounds(g->map->content, 0))
-	{
-		tab_free(g->map->content);
-		free(g->map);
-		return (put_error("Error: map bounds must be walls!\n"));
-	}*/
 	g->map->sizes = malloc(g->map->height * sizeof(int));
 	i = -1;
 	while (g->map->content[++i])
@@ -139,7 +133,7 @@ int	load_map(t_game *g, char *path)
 
 int	main_loop(t_game *g)
 {
-	//int	pos[2];
+	int	pos[2];
 
 	if (g->scene == 1)
 	{
@@ -154,9 +148,9 @@ int	main_loop(t_game *g)
 			move_player(g, g->p->cam, g->p->moving_y);
 		if (g->p->rotating)
 			rotate_player(g->p->cam, g->p->rotating);
-		//mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
-		//if (pos[0] < 10 || pos[0] > WIDTH - 11)
-		//	mouse_move(pos[0], pos[1], g);
+		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
+		if ((pos[0] < 10 || pos[0] > WIDTH - 11) && pos[0] >= 0 && pos[0] < WIDTH)
+			mouse_move(pos[0], pos[1], g);
 	}
 	return (0);
 }
@@ -176,12 +170,12 @@ int	main(void)
 	init_values(&g);
 	if (g.scene == 0)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
-	//mlx_mouse_hide(g.mlx, g.win);
+	mlx_mouse_hide(g.mlx, g.win);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 3, 1L << 1, key_released, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
-	//mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
+	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_loop_hook(g.mlx, main_loop, &g);
 	mlx_loop(g.mlx);
 	return (0);
