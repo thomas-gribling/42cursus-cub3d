@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 08:27:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:18:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,21 @@ typedef struct s_sprite
 	double	dist;
 	int		tex_id;
 }				t_sprite;
+
+typedef struct s_enemy
+{
+	double	x;
+	double	y;
+	int		type;
+	int		is_dead;
+}				t_enemy;
+
+# define STUDENT 0
+# define BULLY 1
+# define BOSS 2
+# define NEXTBOT_1 3
+# define NEXTBOT_2 4
+# define NEXTBOT_3 5
 
 typedef struct s_map
 {
@@ -219,9 +234,8 @@ typedef struct s_game
 	int				mouse_middle_x;
 }				t_game;
 
-int				parse_map_layout(t_game *g, char *path);
-int				check_map_chars(char **map);
-void			read_spr(t_game *g, t_map *map);
+int				parse_map_layout(t_map **map, char *path);
+void			read_spr(t_map **map);
 
 void			init_values(t_game *g);
 
@@ -264,6 +278,6 @@ int				is_sprite(char c);
 void			raycast_step(t_cam *c);
 t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
-void			append_spr(t_game *g, t_map *map, int x, int y);
+void			append_spr(t_map **map, int x, int y);
 
 #endif // CUB3D_BONUS_H

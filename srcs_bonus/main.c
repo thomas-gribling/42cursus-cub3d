@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 08:30:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:19:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	close_game(t_game *g)
 
 	tab_free(g->map->content);
 	free(g->map->sizes);
+	free(g->map->spr);
 	free(g->map);
 	if (g->scene == 0)
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
@@ -113,22 +114,25 @@ int	mouse_move(int x, int y, t_game *g)
 	return (0);
 }
 
-int	load_map(t_game *g, char *path)
+t_map	*load_map(char *path)
 {
-	int	i;
+	int		i;
+	t_map	*map;
 
-	if (parse_map_layout(g, path))
+	map = NULL;
+	if (parse_map_layout(&map, path))
 	{
-		tab_free(g->map->content);
-		free(g->map);
-		return (put_error("Error while parsing the map!\n"));
+		if (map)
+			tab_free(map->content);
+		free(map);
+		return (put_error("Error while parsing the map!\n"), NULL);
 	}
-	g->map->sizes = malloc(g->map->height * sizeof(int));
+	map->sizes = malloc(map->height * sizeof(int));
 	i = -1;
-	while (g->map->content[++i])
-		g->map->sizes[i] = ft_strlen(g->map->content[i]);
-	read_spr(g, g->map);
-	return (check_map_chars(g->map->content));
+	while (map->content[++i])
+		map->sizes[i] = ft_strlen(map->content[i]);
+	read_spr(&map);
+	return (map);
 }
 
 int	main_loop(t_game *g)
@@ -159,7 +163,8 @@ int	main(void)
 {
 	t_game		g;
 
-	if (load_map(&g, "maps/bonus/f1.cub"))
+	g.map = load_map("maps/bonus/f1.cub");
+	if (!g.map)
 		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);

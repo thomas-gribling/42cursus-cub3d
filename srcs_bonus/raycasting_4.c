@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_3.c                                     :+:      :+:    :+:   */
+/*   raycasting_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 08:56:51 by tgriblin         ###   ########.fr       */
+/*   Created: 2024/09/23 08:55:01 by tgriblin          #+#    #+#             */
+/*   Updated: 2024/09/23 08:57:08 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static void	raycast_spr_draw(t_game *g, t_cam *c, int i)
+static void	raycast_enemies_draw(t_game *g, t_cam *c, int i)
 {
 	t_tex	tex;
 
@@ -36,7 +36,7 @@ static void	raycast_spr_draw(t_game *g, t_cam *c, int i)
 	}
 }
 
-static void	raycast_spr_calc(t_game *g, t_cam *c, int i)
+static void	raycast_enemies_calc(t_game *g, t_cam *c, int i)
 {
 	c->spr_x = g->map->spr[i].x - g->p->x;
 	c->spr_y = g->map->spr[i].y - g->p->y;
@@ -63,7 +63,7 @@ static void	raycast_spr_calc(t_game *g, t_cam *c, int i)
 	raycast_spr_draw(g, c, i);
 }
 
-static void	raycast_spr_sort(t_game *g)
+static void	raycast_enemies_sort(t_game *g)
 {
 	t_sprite	tmp;
 	int			i;

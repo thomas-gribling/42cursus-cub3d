@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/19 08:22:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:17:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,32 +63,31 @@ int	get_texture_spr(t_game *g, t_sprite spr)
 	return (TEX_SPR_TREE_0);
 }
 
-void	append_spr(t_game *g, t_map *map, int x, int y)
+void	append_spr(t_map **map, int x, int y)
 {
 	t_sprite	*new;
 	int			i;
 
-	(void)g;
 	i = 0;
-	new = malloc((map->spr_amt + 1) * sizeof(t_sprite));
-	if (map->spr)
+	new = malloc(((*map)->spr_amt + 1) * sizeof(t_sprite));
+	if ((*map)->spr)
 	{
 		i = -1;
-		while (++i < map->spr_amt)
+		while (++i < (*map)->spr_amt)
 		{
-			new[i].x = map->spr[i].x;
-			new[i].y = map->spr[i].y;
-			new[i].dist = map->spr[i].dist;
-			new[i].tex_id = map->spr[i].tex_id;
+			new[i].x = (*map)->spr[i].x;
+			new[i].y = (*map)->spr[i].y;
+			new[i].dist = (*map)->spr[i].dist;
+			new[i].tex_id = (*map)->spr[i].tex_id;
 		}
 	}
 	new[i].x = x + 0.5;
 	new[i].y = y + 0.5;
 	new[i].dist = 0.0;
 	new[i].tex_id = 0;
-	map->spr_amt++;
-	free(map->spr);
-	map->spr = new;
+	(*map)->spr_amt++;
+	free((*map)->spr);
+	(*map)->spr = new;
 }
 
 void	raycast_step(t_cam *c)
