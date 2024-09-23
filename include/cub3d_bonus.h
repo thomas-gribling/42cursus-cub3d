@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:27:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:39:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,8 +235,7 @@ typedef struct s_game
 	int				curr_level;
 }				t_game;
 
-int				parse_map_layout(t_map **map, char *path);
-void			read_spr(t_map **map);
+t_map			*load_map(char *path);
 
 void			init_values(t_game *g);
 
@@ -247,6 +246,12 @@ void			tex_put_scale(t_tex *to, t_tex *from, int x, int y);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
+
+int				close_game(t_game *g);
+int				key_pressed(int keycode, t_game *g);
+int				key_released(int keycode, t_game *g);
+int				mouse_click(int button, int x, int y, t_game *g);
+int				mouse_move(int x, int y, t_game *g);
 
 void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
@@ -279,6 +284,5 @@ int				is_sprite(char c);
 void			raycast_step(t_cam *c);
 t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
-void			append_spr(t_map **map, int x, int y);
 
 #endif // CUB3D_BONUS_H

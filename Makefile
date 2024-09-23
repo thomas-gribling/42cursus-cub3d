@@ -20,7 +20,7 @@ FILES = main.c map_1.c map_2.c init.c  \
 		assets.c player.c raycasting.c \
 		utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
-FILES_BONUS = main.c map.c init.c  \
+FILES_BONUS = main.c hooks.c map.c init.c  \
 			assets.c player.c gui.c textures.c get_texture.c \
 			raycasting_1.c raycasting_2.c raycasting_3.c \
 			utils_1.c utils_2.c utils_3.c utils_raycasting_1.c utils_raycasting_2.c \
