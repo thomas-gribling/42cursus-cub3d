@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 19:01:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:50:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	load_assets(t_game *g)
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm");
 	g->tex[TEX_SPR_TREE_0] = load_tex(g, "assets/tree_0.xpm");
 	g->tex[TEX_SPR_TREE_1] = load_tex(g, "assets/tree_1.xpm");
+	g->tex[TEX_SPR_LADDER] = load_tex(g, "assets/ladder.xpm");
 	load_assets_gui(g);
 }

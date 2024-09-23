@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 20:06:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:48:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	is_transparent(char c)
 
 int	is_sprite(char c)
 {
-	if (c == 'T')
+	if (c == 'T' || c == 'L')
 		return (1);
 	return (0);
 }
