@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:28:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:28:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static void	tp_player_spawn(t_game *g)
 		g->p->cam->dir_y = 1;
 		g->p->cam->plane_x = -0.66;
 		g->p->cam->plane_y = 0;
-		g->p->x = 11.5;
-		g->p->y = 3.5;
+		g->p->x = 14.5;
+		g->p->y = 5.5;
 	}
 }
 

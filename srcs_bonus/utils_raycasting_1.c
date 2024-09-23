@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:48:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:32:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int	is_collision(char c)
 
 int	is_castable(char c)
 {
-	if (c >= '1' && c <= '9')
-		return (1);
-	if (c == 'A')
+	if (c >= '1' && c <= '8')
 		return (1);
 	return (0);
 }
@@ -32,8 +30,6 @@ int	is_transparent(char c)
 {
 	if (c == '3' || c == '4')
 		return (1);
-	if (c == '9')
-		return (2);
 	return (0);
 }
 
