@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:19:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:30:05 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 		g->scene = 1;
 		g->start = get_time();
 		g->last_frame = g->start;
+		mlx_mouse_hide(g->mlx, g->win);
 		raycast(g, g->p->cam, -1);
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	}
@@ -99,8 +100,9 @@ int	mouse_move(int x, int y, t_game *g)
 	int	move;
 
 	(void)y;
+	if (g->scene != 1)
+		return (0);
 	move = 0;
-
 	if (x > g->mouse_middle_x || x > WIDTH - 11)
 		move = KEY_RIGHT;
 	else if (x < g->mouse_middle_x || x < 10)
@@ -175,7 +177,6 @@ int	main(void)
 	init_values(&g);
 	if (g.scene == 0)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
-	mlx_mouse_hide(g.mlx, g.win);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 3, 1L << 1, key_released, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);

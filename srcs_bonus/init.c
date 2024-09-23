@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/19 09:45:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:28:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	init_buffer(t_game *g)
 	g->p->rotating = 0;
 }
 
-static void	get_player_spawn_ew(t_game *g, int x, int y)
+void	get_player_spawn_ew(t_game *g, int x, int y)
 {
 	char	c;
 
@@ -58,7 +58,7 @@ static void	get_player_spawn_ew(t_game *g, int x, int y)
 	g->p->y = y + 0.5;
 }
 
-static void	get_player_spawn_ns(t_game *g, int x, int y)
+void	get_player_spawn_ns(t_game *g, int x, int y)
 {
 	char	c;
 
@@ -81,26 +81,26 @@ static void	get_player_spawn_ns(t_game *g, int x, int y)
 	g->p->y = y + 0.5;
 }
 
+static void	tp_player_spawn(t_game *g)
+{
+	if (g->curr_level == 0)
+	{
+		g->p->cam->dir_x = 0;
+		g->p->cam->dir_y = 1;
+		g->p->cam->plane_x = -0.66;
+		g->p->cam->plane_y = 0;
+		g->p->x = 11.5;
+		g->p->y = 3.5;
+	}
+}
+
 void	init_values(t_game *g)
 {
-	int	x;
-	int	y;
-
+	g->curr_level = 0;
 	g->p = malloc(sizeof(t_player));
 	g->p->cam = malloc(sizeof(t_cam));
-	y = -1;
-	while (g->map->content[++y])
-	{
-		x = -1;
-		while (g->map->content[y][++x])
-		{
-			if (g->map->content[y][x] == 'N' || g->map->content[y][x] == 'S')
-				get_player_spawn_ns(g, x, y);
-			if (g->map->content[y][x] == 'E' || g->map->content[y][x] == 'W')
-				get_player_spawn_ew(g, x, y);
-		}
-	}
 	g->mouse_middle_x = WIDTH / 2;
+	tp_player_spawn(g);
 	g->p->cam->speed_m = 0.1;
 	g->p->cam->speed_r = 0.033 * 1.8 / 1.5;
 	g->p->cam->map_x = (int)g->p->x;
