@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:44:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:54:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	init_buffer(t_game *g)
 	b->width = WIDTH;
 	b->height = HEIGHT;
 	g->curr_slot = 0;
-	g->slots[0] = 0;
-	g->slots[1] = 0;
+	g->slots[0] = 1;
+	g->slots[1] = 1;
 	g->last_wheel = get_time();
 	g->show_map = 0;
 	g->last_frame = get_time();

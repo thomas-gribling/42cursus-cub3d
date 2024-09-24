@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:44:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:28:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 51
+# define TEX_AMT 55
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -86,14 +86,18 @@
 # define TEX_GUI_SEP 40
 # define TEX_GUI_MAPWALL 41
 # define TEX_GUI_MAPPLAYER 42
-# define TEX_PORTAL_0_0 43
-# define TEX_PORTAL_0_1 44
-# define TEX_PORTAL_1_0 45
-# define TEX_PORTAL_1_1 46
-# define TEX_NPC_CHAD_H 47
-# define TEX_NPC_CHAD_I 48
-# define TEX_NPC_CHAD_A 49
-# define TEX_NPC_CHAD_D 50
+# define TEX_GUI_SPLASH_0 43
+# define TEX_GUI_SPLASH_1 44
+# define TEX_GUI_SPLASH_2 45
+# define TEX_GUI_SPLASH_3 46
+# define TEX_PORTAL_0_0 47
+# define TEX_PORTAL_0_1 48
+# define TEX_PORTAL_1_0 49
+# define TEX_PORTAL_1_1 50
+# define TEX_NPC_CHAD_H 51
+# define TEX_NPC_CHAD_I 52
+# define TEX_NPC_CHAD_A 53
+# define TEX_NPC_CHAD_D 54
 
 typedef struct s_tex
 {
@@ -264,6 +268,7 @@ typedef struct s_game
 	int				mouse_middle_x;
 	int				curr_level;
 	t_portal		portals[2];
+	unsigned int	splash_timer;
 }				t_game;
 
 t_map			*load_map(char *path);

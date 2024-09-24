@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:48:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:31:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	apply_moves(t_game *g, double *new)
 		g->portals[1].is_placed = 0;
 		g->map = g->maps[g->curr_level];
 		tp_player_spawn(g);
+		g->splash_timer = get_time();
 		if (g->curr_level >= 2)
 		{
 			g->slots[0] = 0;

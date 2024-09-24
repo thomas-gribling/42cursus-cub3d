@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:12:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:28:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ t_tex	load_tex(t_game *g, char *path)
 void	load_assets_3(t_game *g)
 {
 	g->tex[TEX_GUI_MAPPLAYER] = load_tex(g, "assets/gui/minimap_player.xpm");
+	g->tex[TEX_GUI_SPLASH_0] = load_tex(g, "assets/gui/splash_0.xpm");
+	g->tex[TEX_GUI_SPLASH_1] = load_tex(g, "assets/gui/splash_1.xpm");
+	g->tex[TEX_GUI_SPLASH_2] = load_tex(g, "assets/gui/splash_2.xpm");
+	g->tex[TEX_GUI_SPLASH_3] = load_tex(g, "assets/gui/splash_3.xpm");
 	g->tex[TEX_NPC_CHAD_H] = load_tex(g, "assets/npc/chad_h.xpm");
 	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
 	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");

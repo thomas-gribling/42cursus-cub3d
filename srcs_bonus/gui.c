@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 17:49:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:31:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void	update_screen(t_game *g)
 	draw_gui(g, c);
 	if (g->show_map)
 		draw_minimap(g, c);
-	//mlx_clear_window(g->mlx, g->win);
+	if (get_time() - g->splash_timer <= 3000)
+		tex_put_scale(&c->buff, &g->tex[TEX_GUI_SPLASH_0 + g->curr_level], 0, 0);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
 	if (get_time() - g->last_fps_update >= 500.0)
 	{
