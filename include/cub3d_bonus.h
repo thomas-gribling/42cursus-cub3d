@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 10:08:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:11:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 47
+# define TEX_AMT 51
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -90,6 +90,10 @@
 # define TEX_PORTAL_0_1 44
 # define TEX_PORTAL_1_0 45
 # define TEX_PORTAL_1_1 46
+# define TEX_NPC_CHAD_H 47
+# define TEX_NPC_CHAD_I 48
+# define TEX_NPC_CHAD_A 49
+# define TEX_NPC_CHAD_D 50
 
 typedef struct s_tex
 {

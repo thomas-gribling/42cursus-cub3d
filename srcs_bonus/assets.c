@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 09:41:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:12:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,21 @@ t_tex	load_tex(t_game *g, char *path)
 	return (s);
 }
 
-void	load_assets_gui(t_game *g)
+void	load_assets_3(t_game *g)
 {
+	g->tex[TEX_GUI_MAPPLAYER] = load_tex(g, "assets/gui/minimap_player.xpm");
+	g->tex[TEX_NPC_CHAD_H] = load_tex(g, "assets/npc/chad_h.xpm");
+	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
+	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
+	g->tex[TEX_NPC_CHAD_D] = load_tex(g, "assets/npc/chad_d.xpm");
+}
+
+void	load_assets_2(t_game *g)
+{
+	g->tex[TEX_PORTAL_0_0] = load_tex(g, "assets/portal_0_0.xpm");
+	g->tex[TEX_PORTAL_0_1] = load_tex(g, "assets/portal_0_1.xpm");
+	g->tex[TEX_PORTAL_1_0] = load_tex(g, "assets/portal_1_0.xpm");
+	g->tex[TEX_PORTAL_1_1] = load_tex(g, "assets/portal_1_1.xpm");
 	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm");
 	g->tex[TEX_GUI_INV_00_1] = load_tex(g, "assets/gui/inv_00_1.xpm");
 	g->tex[TEX_GUI_INV_10_0] = load_tex(g, "assets/gui/inv_10_0.xpm");
@@ -44,7 +57,7 @@ void	load_assets_gui(t_game *g)
 	g->tex[TEX_GUI_9] = load_tex(g, "assets/gui/9.xpm");
 	g->tex[TEX_GUI_SEP] = load_tex(g, "assets/gui/sep.xpm");
 	g->tex[TEX_GUI_MAPWALL] = load_tex(g, "assets/gui/minimap_wall.xpm");
-	g->tex[TEX_GUI_MAPPLAYER] = load_tex(g, "assets/gui/minimap_player.xpm");
+	load_assets_3(g);
 }
 
 void	load_assets(t_game *g)
@@ -62,7 +75,7 @@ void	load_assets(t_game *g)
 	g->tex[TEX_BOARD_2] = load_tex(g, "assets/board_2.xpm");
 	g->tex[TEX_BOARD_3] = load_tex(g, "assets/board_3.xpm");
 	g->tex[TEX_WALL_OUTSIDE] = load_tex(g, "assets/wall_outside.xpm");
-	g->tex[TEX_WINDOW_OUTSIDE] = load_tex(g, "assets/window.xpm");
+	g->tex[TEX_WINDOW_OUTSIDE] = load_tex(g, "assets/win.xpm");
 	g->tex[TEX_DOOR_C_OUTSIDE] = load_tex(g, "assets/door_c.xpm");
 	g->tex[TEX_DOOR_O_OUTSIDE] = load_tex(g, "assets/door_o.xpm");
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm");
@@ -72,9 +85,5 @@ void	load_assets(t_game *g)
 	g->tex[TEX_SPR_TREE_0] = load_tex(g, "assets/tree_0.xpm");
 	g->tex[TEX_SPR_TREE_1] = load_tex(g, "assets/tree_1.xpm");
 	g->tex[TEX_SPR_LADDER] = load_tex(g, "assets/ladder.xpm");
-	g->tex[TEX_PORTAL_0_0] = load_tex(g, "assets/portal_0_0.xpm");
-	g->tex[TEX_PORTAL_0_1] = load_tex(g, "assets/portal_0_1.xpm");
-	g->tex[TEX_PORTAL_1_0] = load_tex(g, "assets/portal_1_0.xpm");
-	g->tex[TEX_PORTAL_1_1] = load_tex(g, "assets/portal_1_1.xpm");
-	load_assets_gui(g);
+	load_assets_2(g);
 }
