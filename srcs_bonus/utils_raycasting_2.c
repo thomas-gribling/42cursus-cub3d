@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 08:49:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 10:28:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 	}
 	new[i].map_x = c->map_x;
 	new[i].map_y = c->map_y;
-	new[i].map_x_visible  = c->map_x_visible;
-	new[i].map_y_visible  = c->map_y_visible;
+	new[i].map_x_visible = c->map_x_visible;
+	new[i].map_y_visible = c->map_y_visible;
 	new[i].side = c->side;
 	new[i].tex = g->tex[get_texture(g, c->map_x, c->map_y)];
 	new[i].tex_id = get_texture(g, c->map_x, c->map_y);
@@ -88,4 +88,19 @@ void	raycast_step(t_cam *c)
 		c->map_y_visible += c->step_y_visible;
 		c->side = 1;
 	}
+}
+
+int	get_dir(t_cam *c)
+{
+	int	dir;
+
+	if (c->side == 0 && c->ray_dir_x >= 0)
+		dir = WEST;
+	if (c->side == 0 && c->ray_dir_x < 0)
+		dir = EAST;
+	if (c->side == 1 && c->ray_dir_y >= 0)
+		dir = NORTH;
+	if (c->side == 1 && c->ray_dir_y < 0)
+		dir = SOUTH;
+	return (dir);
 }

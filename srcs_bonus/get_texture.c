@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 10:38:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 09:48:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,29 @@ static int	get_texture_outside(t_game *g, char c, int x, int y)
 	return (TEX_WALL_OUTSIDE);
 }
 
+static int	is_portal(t_game *g, int x, int y)
+{
+	int		tex;
+	int		curr_portal;
+	int		dir;
+	
+	dir = get_dir(g->p->cam);
+	curr_portal = -1;
+	if (x == g->portals[0].map_x && y == g->portals[0].map_y
+		&& g->portals[0].is_placed && g->portals[0].face == dir)
+		curr_portal = 0;
+	if (x == g->portals[1].map_x && y == g->portals[1].map_y
+		&& g->portals[1].is_placed && g->portals[1].face == dir)
+		curr_portal = 1;
+	if (curr_portal == -1)
+		return (0);
+	tex = TEX_PORTAL_0_0 + curr_portal * 2;
+	if ((curr_portal == 0 && g->portals[1].is_placed)
+		|| (curr_portal == 1 && g->portals[0].is_placed))
+		tex++;
+	return (tex);
+}
+
 int	get_texture(t_game *g, int x, int y)
 {
 	t_cam	*c;
@@ -77,6 +100,8 @@ int	get_texture(t_game *g, int x, int y)
 
 	c = g->p->cam;
 	ch = g->map->content[y][x];
+	if (is_portal(g, x, y))
+		return (is_portal(g, x, y));
 	if (is_outside(g, c, x, y) && ch != '8')
 		return (get_texture_outside(g, ch, x, y));
 	if (is_class(g, c, x, y) && (ch == '2' || ch == '1'))

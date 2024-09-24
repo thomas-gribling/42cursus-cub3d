@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 08:47:05 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 10:08:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 43
+# define TEX_AMT 47
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -86,6 +86,10 @@
 # define TEX_GUI_SEP 40
 # define TEX_GUI_MAPWALL 41
 # define TEX_GUI_MAPPLAYER 42
+# define TEX_PORTAL_0_0 43
+# define TEX_PORTAL_0_1 44
+# define TEX_PORTAL_1_0 45
+# define TEX_PORTAL_1_1 46
 
 typedef struct s_tex
 {
@@ -151,6 +155,8 @@ typedef struct s_cam
 	double			plane_y;
 	double			ray_dir_x;
 	double			ray_dir_y;
+	double			ray_dir_x_visible;
+	double			ray_dir_y_visible;
 	double			side_dist_x;
 	double			side_dist_y;
 	double			delta_x;
@@ -220,6 +226,19 @@ typedef struct s_player
 	t_cam	*cam;
 }			t_player;
 
+typedef struct s_portal
+{
+	int	map_x;
+	int	map_y;
+	int	face;
+	int	is_placed;
+}			t_portal;
+
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -239,6 +258,7 @@ typedef struct s_game
 	double			fps;
 	int				mouse_middle_x;
 	int				curr_level;
+	t_portal		portals[2];
 }				t_game;
 
 t_map			*load_map(char *path);
@@ -263,6 +283,8 @@ void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_sprites(t_game *g, t_cam *c);
+int				is_it_portal(t_game *g, int x, int y);
+void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
 double			dist_to_tile(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
@@ -288,6 +310,7 @@ int				is_transparent(char c);
 int				is_bounds(t_game *g, int x, int y);
 int				is_sprite(char c);
 void			raycast_step(t_cam *c);
+int				get_dir(t_cam *c);
 t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
 

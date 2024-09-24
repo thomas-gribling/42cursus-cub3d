@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 10:58:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 10:11:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,13 @@ void	init_values(t_game *g)
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
 	g->p->cam->colls = NULL;
+	g->portals[0].map_x = 16;
+	g->portals[0].map_y = 4;
+	g->portals[0].face = WEST;
+	g->portals[0].is_placed = 1;
+	g->portals[1].map_x = 16;
+	g->portals[1].map_y = 6;
+	g->portals[1].face = WEST;
+	g->portals[1].is_placed = 1;
 	init_buffer(g);
 }
