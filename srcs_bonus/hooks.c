@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:56:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:09:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_pressed(int keycode, t_game *g)
 		g->p->rotating = keycode;
 	if (keycode == KEY_1 || keycode == KEY_2)
 		switch_slots(g, keycode);
-	if (keycode == KEY_TAB)
+	if (keycode == KEY_TAB && g->curr_level != 3)
 		g->show_map = !g->show_map;
 	return (0);
 }

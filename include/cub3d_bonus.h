@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 16:28:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:21:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 55
+# define TEX_AMT 61
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -58,9 +58,15 @@
 # define TEX_WINDOW_OUTSIDE 12
 # define TEX_DOOR_C_OUTSIDE 13
 # define TEX_DOOR_O_OUTSIDE 14
+# define TEX_WALL_BACKROOMS_0 55
+# define TEX_WALL_BACKROOMS_1 56
+# define TEX_WALL_BACKROOMS_2 57
+# define TEX_WALL_BACKROOMS_3 58
+# define TEX_WALL_BACKROOMS_4 59
 # define TEX_FLOOR 15
 # define TEX_GROUND 16
 # define TEX_GRASS 17
+# define TEX_CARPET 60
 # define TEX_CEILING 18
 # define TEX_SPR_TREE_0 19
 # define TEX_SPR_TREE_1 20

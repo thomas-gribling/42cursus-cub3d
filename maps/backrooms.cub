@@ -1,16 +1,16 @@
-NO ./assets/backrooms.xpm
+NO ./assets/backrooms_0.xpm
 
 
-SO ./assets/backrooms.xpm
-
-
-
+SO ./assets/backrooms_1.xpm
 
 
 
-WE ./assets/backrooms.xpm
 
-EA ./assets/backrooms.xpm
+
+
+WE ./assets/backrooms_2.xpm
+
+EA ./assets/backrooms_3.xpm
 
 
 

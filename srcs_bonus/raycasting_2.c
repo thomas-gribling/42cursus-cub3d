@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/18 09:54:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:29:11 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	t_tex	tc;
 
 	tf = g->tex[TEX_FLOOR];
+	if (g->curr_level == 3)
+		tf = g->tex[TEX_CARPET];
 	tc = g->tex[TEX_CEILING];
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_x < g->map->sizes[c->cell_y] && c->cell_y < g->map->height
