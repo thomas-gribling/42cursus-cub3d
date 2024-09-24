@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 08:40:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 08:52:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void	raycast_tex(t_game *g, t_cam *c, int x, int curr)
 
 	co = c->colls[curr];
 	if (co.side == 0)
-		tmp = (co.map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
+		tmp = (co.map_x_visible - g->p->x + (1 - c->step_x_visible) / 2) / c->ray_dir_x;
 	else
-		tmp = (co.map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
+		tmp = (co.map_y_visible - g->p->y + (1 - c->step_y_visible) / 2) / c->ray_dir_y;
 	c->perp_wall_dist = tmp;
 	if (co.side == 0)
 		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
@@ -113,6 +113,8 @@ static void	raycast_dist(t_game *g, t_cam *c, int x)
 		c->step_y = 1;
 		c->side_dist_y = (c->map_y + 1.0 - g->p->y) * c->delta_y;
 	}
+	c->step_x_visible = c->step_x;
+	c->step_y_visible = c->step_y;
 	raycast_dda(g, c, x);
 }
 
@@ -123,6 +125,8 @@ void	raycast(t_game *g, t_cam *c, int x)
 		c->hit = 0;
 		c->map_x = (int)g->p->x;
 		c->map_y = (int)g->p->y;
+		c->map_x_visible = c->map_x;
+		c->map_y_visible = c->map_y;
 		c->cam_x = 2.0 * x / (double)WIDTH - 1.0;
 		c->ray_dir_x = c->dir_x + c->plane_x * c->cam_x;
 		c->ray_dir_y = c->dir_y + c->plane_y * c->cam_x;

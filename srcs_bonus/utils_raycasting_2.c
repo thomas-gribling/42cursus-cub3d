@@ -6,11 +6,22 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:49:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 08:49:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
+
+static void	copy_old(t_coll *new, t_coll *old)
+{
+	new->map_x = old->map_x;
+	new->map_y = old->map_y;
+	new->map_x_visible = old->map_x_visible;
+	new->map_y_visible = old->map_y_visible;
+	new->side = old->side;
+	new->tex = old->tex;
+	new->tex_id = old->tex_id;
+}
 
 t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 {
@@ -23,16 +34,12 @@ t_coll	*append_colls(t_coll *old, t_cam *c, t_game *g)
 	{
 		i = -1;
 		while (++i < c->colls_amt)
-		{
-			new[i].map_x = old[i].map_x;
-			new[i].map_y = old[i].map_y;
-			new[i].side = old[i].side;
-			new[i].tex = old[i].tex;
-			new[i].tex_id = old[i].tex_id;
-		}
+			copy_old(&new[i], &old[i]);
 	}
 	new[i].map_x = c->map_x;
 	new[i].map_y = c->map_y;
+	new[i].map_x_visible  = c->map_x_visible;
+	new[i].map_y_visible  = c->map_y_visible;
 	new[i].side = c->side;
 	new[i].tex = g->tex[get_texture(g, c->map_x, c->map_y)];
 	new[i].tex_id = get_texture(g, c->map_x, c->map_y);
@@ -71,12 +78,14 @@ void	raycast_step(t_cam *c)
 	{
 		c->side_dist_x += c->delta_x;
 		c->map_x += c->step_x;
+		c->map_x_visible += c->step_x_visible;
 		c->side = 0;
 	}
 	else
 	{
 		c->side_dist_y += c->delta_y;
 		c->map_y += c->step_y;
+		c->map_y_visible += c->step_y_visible;
 		c->side = 1;
 	}
 }
