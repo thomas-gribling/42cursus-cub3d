@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:13:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:30:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	get_texture_spr(t_game *g, t_sprite spr)
 		return (TEX_NPC_CHAD_H);
 	if (c == 'T')
 		return (TEX_SPR_TREE_0 + (x + y) % 2);
-	if (c == 'L')
+	if (c == 'E')
 		return (TEX_SPR_LADDER);
 	return (TEX_SPR_TREE_0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:16:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:26:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int	close_game(t_game *g)
 {
 	int	i;
 
-	tab_free(g->map->content);
-	free(g->map->sizes);
-	free(g->map->spr);
-	free(g->map);
+	i = -1;
+	while (g->maps[++i])
+	{
+		tab_free(g->maps[i]->content);
+		free(g->maps[i]->sizes);
+		free(g->maps[i]->spr);
+		free(g->maps[i]);
+	}
 	if (g->scene == 0)
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
@@ -69,8 +73,13 @@ int	main(void)
 {
 	t_game		g;
 
-	g.map = load_map("maps/bonus/lvl1.cub");
-	if (!g.map)
+	g.maps[0] = load_map("maps/bonus/lvl1.cub");
+	g.maps[1] = load_map("maps/bonus/lvl2.cub");
+	g.maps[2] = load_map("maps/bonus/lvl3.cub");
+	g.maps[3] = load_map("maps/bonus/backrooms.cub");
+	g.maps[4] = NULL;
+	g.map = g.maps[0];
+	if (!g.maps[0] || !g.maps[1] || !g.maps[2] || !g.maps[3])
 		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);

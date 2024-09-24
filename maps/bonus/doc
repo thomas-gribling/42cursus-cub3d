@@ -3,7 +3,8 @@ C: class (class walls around)
 O: outside (outside walls around, ground floor, no ceiling)
 G: grass (grass floor, no ceiling)
 T: tree (grass floor, no ceiling, tree sprite)
-L: ladder (trap floor if not level 1, trap ceiling, ladder sprite)
+E: exit (trap floor)
+B: Boss
 1 / unassigned: wall.xpm (default)
 2: wall_sign.xpm
 3: door_c.xpm

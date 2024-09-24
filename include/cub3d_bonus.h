@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:11:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:44:38 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	t_map			*map;
+	t_map			*maps[5];
 	t_player		*p;
 	t_tex			*tex;
 	t_tex			tmp_tex;
@@ -293,6 +294,8 @@ int				get_texture(t_game *g, int x, int y);
 double			dist_to_tile(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
+void			turn_player_to(t_cam *c, int dir);
+void			tp_player_spawn(t_game *g);
 void			switch_slots(t_game *g, int keycode);
 
 int				put_error(char *s);

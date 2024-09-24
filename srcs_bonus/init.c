@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 15:14:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:44:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,63 +35,41 @@ static void	init_buffer(t_game *g)
 	g->p->rotating = 0;
 }
 
-void	get_player_spawn_ew(t_game *g, int x, int y)
+static void	turn_player_to_bis(t_cam *c, int dir)
 {
-	char	c;
-
-	c = g->map->content[y][x];
-	if (c == 'E')
+	if (dir == EAST)
 	{
-		g->p->cam->dir_x = 1;
-		g->p->cam->dir_y = 0;
-		g->p->cam->plane_x = 0;
-		g->p->cam->plane_y = 0.66;
+		c->dir_x = 1;
+		c->dir_y = 0;
+		c->plane_x = 0;
+		c->plane_y = 0.66;
 	}
-	if (c == 'W')
+	if (dir == WEST)
 	{
-		g->p->cam->dir_x = -1;
-		g->p->cam->dir_y = 0;
-		g->p->cam->plane_x = 0;
-		g->p->cam->plane_y = -0.66;
+		c->dir_x = -1;
+		c->dir_y = 0;
+		c->plane_x = 0;
+		c->plane_y = -0.66;
 	}
-	g->p->x = x + 0.5;
-	g->p->y = y + 0.5;
 }
 
-void	get_player_spawn_ns(t_game *g, int x, int y)
+void	turn_player_to(t_cam *c, int dir)
 {
-	char	c;
-
-	c = g->map->content[y][x];
-	if (c == 'N')
+	if (dir == NORTH)
 	{
-		g->p->cam->dir_x = 0;
-		g->p->cam->dir_y = -1;
-		g->p->cam->plane_x = 0.66;
-		g->p->cam->plane_y = 0;
+		c->dir_x = 0;
+		c->dir_y = -1;
+		c->plane_x = 0.66;
+		c->plane_y = 0;
 	}
-	if (c == 'S')
+	if (dir == SOUTH)
 	{
-		g->p->cam->dir_x = 0;
-		g->p->cam->dir_y = 1;
-		g->p->cam->plane_x = -0.66;
-		g->p->cam->plane_y = 0;
+		c->dir_x = 0;
+		c->dir_y = 1;
+		c->plane_x = -0.66;
+		c->plane_y = 0;
 	}
-	g->p->x = x + 0.5;
-	g->p->y = y + 0.5;
-}
-
-static void	tp_player_spawn(t_game *g)
-{
-	if (g->curr_level == 0)
-	{
-		g->p->cam->dir_x = 0;
-		g->p->cam->dir_y = 1;
-		g->p->cam->plane_x = -0.66;
-		g->p->cam->plane_y = 0;
-		g->p->x = 14.5 - 10;
-		g->p->y = 5.5;
-	}
+	turn_player_to_bis(c, dir);
 }
 
 void	init_values(t_game *g)
