@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 08:54:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 10:28:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:22:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ void	change_raycast_dir(t_game *g, t_cam *c)
 	double	dir[2];
 	double	plane[2];
 
+	dir[0] = 0;
+	dir[1] = 0;
+	plane[0] = 0;
+	plane[1] = 0;
 	if (get_vals(g, c, dir, plane))
 		return ;
 	c->ray_dir_x = dir[0] + plane[0] * c->cam_x;
