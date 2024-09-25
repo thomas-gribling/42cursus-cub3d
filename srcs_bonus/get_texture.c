@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:09:17 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:44:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ static int	is_class(t_game *g, t_cam *c, int x, int y)
 {
 	if (c->side == 0 && c->ray_dir_x >= 0
 		&& (g->map->content[y][x - 1] == 'C'
-			|| g->map->content[y][x - 1] == '4'))
+		|| g->map->content[y][x - 1] == '4'))
 		return (1);
 	if (c->side == 0 && c->ray_dir_x < 0
 		&& (g->map->content[y][x + 1] == 'C'
-			|| g->map->content[y][x + 1] == '4'))
+		|| g->map->content[y][x + 1] == '4'))
 		return (1);
 	if (c->side == 1 && c->ray_dir_y >= 0
 		&& (g->map->content[y - 1][x] == 'C'
-			|| g->map->content[y - 1][x] == '4'))
+		|| g->map->content[y - 1][x] == '4'))
 		return (1);
 	if (c->side == 1 && c->ray_dir_y < 0
 		&& (g->map->content[y + 1][x] == 'C'
-			|| g->map->content[y + 1][x] == '4'))
+		|| g->map->content[y + 1][x] == '4'))
 		return (1);
 	return (0);
 }
@@ -71,7 +71,7 @@ static int	is_portal(t_game *g, int x, int y)
 	int		tex;
 	int		curr_portal;
 	int		dir;
-	
+
 	dir = get_dir(g->p->cam);
 	curr_portal = -1;
 	if (x == g->portals[0].map_x && y == g->portals[0].map_y
@@ -101,7 +101,7 @@ int	get_texture(t_game *g, int x, int y)
 	is_open = dist_to_tile(g, x, y) < 1.25;
 	i = -1;
 	while (!is_open && ++i < g->enemies_amt)
-		is_open = dist_enemy(g, i, x, y)  < 1.25;
+		is_open = dist_enemy(g, i, x, y) < 1.25;
 	if (is_portal(g, x, y))
 		return (is_portal(g, x, y));
 	if (is_outside(g, c, x, y) && ch != '8')

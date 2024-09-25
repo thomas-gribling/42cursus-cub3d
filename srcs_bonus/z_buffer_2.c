@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:26:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:43:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static double	get_dist_z_buffer(t_game *g, int i)
 {
 	t_sprite	*t1;
 	t_enemy		*t2;
-	
+
 	if (g->z_buffer[i].type == SPRITE)
 	{
 		t1 = (t_sprite *)g->z_buffer[i].ptr;

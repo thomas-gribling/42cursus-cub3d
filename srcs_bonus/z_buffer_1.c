@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:29:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:26:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:41:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	append_z_buffer(t_game *g, void *ptr, int type)
 {
 	t_actor	*new;
 	int		i;
-	
+
 	i = 0;
 	new = malloc((g->z_buffer_size + 1) * sizeof(t_actor));
 	if (g->z_buffer)

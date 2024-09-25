@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:50:30 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:42:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,11 @@ static void	raycast_spr_calc(t_cam *c, t_tex tex)
 	raycast_spr_draw(c, tex);
 }
 
-
 void	raycast_sprite(t_game *g, t_cam *c, int i)
 {
 	t_sprite	*t;
 	t_tex		tex;
-	
+
 	t = (t_sprite *)g->z_buffer[i].ptr;
 	c->spr_x = t->x - g->p->x;
 	c->spr_y = t->y - g->p->y;
