@@ -6,20 +6,32 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 09:22:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:38:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
+static int	get_texture_enemy(t_game *g, int i)
+{
+	int	type;
+
+	type = g->enemies[i].type;
+	if (type == STUDENT)
+		return (TEX_WALL_BACKROOMS_0);
+	if (type == BULLY)
+		return (TEX_WALL_BACKROOMS_1);
+	return (TEX_WALL_BACKROOMS_0);
+}
+
 static void	raycast_enemy_draw(t_game *g, t_cam *c, int i)
 {
 	t_tex	tex;
 
+	tex = g->tex[get_texture_enemy(g, i)];
 	c->pix_x = c->draw_x[0] - 1;
 	while (c->pix_x++ < c->draw_x[1])
 	{
-		tex = g->tex[g->map->spr[i].tex_id];
 		c->tex_x = (int)(256 * (c->pix_x - (-c->spr_w / 2 + c->spr_screen_x))
 				* tex.width / c->spr_w) / 256;
 		if (c->transf_y > 0 && c->transf_y < c->z_buffer[c->pix_x])
@@ -36,10 +48,10 @@ static void	raycast_enemy_draw(t_game *g, t_cam *c, int i)
 	}
 }
 
-void	raycast_enemy_calc(t_game *g, t_cam *c, int i)
+static void	raycast_enemy_calc(t_game *g, t_cam *c, int i)
 {
-	c->spr_x = g->map->spr[i].x - g->p->x;
-	c->spr_y = g->map->spr[i].y - g->p->y;
+	c->spr_x = g->enemies[i].x - g->p->x;
+	c->spr_y = g->enemies[i].y - g->p->y;
 	c->i_det = 1.0 / (c->plane_x * c->dir_y - c->dir_x * c->plane_y);
 	c->transf_x = c->i_det
 		* (c->dir_y * c->spr_x - c->dir_x * c->spr_y);
@@ -82,9 +94,6 @@ static void	raycast_enemy_sort(t_game *g)
 		g->enemies[i] = g->enemies[max];
 		g->enemies[max] = tmp;
 	}
-	i = -1;
-	while (++i < g->enemies_amt)
-		printf("%d %f\n", g->enemies[i].type, g->enemies[i].dist);
 }
 
 void	raycast_enemies(t_game *g, t_cam *c)
@@ -99,8 +108,7 @@ void	raycast_enemies(t_game *g, t_cam *c)
 		g->enemies[i].dist = t;
 	}
 	raycast_enemy_sort(g);
-	(void)c;
-	//i = -1;
-	//while (++i < g->map->spr_amt)
-	//	raycast_enemy_calc(g, c, i);
+	i = -1;
+	while (++i < g->enemies_amt)
+		raycast_enemy_calc(g, c, i);
 }
