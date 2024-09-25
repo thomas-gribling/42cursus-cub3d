@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:29:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:58:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:40:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	fill_z_buffer(t_game *g)
 
 	i = -1;
 	while (++i < g->map->spr_amt)
+	{
+		g->map->spr[i].tex_id = get_texture_spr(g, g->map->spr[i]);
 		append_z_buffer(g, (void *)&g->map->spr[i], SPRITE);
+	}
 	i = -1;
 	while (++i < g->enemies_amt)
 		append_z_buffer(g, (void *)&g->enemies[i], ENEMY);
@@ -106,9 +109,10 @@ void	append_z_buffer(t_game *g, void *ptr, int type)
 	}
 	new[i].type = type;
 	new[i].ptr = ptr;
-	free_z_buffer(g);
-	g->z_buffer = new;
+	if (g->z_buffer)
+		free(g->z_buffer);
 	g->z_buffer_size++;
+	g->z_buffer = new;
 }
 
 void	free_z_buffer(t_game *g)
@@ -118,5 +122,18 @@ void	free_z_buffer(t_game *g)
 		free(g->z_buffer);
 		g->z_buffer = NULL;
 		g->z_buffer_size = 0;
+	}
+}
+
+void	raycast_z_buffer(t_game *g)
+{
+	int	i;
+
+	i = -1;
+	sort_z_buffer(g);
+	while (++i < g->z_buffer_size)
+	{
+		if (g->z_buffer[i].type == SPRITE)
+			raycast_sprite(g, g->p->cam, i);
 	}
 }
