@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 09:10:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:45:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	init_values_two(t_game *g)
 	g->p->moving_x = 0;
 	g->p->moving_y = 0;
 	g->p->rotating = 0;
+	generate_enemies(g, 1);
+	tp_player_spawn(g);
 }
 
 void	init_values(t_game *g)
@@ -78,7 +80,6 @@ void	init_values(t_game *g)
 	g->p = malloc(sizeof(t_player));
 	g->p->cam = malloc(sizeof(t_cam));
 	g->mouse_middle_x = WIDTH / 2;
-	tp_player_spawn(g);
 	g->p->cam->speed_m = 0.1;
 	g->p->cam->speed_r = 0.033 * 1.8 / 1.5;
 	g->p->cam->map_x = (int)g->p->x;
@@ -96,6 +97,7 @@ void	init_values(t_game *g)
 	g->enemies = NULL;
 	g->enemies_amt = 0;
 	g->bullies_amt = 0;
-	generate_enemies(g, 1);
+	g->z_buffer = NULL;
+	g->z_buffer_size = 0;
 	init_values_two(g);
 }

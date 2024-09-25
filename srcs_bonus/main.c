@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 15:27:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:45:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	close_game(t_game *g)
 	int	i;
 
 	i = -1;
+	free_z_buffer(g);
 	while (g->maps[++i])
 	{
 		tab_free(g->maps[i]->content);

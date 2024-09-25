@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:43:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,16 @@ typedef struct s_portal
 # define EAST 2
 # define WEST 3
 
+typedef struct s_actor
+{
+	int		type;
+	void	*ptr;
+}			t_actor;
+
+# define WALL 0
+# define SPRITE 1
+# define ENEMY 2
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -292,6 +302,8 @@ typedef struct s_game
 	t_enemy			*enemies;
 	int				enemies_amt;
 	int				bullies_amt;
+	t_actor			*z_buffer;
+	int				z_buffer_size;
 }				t_game;
 
 t_map			*load_map(char *path);
@@ -352,5 +364,8 @@ t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
 double			dist_to_tile(t_game *g, double x, double y);
 double			dist_enemy(t_game *g, int i, double x, double y);
+void			fill_z_buffer(t_game *g);
+void			append_z_buffer(t_game *g, void *ptr, int type);
+void			free_z_buffer(t_game *g);
 
 #endif // CUB3D_BONUS_H

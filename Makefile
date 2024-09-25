@@ -23,7 +23,7 @@ OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 FILES_BONUS = main.c hooks.c map.c init.c  \
 			assets.c player.c enemies.c gui.c textures.c get_texture.c \
 			raycasting_1.c raycasting_2.c raycasting_3.c raycasting_4.c portals.c \
-			utils_1.c utils_2.c utils_3.c utils_raycasting_1.c utils_raycasting_2.c \
+			utils_1.c utils_2.c utils_3.c utils_raycasting_1.c utils_raycasting_2.c utils_raycasting_3.c \
 			gnl.c utils_gnl.c
 OBJECTS_BONUS = $(addprefix $(SRCS_BONUS), $(FILES_BONUS:.c=.o))
 

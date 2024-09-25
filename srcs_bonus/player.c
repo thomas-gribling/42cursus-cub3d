@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 09:09:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:46:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	switch_slots(t_game *g, int keycode)
 
 void	tp_player_spawn(t_game *g)
 {
+	fill_z_buffer(g);
 	if (g->curr_level == 0)
 	{
 		turn_player_to(g->p->cam, SOUTH);
@@ -60,7 +61,6 @@ void	apply_moves(t_game *g, double *new)
 		g->portals[0].is_placed = 0;
 		g->portals[1].is_placed = 0;
 		g->map = g->maps[g->curr_level];
-		tp_player_spawn(g);
 		g->splash_timer = get_time();
 		if (g->curr_level >= 2)
 		{
@@ -74,6 +74,7 @@ void	apply_moves(t_game *g, double *new)
 			g->show_map = 0;
 			generate_enemies(g, -1);
 		}
+		tp_player_spawn(g);
 	}
 }
 
