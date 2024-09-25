@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 14:46:36 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:05:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ typedef struct s_enemy
 	int		type;
 	int		is_dead;
 	double	dist;
+	int		dirx;
+	int		diry;
 }				t_enemy;
 
 # define STUDENT 0
@@ -295,6 +297,7 @@ t_map			*load_map(char *path);
 
 void			init_values(t_game *g);
 void			generate_enemies(t_game *g, int difficulty);
+void			update_enemies(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path);
@@ -318,7 +321,6 @@ void			raycast_enemies(t_game *g, t_cam *c);
 int				is_it_portal(t_game *g, int x, int y);
 void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
-double			dist_to_tile(t_game *g, double x, double y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);
@@ -347,5 +349,7 @@ void			raycast_step(t_cam *c);
 int				get_dir(t_cam *c);
 t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
+double			dist_to_tile(t_game *g, double x, double y);
+double			dist_enemy(t_game *g, int i, double x, double y);
 
 #endif // CUB3D_BONUS_H

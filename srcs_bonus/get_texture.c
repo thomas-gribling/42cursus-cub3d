@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 08:31:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:09:17 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,17 @@ static int	is_class(t_game *g, t_cam *c, int x, int y)
 	return (0);
 }
 
-double	dist_to_tile(t_game *g, double x, double y)
-{
-	double	dist;
-	double	delta[2];
-
-	delta[0] = x + 0.5 - g->p->x;
-	delta[1] = y + 0.5 - g->p->y;
-	dist = sqrt(pow(delta[0], 2) + pow(delta[1], 2));
-	return (dist);
-}
-
 static int	get_texture_outside(t_game *g, char c, int x, int y)
 {
+	int	is_open;
+	int	i;
+
+	is_open = dist_to_tile(g, x, y) < 1.25;
+	i = -1;
+	while (!is_open && ++i < g->enemies_amt)
+		is_open = dist_enemy(g, i, x, y) < 1.25;
 	if (c == '3')
-		return (TEX_DOOR_C_OUTSIDE + 1 * (dist_to_tile(g, x, y) < 1.25));
+		return (TEX_DOOR_C_OUTSIDE + is_open);
 	if (c == '4')
 		return (TEX_WINDOW_OUTSIDE);
 	return (TEX_WALL_OUTSIDE);
@@ -97,9 +93,15 @@ int	get_texture(t_game *g, int x, int y)
 {
 	t_cam	*c;
 	char	ch;
+	int		is_open;
+	int		i;
 
 	c = g->p->cam;
 	ch = g->map->content[y][x];
+	is_open = dist_to_tile(g, x, y) < 1.25;
+	i = -1;
+	while (!is_open && ++i < g->enemies_amt)
+		is_open = dist_enemy(g, i, x, y)  < 1.25;
 	if (is_portal(g, x, y))
 		return (is_portal(g, x, y));
 	if (is_outside(g, c, x, y) && ch != '8')
@@ -109,7 +111,7 @@ int	get_texture(t_game *g, int x, int y)
 	if (ch == '2')
 		return (TEX_WALL_SIGN);
 	if (ch == '3')
-		return (TEX_DOOR_C + 1 * (dist_to_tile(g, x, y) < 1.25));
+		return (TEX_DOOR_C + is_open);
 	if (ch == '4')
 		return (TEX_WINDOW);
 	if (ch >= '5' && ch <= '7')

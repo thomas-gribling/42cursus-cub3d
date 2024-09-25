@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 08:40:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:27:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main_loop(t_game *g)
 
 	if (g->scene == 1)
 	{
-		if (g->curr_level >= 0)
-			update_screen(g);
+		update_enemies(g);
+		update_screen(g);
 		if (g->p->moving_x && g->p->moving_y)
 			g->p->cam->speed_m = 0.05;
 		else

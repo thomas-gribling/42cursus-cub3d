@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 11:16:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:05:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,26 @@ int	get_dir(t_cam *c)
 	if (c->side == 1 && c->ray_dir_y < 0)
 		dir = SOUTH;
 	return (dir);
+}
+
+double	dist_to_tile(t_game *g, double x, double y)
+{
+	double	dist;
+	double	delta[2];
+
+	delta[0] = x + 0.5 - g->p->x;
+	delta[1] = y + 0.5 - g->p->y;
+	dist = sqrt(pow(delta[0], 2) + pow(delta[1], 2));
+	return (dist);
+}
+
+double	dist_enemy(t_game *g, int i, double x, double y)
+{
+	double	dist;
+	double	delta[2];
+
+	delta[0] = x + 0.5 - g->enemies[i].x;
+	delta[1] = y + 0.5 - g->enemies[i].y;
+	dist = sqrt(pow(delta[0], 2) + pow(delta[1], 2));
+	return (dist);
 }
