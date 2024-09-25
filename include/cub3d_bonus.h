@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:25:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:51:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,11 +175,17 @@ typedef struct s_map
 
 typedef struct s_coll
 {
+	int		x;
 	int		map_x;
 	int		map_y;
 	int		side;
-	int		tex_id;
+	int		solid;
+	double	dist;
 	t_tex	tex;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		step_x;
+	int		step_y;
 }			t_coll;
 
 typedef struct s_cam
@@ -331,6 +337,7 @@ int				mouse_move(int x, int y, t_game *g);
 
 void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
+void			raycast_tex(t_game *g, t_cam *c, int x, t_coll co);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_z_buffer(t_game *g);
 void			raycast_sprite(t_game *g, t_cam *c, int i);
@@ -362,10 +369,11 @@ int				is_bounds(t_game *g, int x, int y);
 int				is_sprite(char c);
 void			raycast_step(t_cam *c);
 int				get_dir(t_cam *c);
-t_coll			*append_colls(t_coll *old, t_cam *c, t_game *g);
 int				get_texture_spr(t_game *g, t_sprite spr);
 double			dist_to_tile(t_game *g, double x, double y);
 double			dist_enemy(t_game *g, int i, double x, double y);
+t_coll			*dup_coll(t_coll *old, t_cam *c);
+
 void			fill_z_buffer(t_game *g);
 void			append_z_buffer(t_game *g, void *ptr, int type);
 void			free_z_buffer(t_game *g);

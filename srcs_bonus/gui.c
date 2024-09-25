@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:22:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	update_screen(t_game *g)
 	c = g->p->cam;
 	reset_buffer(&c->buff);
 	raycast_floor_ceiling(g, c);
+	fill_z_buffer(g);
 	raycast(g, c, -1);
 	raycast_z_buffer(g);
 	if (c->colls)

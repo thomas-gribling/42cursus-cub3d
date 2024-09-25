@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:29:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:41:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:57:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ void	append_z_buffer(t_game *g, void *ptr, int type)
 
 void	free_z_buffer(t_game *g)
 {
+	int	i;
+
 	if (g->z_buffer)
 	{
+		i = -1;
+		while (++i < g->z_buffer_size)
+			if (g->z_buffer[i].type == WALL)
+				free(g->z_buffer[i].ptr);
 		free(g->z_buffer);
 		g->z_buffer = NULL;
 		g->z_buffer_size = 0;
