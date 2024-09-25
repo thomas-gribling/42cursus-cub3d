@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:19:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:31:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static int	is_class(t_game *g, t_cam *c, int x, int y)
 	return (0);
 }
 
-double	dist_to_tile(t_game *g, int x, int y)
+double	dist_to_tile(t_game *g, double x, double y)
 {
 	double	dist;
-	int		delta[2];
+	double	delta[2];
 
-	delta[0] = fabs(x + 0.5 - g->p->x);
-	delta[1] = fabs(y + 0.5 - g->p->y);
+	delta[0] = x + 0.5 - g->p->x;
+	delta[1] = y + 0.5 - g->p->y;
 	dist = sqrt(pow(delta[0], 2) + pow(delta[1], 2));
 	return (dist);
 }

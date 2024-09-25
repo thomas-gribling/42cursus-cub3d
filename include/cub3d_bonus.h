@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:21:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:31:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ void			raycast_sprites(t_game *g, t_cam *c);
 int				is_it_portal(t_game *g, int x, int y);
 void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
-double			dist_to_tile(t_game *g, int x, int y);
+double			dist_to_tile(t_game *g, double x, double y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);

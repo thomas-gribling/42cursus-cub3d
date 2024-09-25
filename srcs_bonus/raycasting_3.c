@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 08:22:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:32:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ void	raycast_sprites(t_game *g, t_cam *c)
 	i = -1;
 	while (++i < g->map->spr_amt)
 	{
-		t = g->map->spr[i].x;
-		t = dist_to_tile(g, (int)floor(t), (int)floor(g->map->spr[i].y));
+		t = dist_to_tile(g, g->map->spr[i].x, g->map->spr[i].y);
 		g->map->spr[i].dist = t;
 		g->map->spr[i].tex_id = get_texture_spr(g, g->map->spr[i]);
 	}
