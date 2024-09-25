@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:28:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:37:38 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ int	close_game(t_game *g)
 	exit(0);
 }
 
-int	key_pressed(int keycode, t_game *g)
-{
-	if (keycode == KEY_ESCAPE)
-		close_game(g);
-	if (keycode == KEY_W || keycode == KEY_S)
-		move_player(g, g->p->cam, keycode);
-	if (keycode == KEY_A || keycode == KEY_D)
-		move_player(g, g->p->cam, keycode);
-	if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		rotate_player(g->p->cam, keycode);
-	raycast(g, g->p->cam, -1);
-	return (0);
-}
-
 int	load_map(t_game *g, char *path)
 {
 	g->colors[0] = 0;
@@ -71,6 +57,22 @@ int	load_map(t_game *g, char *path)
 	return (check_map_chars(g->map->content));
 }
 
+int	main_loop(t_game *g)
+{
+	raycast(g, g->p->cam, -1);
+	if (g->p->moving_x && g->p->moving_y)
+		g->p->cam->speed_m = 0.025;
+	else
+		g->p->cam->speed_m = 0.05;
+	if (g->p->moving_x)
+		move_player(g, g->p->cam, g->p->moving_x);
+	if (g->p->moving_y)
+		move_player(g, g->p->cam, g->p->moving_y);
+	if (g->p->rotating)
+		rotate_player(g->p->cam, g->p->rotating);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game		g;
@@ -87,7 +89,9 @@ int	main(int ac, char **av)
 	init_values(&g);
 	raycast(&g, g.p->cam, -1);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
+	mlx_hook(g.win, 3, 1L << 1, key_released, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
+	mlx_loop_hook(g.mlx, main_loop, &g);
 	mlx_loop(g.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:28:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:38:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ typedef struct s_player
 	double	x;
 	double	y;
 	t_cam	*cam;
+	int		moving_x;
+	int		moving_y;
+	int		rotating;
 }			t_player;
 
 typedef struct s_game
@@ -121,6 +124,10 @@ t_tex			load_tex(t_game *g, char *path);
 void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_game *g, t_tex *buff);
+
+int				close_game(t_game *g);
+int				key_pressed(int keycode, t_game *g);
+int				key_released(int keycode, t_game *g);
 
 void			raycast(t_game *g, t_cam *c, int x);
 int				get_wall_tex(t_cam *c);
