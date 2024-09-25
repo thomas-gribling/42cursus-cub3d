@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:34:34 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:44:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,7 +331,7 @@ void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_z_buffer(t_game *g);
 void			raycast_sprite(t_game *g, t_cam *c, int i);
-void			raycast_enemies(t_game *g, t_cam *c);
+void			raycast_enemy(t_game *g, t_cam *c, int i);
 int				is_it_portal(t_game *g, int x, int y);
 void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);

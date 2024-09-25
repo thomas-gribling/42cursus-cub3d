@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:06:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:46:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	update_screen(t_game *g)
 	raycast_floor_ceiling(g, c);
 	raycast(g, c, -1);
 	raycast_z_buffer(g);
-	raycast_enemies(g, c);
 	if (c->colls)
 		free(c->colls);
 	c->colls = NULL;
