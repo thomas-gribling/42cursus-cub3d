@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 08:22:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:15:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ static void	raycast_tex(t_game *g, t_cam *c, int x, int curr)
 
 	co = c->colls[curr];
 	if (co.side == 0)
-		tmp = (co.map_x_visible - g->p->x + (1 - c->step_x_visible) / 2) / c->ray_dir_x_visible;
+		tmp = (co.map_x - g->p->x + (1 - c->step_x) / 2) / c->ray_dir_x;
 	else
-		tmp = (co.map_y_visible - g->p->y + (1 - c->step_y_visible) / 2) / c->ray_dir_y_visible;
+		tmp = (co.map_y - g->p->y + (1 - c->step_y) / 2) / c->ray_dir_y;
 	c->perp_wall_dist = tmp;
 	if (co.side == 0)
-		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y_visible;
+		c->wall_x = g->p->y + c->perp_wall_dist * c->ray_dir_y;
 	else
-		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x_visible;
+		c->wall_x = g->p->x + c->perp_wall_dist * c->ray_dir_x;
 	c->wall_x -= floor(c->wall_x);
 	c->tex_x = (int)(c->wall_x * (double)co.tex.width);
-	if ((!co.side && c->ray_dir_x_visible > 0) || (co.side == 1 && c->ray_dir_y_visible < 0))
+	if ((!co.side && c->ray_dir_x > 0) || (co.side == 1 && c->ray_dir_y < 0))
 		c->tex_x = co.tex.width - c->tex_x - 1;
 	if (!c->perp_wall_dist)
 		c->line_h = HEIGHT;
@@ -75,10 +75,8 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 	while (!c->hit)
 	{
 		raycast_step(c);
-		portal = is_it_portal(g, c->map_x_visible, c->map_y_visible)
+		portal = is_it_portal(g, c->map_x, c->map_y)
 			&& g->portals[0].is_placed && g->portals[1].is_placed;
-		//if (portal)
-		//	change_raycast_dir(g, c);
 		if (is_bounds(g, c->map_x, c->map_y) && !portal)
 			c->hit = 1;
 		if (is_castable(g->map->content[c->map_y][c->map_x]))
@@ -118,8 +116,6 @@ static void	raycast_dist(t_game *g, t_cam *c, int x)
 		c->step_y = 1;
 		c->side_dist_y = (c->map_y + 1.0 - g->p->y) * c->delta_y;
 	}
-	c->step_x_visible = c->step_x;
-	c->step_y_visible = c->step_y;
 	raycast_dda(g, c, x);
 }
 
@@ -130,13 +126,9 @@ void	raycast(t_game *g, t_cam *c, int x)
 		c->hit = 0;
 		c->map_x = (int)g->p->x;
 		c->map_y = (int)g->p->y;
-		c->map_x_visible = c->map_x;
-		c->map_y_visible = c->map_y;
 		c->cam_x = 2.0 * x / (double)WIDTH - 1.0;
 		c->ray_dir_x = c->dir_x + c->plane_x * c->cam_x;
 		c->ray_dir_y = c->dir_y + c->plane_y * c->cam_x;
-		c->ray_dir_x_visible = c->ray_dir_x;
-		c->ray_dir_y_visible = c->ray_dir_y;
 		c->colls_amt = 0;
 		if (!c->ray_dir_x)
 			c->delta_x = 1e30;

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 09:44:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:14:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,6 @@ typedef struct s_coll
 {
 	int		map_x;
 	int		map_y;
-	int		map_x_visible;
-	int		map_y_visible;
 	int		side;
 	int		tex_id;
 	t_tex	tex;
@@ -169,20 +167,14 @@ typedef struct s_cam
 	double			plane_y;
 	double			ray_dir_x;
 	double			ray_dir_y;
-	double			ray_dir_x_visible;
-	double			ray_dir_y_visible;
 	double			side_dist_x;
 	double			side_dist_y;
 	double			delta_x;
 	double			delta_y;
 	int				step_x;
 	int				step_y;
-	int				step_x_visible;
-	int				step_y_visible;
 	int				map_x;
 	int				map_y;
-	int				map_x_visible;
-	int				map_y_visible;
 	int				hit;
 	int				side;
 	t_coll			*colls;
