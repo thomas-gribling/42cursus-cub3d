@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 16:31:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:23:08 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_gui(t_game *g, t_cam *c)
 		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_01_0 + g->curr_slot], 0, 0);
 	if (g->slots[0] && g->slots[1])
 		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_11_0 + g->curr_slot], 0, 0);
-	draw_digits(g, &c->buff, 42, 0);
+	draw_digits(g, &c->buff, g->bullies_amt, 0);
 	time_left = ft_max(COPS_TIMER - ((get_time() - g->start) / 1000), 0);
 	draw_digits(g, &c->buff, time_left % 60, 1);
 	draw_digits(g, &c->buff, time_left / 60, 2);
@@ -96,6 +96,7 @@ void	update_screen(t_game *g)
 	raycast_floor_ceiling(g, c);
 	raycast(g, c, -1);
 	raycast_sprites(g, c);
+	raycast_enemies(g, c);
 	if (c->colls)
 		free(c->colls);
 	c->colls = NULL;

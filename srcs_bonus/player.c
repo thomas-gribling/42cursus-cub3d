@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:09:52 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:09:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	apply_moves(t_game *g, double *new)
 		g->p->x = new[0];
 	if (!is_collision(g->map->content[(int)new[1]][(int)g->p->x]))
 		g->p->y = new[1];
-	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E')
+	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && !g->bullies_amt)
 	{
 		g->curr_level++;
 		g->portals[0].is_placed = 0;
@@ -67,8 +67,13 @@ void	apply_moves(t_game *g, double *new)
 			g->slots[0] = 0;
 			g->slots[1] = 0;
 		}
+		else
+			generate_enemies(g, 5);
 		if (g->curr_level == 3)
+		{
 			g->show_map = 0;
+			generate_enemies(g, -1);
+		}
 	}
 }
 

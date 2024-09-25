@@ -6,34 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:29:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:10:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 #include "../mlx/mlx.h"
-
-static void	init_buffer(t_game *g)
-{
-	t_tex	*b;
-
-	b = &g->p->cam->buff;
-	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
-	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
-	b->width = WIDTH;
-	b->height = HEIGHT;
-	g->curr_slot = 0;
-	g->slots[0] = 1;
-	g->slots[1] = 1;
-	g->last_wheel = get_time();
-	g->show_map = 0;
-	g->last_frame = get_time();
-	g->last_fps_update = get_time();
-	g->fps = 1.0;
-	g->p->moving_x = 0;
-	g->p->moving_y = 0;
-	g->p->rotating = 0;
-}
 
 static void	turn_player_to_bis(t_cam *c, int dir)
 {
@@ -72,6 +50,28 @@ void	turn_player_to(t_cam *c, int dir)
 	turn_player_to_bis(c, dir);
 }
 
+static void	init_values_two(t_game *g)
+{
+	t_tex	*b;
+
+	b = &g->p->cam->buff;
+	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
+	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
+	b->width = WIDTH;
+	b->height = HEIGHT;
+	g->curr_slot = 0;
+	g->slots[0] = 1;
+	g->slots[1] = 1;
+	g->last_wheel = get_time();
+	g->show_map = 0;
+	g->last_frame = get_time();
+	g->last_fps_update = get_time();
+	g->fps = 1.0;
+	g->p->moving_x = 0;
+	g->p->moving_y = 0;
+	g->p->rotating = 0;
+}
+
 void	init_values(t_game *g)
 {
 	g->curr_level = 0;
@@ -93,5 +93,9 @@ void	init_values(t_game *g)
 	g->portals[1].map_y = 6;
 	g->portals[1].face = WEST;
 	g->portals[1].is_placed = 1;
-	init_buffer(g);
+	g->enemies = NULL;
+	g->enemies_amt = 0;
+	g->bullies_amt = 0;
+	generate_enemies(g, 1);
+	init_values_two(g);
 }

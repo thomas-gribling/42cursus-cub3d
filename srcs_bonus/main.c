@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:29:52 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:40:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	close_game(t_game *g)
 	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
 	free(g->p->cam);
 	free(g->p);
+	if (g->enemies)
+		free(g->enemies);
 	i = -1;
 	while (++i < TEX_AMT)
 		mlx_destroy_image(g->mlx, g->tex[i].ptr);

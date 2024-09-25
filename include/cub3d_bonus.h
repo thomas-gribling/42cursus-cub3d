@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 08:31:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:22:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,14 @@ typedef struct s_enemy
 	double	y;
 	int		type;
 	int		is_dead;
+	double	dist;
 }				t_enemy;
 
 # define STUDENT 0
 # define BULLY 1
-# define BOSS 2
-# define NEXTBOT_1 3
-# define NEXTBOT_2 4
-# define NEXTBOT_3 5
+# define NEXTBOT_1 2
+# define NEXTBOT_2 3
+# define NEXTBOT_3 4
 
 typedef struct s_map
 {
@@ -275,11 +275,15 @@ typedef struct s_game
 	int				curr_level;
 	t_portal		portals[2];
 	unsigned int	splash_timer;
+	t_enemy			*enemies;
+	int				enemies_amt;
+	int				bullies_amt;
 }				t_game;
 
 t_map			*load_map(char *path);
 
 void			init_values(t_game *g);
+void			generate_enemies(t_game *g, int difficulty);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path);
@@ -299,6 +303,7 @@ void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_sprites(t_game *g, t_cam *c);
+void			raycast_enemies(t_game *g, t_cam *c);
 int				is_it_portal(t_game *g, int x, int y);
 void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
