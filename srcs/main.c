@@ -6,11 +6,10 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/01 15:09:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:28:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
 #include "../include/cub3d.h"
 
 int	close_game(t_game *g)

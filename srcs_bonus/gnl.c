@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:56:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:30:39 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_fill_stash(int fd, char *stash)
 	char	*tmp;
 	int		rd;
 
-	tmp = malloc(BUFFER_SIZE + 1);
+	tmp = malloc(1001);
 	if (stash)
 	{
 		out = ft_strdup(stash);
@@ -31,7 +31,7 @@ char	*ft_fill_stash(int fd, char *stash)
 	rd = 1;
 	while (!ft_strchr(out, '\n') && rd > 0)
 	{
-		rd = read(fd, tmp, BUFFER_SIZE);
+		rd = read(fd, tmp, 1000);
 		if (rd < 0)
 			return (free_null(tmp, out));
 		tmp[rd] = '\0';
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	static char	*stash = NULL;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stash = ft_fill_stash(fd, stash);
 	if (!stash || !(*stash))

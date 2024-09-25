@@ -6,22 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:59:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:29:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GNL_H
 # define GNL_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-
-# ifndef CUB3D_BONUS_H
-#  include "cub3d.h"
-# else
-#  include "cub3d_bonus.h"
-# endif
 
 # include <unistd.h>
 

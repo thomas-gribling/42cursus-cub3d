@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:49:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/28 09:55:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:27:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-#include "../include/gnl.h"
 
 int	check_map_format(char *map)
 {
