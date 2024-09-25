@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 08:56:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:22:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ static void	raycast_spr_calc(t_game *g, t_cam *c, int i)
 	if (c->draw_y[0] < 0)
 		c->draw_y[0] = 0;
 	c->draw_y[1] = c->spr_h / 2 + HEIGHT / 2;
-	if (c->draw_y[1] >= HEIGHT)
-		c->draw_y[1] = HEIGHT - 1;
+	if (c->draw_y[1] > HEIGHT)
+		c->draw_y[1] = HEIGHT;
 	c->spr_w = abs((int)(HEIGHT / c->transf_y));
 	c->draw_x[0] = -c->spr_w / 2 + c->spr_screen_x;
 	if (c->draw_x[0] < 0)
 		c->draw_x[0] = 0;
 	c->draw_x[1] = c->spr_w / 2 + c->spr_screen_x;
-	if (c->draw_x[1] >= WIDTH)
-		c->draw_x[1] = WIDTH - 1;
+	if (c->draw_x[1] > WIDTH)
+		c->draw_x[1] = WIDTH;
 	raycast_spr_draw(g, c, i);
 }
 

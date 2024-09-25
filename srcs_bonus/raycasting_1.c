@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 10:27:10 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:22:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	raycast_fill_buffer(t_cam *c, int x, int curr)
 	if (c->bounds[0] < 0)
 		c->bounds[0] = 0;
 	c->bounds[1] = c->line_h / 2 + HEIGHT / 2;
-	if (c->bounds[1] >= HEIGHT)
-		c->bounds[1] = HEIGHT - 1;
+	if (c->bounds[1] > HEIGHT)
+		c->bounds[1] = HEIGHT;
 	c->step = 1.0 * tex.height / c->line_h;
 	c->tex_pos = (c->bounds[0] - HEIGHT / 2 + c->line_h / 2) * c->step;
 	y = c->bounds[0] - 1;
