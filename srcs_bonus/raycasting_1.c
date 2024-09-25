@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 11:15:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:25:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,6 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 			c->colls = append_colls(c->colls, c, g);
 			if (!is_transparent(g->map->content[c->map_y][c->map_x]) && !portal)
 				c->hit = 1;
-			while (c->map_x == c->colls[c->colls_amt].map_x
-				&& c->map_y == c->colls[c->colls_amt].map_y)
-				raycast_step(c);
 		}
 	}
 	i = c->colls_amt;
