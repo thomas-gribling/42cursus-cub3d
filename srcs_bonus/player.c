@@ -6,19 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:52:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:21:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-
-void	switch_slots(t_game *g, int keycode)
-{
-	if (keycode == KEY_1)
-		g->curr_slot = 0;
-	else
-		g->curr_slot = 1;
-}
 
 void	tp_player_spawn(t_game *g)
 {
@@ -55,7 +47,7 @@ void	apply_moves(t_game *g, double *new)
 		g->p->x = new[0];
 	if (!is_collision(g->map->content[(int)new[1]][(int)g->p->x]))
 		g->p->y = new[1];
-	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && !g->bullies_amt)
+	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && g->bullies_amt)
 	{
 		g->curr_level++;
 		g->portals[0].is_placed = 0;
@@ -66,6 +58,7 @@ void	apply_moves(t_game *g, double *new)
 		{
 			g->slots[0] = 0;
 			g->slots[1] = 0;
+			free_enemies(g);
 		}
 		else
 			generate_enemies(g, 5);

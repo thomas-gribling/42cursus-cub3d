@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:44:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:19:54 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,6 +311,7 @@ t_map			*load_map(char *path);
 void			init_values(t_game *g);
 void			generate_enemies(t_game *g, int difficulty);
 void			update_enemies(t_game *g);
+void			free_enemies(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path);
@@ -333,13 +334,11 @@ void			raycast_z_buffer(t_game *g);
 void			raycast_sprite(t_game *g, t_cam *c, int i);
 void			raycast_enemy(t_game *g, t_cam *c, int i);
 int				is_it_portal(t_game *g, int x, int y);
-void			change_raycast_dir(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);
 void			tp_player_spawn(t_game *g);
-void			switch_slots(t_game *g, int keycode);
 
 int				put_error(char *s);
 int				ft_strncmp(char *s1, char *s2, size_t n);

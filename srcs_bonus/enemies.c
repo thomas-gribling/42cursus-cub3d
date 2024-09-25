@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:01:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:20:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	generate_nextbots(t_game *g)
 	{
 		g->enemies[i].type = NEXTBOT_1 + i;
 		g->enemies[i].dist = 0.0;
+		g->enemies[i].dirx = -1 + 2 * (rand() % 2);
+		g->enemies[i].diry = -1 + 2 * (rand() % 2);
 		g->enemies[i].is_dead = 0;
 	}
 	g->enemies[0].x = 107.5;
@@ -65,8 +67,7 @@ void	generate_enemies(t_game *g, int difficulty)
 {
 	int	i;
 
-	if (g->enemies)
-		free(g->enemies);
+	free_enemies(g);
 	srand(rand() % get_time());
 	if (difficulty == -1)
 	{
@@ -110,6 +111,10 @@ static void	check_moves(t_game *g, t_enemy *e)
 		p[0] = e->x - 0.05 * (-1 + 2 * ((g->p->x < e->x)));
 		p[1] = e->y - 0.05 * (-1 + 2 * ((g->p->y < e->y)));
 	}
+	if (p[0] < 0)
+		p[0] = 0;
+	if (p[1] < 0)
+		p[1] = 0;
 	if (!is_collision(g->map->content[(int)e->y][(int)p[0]]))
 		e->x = p[0];
 	if (!is_collision(g->map->content[(int)p[1]][(int)e->x]))
@@ -131,5 +136,15 @@ void	update_enemies(t_game *g)
 				g->enemies[i].diry = -1 + 2 * (rand() % 2);
 			check_moves(g, &g->enemies[i]);
 		}
+	}
+}
+
+void	free_enemies(t_game *g)
+{
+	if (g->enemies)
+	{
+		free(g->enemies);
+		g->enemies = NULL;
+		g->enemies_amt = 0;
 	}
 }

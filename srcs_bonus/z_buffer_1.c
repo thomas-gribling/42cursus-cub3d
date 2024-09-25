@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:29:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:45:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:09:41 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	fill_z_buffer(t_game *g)
 	int	i;
 
 	i = -1;
+	free_z_buffer(g);
 	while (++i < g->map->spr_amt)
 	{
 		g->map->spr[i].tex_id = get_texture_spr(g, g->map->spr[i]);
