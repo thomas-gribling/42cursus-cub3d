@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:45:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../mlx/mlx.h"
 
 static void	turn_player_to_bis(t_cam *c, int dir)
 {

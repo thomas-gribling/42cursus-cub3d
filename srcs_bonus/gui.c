@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 17:46:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:23:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../mlx/mlx.h"
 
 void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 {

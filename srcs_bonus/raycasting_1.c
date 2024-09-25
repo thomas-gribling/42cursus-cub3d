@@ -6,11 +6,10 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 11:25:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
 #include "../include/cub3d_bonus.h"
 
 static void	raycast_fill_buffer(t_cam *c, int x, int curr)

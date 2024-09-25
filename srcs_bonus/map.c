@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/23 09:36:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../include/gnl.h"
 
 static void	append_spr(t_map **map, int x, int y)
 {

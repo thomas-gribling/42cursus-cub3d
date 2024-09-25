@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:23:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../mlx/mlx.h"
 
 t_tex	load_tex(t_game *g, char *path)
 {

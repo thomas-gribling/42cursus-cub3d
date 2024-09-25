@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:44:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/06/27 08:53:36 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/gnl.h"
+#include "../include/cub3d_bonus.h"
 
 int	ft_strlen(const char *s)
 {

@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:56:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/07/17 14:38:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "../include/gnl.h"
+#include "../include/cub3d_bonus.h"
 
 char	*ft_fill_stash(int fd, char *stash)
 {

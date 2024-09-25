@@ -6,12 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:15:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:23:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../mlx/mlx.h"
 
 int	key_pressed(int keycode, t_game *g)
 {

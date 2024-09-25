@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:19:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:25:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include "gnl.h"
+# include "../mlx/mlx.h"
 
 # define GAME_TITLE "KTB! - KILL THE BULLIES!"
 # define WIDTH 1200

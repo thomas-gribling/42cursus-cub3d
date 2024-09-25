@@ -6,13 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 11:21:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:24:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include "../include/gnl.h"
-#include "../mlx/mlx.h"
 
 static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 {
