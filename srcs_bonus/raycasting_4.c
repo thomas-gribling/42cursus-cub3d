@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 14:58:45 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:14:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	get_texture_enemy(t_game *g, int i, int is_dead)
 		return (TEX_NPC_JERAU);
 	if (type == NEXTBOT_2)
 		return (TEX_NPC_PIRATE_0 + (get_time() % (8 * 150)) / 150);
+	if (type == NEXTBOT_3)
+		return (TEX_NPC_POULET);
 	return (TEX_WALL_BACKROOMS_0);
 }
 
