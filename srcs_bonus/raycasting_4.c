@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:21:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	get_texture_enemy(t_game *g, int i, int is_dead)
 	if (type == BULLY && is_dead)
 		return (TEX_NPC_BULLY_DEAD);
 	if (type == STUDENT)
-		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 500)) / 500);
+		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 250)) / 250);
 	if (type == BULLY)
-		return (TEX_NPC_BULLY_F_1 - (get_time() % (2 * 500)) / 500);
+		return (TEX_NPC_BULLY_F_1 - (get_time() % (2 * 250)) / 250);
 	if (type == NEXTBOT_1)
 		return (TEX_NPC_JERAU);
 	if (type == NEXTBOT_2)
