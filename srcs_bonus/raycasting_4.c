@@ -6,21 +6,29 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 09:38:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:58:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static int	get_texture_enemy(t_game *g, int i)
+static int	get_texture_enemy(t_game *g, int i, int is_dead)
 {
 	int	type;
 
 	type = g->enemies[i].type;
+	if (type == STUDENT && is_dead)
+		return (TEX_NPC_STUDENT_DEAD);
+	if (type == BULLY && is_dead)
+		return (TEX_NPC_BULLY_DEAD);
 	if (type == STUDENT)
-		return (TEX_WALL_BACKROOMS_0);
+		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 500)) / 500);
 	if (type == BULLY)
-		return (TEX_WALL_BACKROOMS_1);
+		return (TEX_NPC_BULLY_F_1 - (get_time() % (2 * 500)) / 500);
+	if (type == NEXTBOT_1)
+		return (TEX_NPC_JERAU);
+	if (type == NEXTBOT_2)
+		return (TEX_NPC_PIRATE_0 + (get_time() % (8 * 150)) / 150);
 	return (TEX_WALL_BACKROOMS_0);
 }
 
@@ -28,7 +36,7 @@ static void	raycast_enemy_draw(t_game *g, t_cam *c, int i)
 {
 	t_tex	tex;
 
-	tex = g->tex[get_texture_enemy(g, i)];
+	tex = g->tex[get_texture_enemy(g, i, g->enemies[i].is_dead)];
 	c->pix_x = c->draw_x[0] - 1;
 	while (c->pix_x++ < c->draw_x[1])
 	{

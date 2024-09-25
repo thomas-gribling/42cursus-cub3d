@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/24 17:28:34 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:48:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void	load_assets_3(t_game *g)
 	g->tex[TEX_GUI_SPLASH_1] = load_tex(g, "assets/gui/splash_1.xpm");
 	g->tex[TEX_GUI_SPLASH_2] = load_tex(g, "assets/gui/splash_2.xpm");
 	g->tex[TEX_GUI_SPLASH_3] = load_tex(g, "assets/gui/splash_3.xpm");
+	g->tex[TEX_NPC_JERAU] = load_tex(g, "assets/npc/jerau.xpm");
+	g->tex[TEX_NPC_PIRATE_0] = load_tex(g, "assets/npc/pirate_0.xpm");
+	g->tex[TEX_NPC_PIRATE_1] = load_tex(g, "assets/npc/pirate_1.xpm");
+	g->tex[TEX_NPC_PIRATE_2] = load_tex(g, "assets/npc/pirate_2.xpm");
+	g->tex[TEX_NPC_PIRATE_3] = load_tex(g, "assets/npc/pirate_3.xpm");
+	g->tex[TEX_NPC_PIRATE_4] = load_tex(g, "assets/npc/pirate_4.xpm");
+	g->tex[TEX_NPC_PIRATE_5] = load_tex(g, "assets/npc/pirate_5.xpm");
+	g->tex[TEX_NPC_PIRATE_6] = load_tex(g, "assets/npc/pirate_6.xpm");
+	g->tex[TEX_NPC_PIRATE_7] = load_tex(g, "assets/npc/pirate_7.xpm");
+	g->tex[TEX_NPC_STUDENT_F_0] = load_tex(g, "assets/npc/student_uf.xpm");
+	g->tex[TEX_NPC_STUDENT_F_1] = load_tex(g, "assets/npc/student_df.xpm");
+	g->tex[TEX_NPC_STUDENT_B_0] = load_tex(g, "assets/npc/student_ub.xpm");
+	g->tex[TEX_NPC_STUDENT_B_1] = load_tex(g, "assets/npc/student_db.xpm");
+	g->tex[TEX_NPC_STUDENT_DEAD] = load_tex(g, "assets/npc/student_dead.xpm");
+	g->tex[TEX_NPC_BULLY_F_0] = load_tex(g, "assets/npc/bully_uf.xpm");
+	g->tex[TEX_NPC_BULLY_F_1] = load_tex(g, "assets/npc/bully_df.xpm");
+	g->tex[TEX_NPC_BULLY_B_0] = load_tex(g, "assets/npc/bully_ub.xpm");
+	g->tex[TEX_NPC_BULLY_B_1] = load_tex(g, "assets/npc/bully_db.xpm");
+	g->tex[TEX_NPC_BULLY_DEAD] = load_tex(g, "assets/npc/bully_dead.xpm");
 	g->tex[TEX_NPC_CHAD_H] = load_tex(g, "assets/npc/chad_h.xpm");
 	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
 	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
