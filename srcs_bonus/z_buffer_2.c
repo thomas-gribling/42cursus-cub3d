@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 19:34:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:33:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	calc_dist_z_buffer(t_game *g)
 		if (g->z_buffer[i].type == WALL)
 		{
 			t1 = (t_coll *)g->z_buffer[i].ptr;
-			t1->dist = dist_to_tile(g, t1->map_x, t1->map_y);
+			t1->dist = dist_to_tile(g, t1->map_x + 0.5, t1->map_y + 0.5);
 		}
 		if (g->z_buffer[i].type == SPRITE)
 		{
