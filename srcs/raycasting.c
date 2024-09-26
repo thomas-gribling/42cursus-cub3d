@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:27:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 08:28:17 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ static void	raycast_dist(t_game *g, t_cam *c, int x)
 
 void	raycast(t_game *g, t_cam *c, int x)
 {
-	mlx_do_sync(g->mlx);
 	reset_buffer(g, &c->buff);
 	while (++x < WIDTH)
 	{
@@ -132,6 +131,5 @@ void	raycast(t_game *g, t_cam *c, int x)
 			c->delta_y = sqrt(1 + pow(c->ray_dir_x, 2) / pow(c->ray_dir_y, 2));
 		raycast_dist(g, c, x);
 	}
-	mlx_clear_window(g->mlx, g->win);
 	mlx_put_image_to_window(g->mlx, g->win, c->buff.ptr, 0, 0);
 }
