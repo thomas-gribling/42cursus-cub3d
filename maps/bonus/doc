@@ -4,6 +4,7 @@ O: outside (outside walls around, ground floor, no ceiling)
 G: grass (grass floor, no ceiling)
 T: tree (grass floor, no ceiling, tree sprite)
 E: exit (trap floor)
+S: secret exit (broken ground)
 B: Boss
 1 / unassigned: wall.xpm (default)
 2: wall_sign.xpm
@@ -13,3 +14,5 @@ B: Boss
 6: board_2.xpm
 7: board_3.xpm
 8: bush.xpm
+9: bush.xpm (no collision)
+A: bush_backrooms.xpm

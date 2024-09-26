@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:44:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 08:57:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	get_texture(t_game *g, int x, int y)
 		is_open = dist_enemy(g, i, x, y) < 1.25;
 	if (is_portal(g, x, y))
 		return (is_portal(g, x, y));
-	if (is_outside(g, c, x, y) && ch != '8')
+	if (is_outside(g, c, x, y) && ch != '8' && ch != '9')
 		return (get_texture_outside(g, ch, x, y));
 	if (is_class(g, c, x, y) && (ch == '2' || ch == '1'))
 		return (TEX_WALL_CLASS);
@@ -116,8 +116,8 @@ int	get_texture(t_game *g, int x, int y)
 		return (TEX_WINDOW);
 	if (ch >= '5' && ch <= '7')
 		return (TEX_BOARD_1 + ch - '5');
-	if (ch == '8')
-		return (TEX_BUSH);
+	if (ch == '8' || ch == '9' || ch == 'A')
+		return (TEX_BUSH + (ch == 'A'));
 	if (ch == '1' && g->curr_level == 3)
 		return (TEX_WALL_BACKROOMS_0);
 	return (TEX_WALL);

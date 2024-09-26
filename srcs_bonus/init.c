@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:02:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static void	init_values_two(t_game *g)
 	g->p->moving_x = 0;
 	g->p->moving_y = 0;
 	g->p->rotating = 0;
+	g->hide_bullies_amt = 0;
 	generate_enemies(g, 1);
 	tp_player_spawn(g);
 }

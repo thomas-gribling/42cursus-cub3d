@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:07:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,27 @@ t_tex	load_tex(t_game *g, char *path)
 	return (s);
 }
 
-void	load_assets_3(t_game *g)
+static void	load_assets_4(t_game *g)
 {
+	g->tex[TEX_NPC_STUDENT_B_0] = load_tex(g, "assets/npc/student_ub.xpm");
+	g->tex[TEX_NPC_STUDENT_B_1] = load_tex(g, "assets/npc/student_db.xpm");
+	g->tex[TEX_NPC_STUDENT_DEAD] = load_tex(g, "assets/npc/student_dead.xpm");
+	g->tex[TEX_NPC_BULLY_F_0] = load_tex(g, "assets/npc/bully_uf.xpm");
+	g->tex[TEX_NPC_BULLY_F_1] = load_tex(g, "assets/npc/bully_df.xpm");
+	g->tex[TEX_NPC_BULLY_B_0] = load_tex(g, "assets/npc/bully_ub.xpm");
+	g->tex[TEX_NPC_BULLY_B_1] = load_tex(g, "assets/npc/bully_db.xpm");
+	g->tex[TEX_NPC_BULLY_DEAD] = load_tex(g, "assets/npc/bully_dead.xpm");
+	g->tex[TEX_NPC_CHAD_H] = load_tex(g, "assets/npc/chad_h.xpm");
+	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
+	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
+	g->tex[TEX_NPC_CHAD_D] = load_tex(g, "assets/npc/chad_d.xpm");
+}
+
+static void	load_assets_3(t_game *g)
+{
+	g->tex[TEX_GUI_5] = load_tex(g, "assets/gui/5.xpm");
+	g->tex[TEX_GUI_6] = load_tex(g, "assets/gui/6.xpm");
+	g->tex[TEX_GUI_7] = load_tex(g, "assets/gui/7.xpm");
 	g->tex[TEX_GUI_8] = load_tex(g, "assets/gui/8.xpm");
 	g->tex[TEX_GUI_9] = load_tex(g, "assets/gui/9.xpm");
 	g->tex[TEX_GUI_SEP] = load_tex(g, "assets/gui/sep.xpm");
@@ -44,22 +63,14 @@ void	load_assets_3(t_game *g)
 	g->tex[TEX_NPC_POULET] = load_tex(g, "assets/npc/poulet.xpm");
 	g->tex[TEX_NPC_STUDENT_F_0] = load_tex(g, "assets/npc/student_uf.xpm");
 	g->tex[TEX_NPC_STUDENT_F_1] = load_tex(g, "assets/npc/student_df.xpm");
-	g->tex[TEX_NPC_STUDENT_B_0] = load_tex(g, "assets/npc/student_ub.xpm");
-	g->tex[TEX_NPC_STUDENT_B_1] = load_tex(g, "assets/npc/student_db.xpm");
-	g->tex[TEX_NPC_STUDENT_DEAD] = load_tex(g, "assets/npc/student_dead.xpm");
-	g->tex[TEX_NPC_BULLY_F_0] = load_tex(g, "assets/npc/bully_uf.xpm");
-	g->tex[TEX_NPC_BULLY_F_1] = load_tex(g, "assets/npc/bully_df.xpm");
-	g->tex[TEX_NPC_BULLY_B_0] = load_tex(g, "assets/npc/bully_ub.xpm");
-	g->tex[TEX_NPC_BULLY_B_1] = load_tex(g, "assets/npc/bully_db.xpm");
-	g->tex[TEX_NPC_BULLY_DEAD] = load_tex(g, "assets/npc/bully_dead.xpm");
-	g->tex[TEX_NPC_CHAD_H] = load_tex(g, "assets/npc/chad_h.xpm");
-	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
-	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
-	g->tex[TEX_NPC_CHAD_D] = load_tex(g, "assets/npc/chad_d.xpm");
+	load_assets_4(g);
 }
 
-void	load_assets_2(t_game *g)
+static void	load_assets_2(t_game *g)
 {
+	g->tex[TEX_GROUND_BACKROOMS] = load_tex(g, "assets/ground_backrooms.xpm");
+	g->tex[TEX_GRASS] = load_tex(g, "assets/grass.xpm");
+	g->tex[TEX_CARPET] = load_tex(g, "assets/carpet.xpm");
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm");
 	g->tex[TEX_SPR_TREE_0] = load_tex(g, "assets/tree_0.xpm");
 	g->tex[TEX_SPR_TREE_1] = load_tex(g, "assets/tree_1.xpm");
@@ -81,9 +92,6 @@ void	load_assets_2(t_game *g)
 	g->tex[TEX_GUI_2] = load_tex(g, "assets/gui/2.xpm");
 	g->tex[TEX_GUI_3] = load_tex(g, "assets/gui/3.xpm");
 	g->tex[TEX_GUI_4] = load_tex(g, "assets/gui/4.xpm");
-	g->tex[TEX_GUI_5] = load_tex(g, "assets/gui/5.xpm");
-	g->tex[TEX_GUI_6] = load_tex(g, "assets/gui/6.xpm");
-	g->tex[TEX_GUI_7] = load_tex(g, "assets/gui/7.xpm");
 	load_assets_3(g);
 }
 
@@ -97,6 +105,7 @@ void	load_assets(t_game *g)
 	g->tex[TEX_DOOR_O] = load_tex(g, "assets/door_o.xpm");
 	g->tex[TEX_WINDOW] = load_tex(g, "assets/window.xpm");
 	g->tex[TEX_BUSH] = load_tex(g, "assets/bush.xpm");
+	g->tex[TEX_BUSH_BACKROOMS] = load_tex(g, "assets/bush_backrooms.xpm");
 	g->tex[TEX_WALL_CLASS] = load_tex(g, "assets/wall_class.xpm");
 	g->tex[TEX_BOARD_1] = load_tex(g, "assets/board_1.xpm");
 	g->tex[TEX_BOARD_2] = load_tex(g, "assets/board_2.xpm");
@@ -112,7 +121,5 @@ void	load_assets(t_game *g)
 	g->tex[TEX_WALL_BACKROOMS_4] = load_tex(g, "assets/backrooms_4.xpm");
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm");
 	g->tex[TEX_GROUND] = load_tex(g, "assets/ground.xpm");
-	g->tex[TEX_GRASS] = load_tex(g, "assets/grass.xpm");
-	g->tex[TEX_CARPET] = load_tex(g, "assets/carpet.xpm");
 	load_assets_2(g);
 }

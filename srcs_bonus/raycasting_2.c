@@ -6,37 +6,55 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 08:56:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
+
+static int	has_ceiling(t_game *g, t_cam *c)
+{
+	if (g->map->content[c->cell_y][c->cell_x] != 'O'
+		&& g->map->content[c->cell_y][c->cell_x] != 'G'
+		&& g->map->content[c->cell_y][c->cell_x] != 'T'
+		&& g->map->content[c->cell_y][c->cell_x] != 'S'
+		&& g->map->content[c->cell_y][c->cell_x] != '9')
+		return (1);
+	return (0);
+}
+
+static int	get_floor_tex(t_game *g, t_cam *ca)
+{
+	char	c;
+
+	c = g->map->content[ca->cell_y][ca->cell_x];
+	if (g->curr_level == 3)
+		return (TEX_CARPET);
+	if (c == 'O' || c == '9')
+		return (TEX_GROUND);
+	if (c == 'S')
+		return (TEX_GROUND_BACKROOMS);
+	if (c == 'G' || c == 'T')
+		return (TEX_GRASS);
+	return (TEX_FLOOR);
+}
 
 static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 {
 	t_tex	tf;
 	t_tex	tc;
 
-	tf = g->tex[TEX_FLOOR];
-	if (g->curr_level == 3)
-		tf = g->tex[TEX_CARPET];
-	tc = g->tex[TEX_CEILING];
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_y < g->map->height && c->cell_x < g->map->sizes[c->cell_y]
 		&& (!is_collision(g->map->content[c->cell_y][c->cell_x])
 		|| is_transparent(g->map->content[c->cell_y][c->cell_x]) == 1))
 	{
-		if (g->map->content[c->cell_y][c->cell_x] == 'O')
-			tf = g->tex[TEX_GROUND];
-		if (g->map->content[c->cell_y][c->cell_x] == 'G'
-			|| g->map->content[c->cell_y][c->cell_x] == 'T')
-			tf = g->tex[TEX_GRASS];
+		tf = g->tex[get_floor_tex(g, c)];
+		tc = g->tex[TEX_CEILING];
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);
 		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
-		if (g->map->content[c->cell_y][c->cell_x] != 'O'
-			&& g->map->content[c->cell_y][c->cell_x] != 'G'
-			&& g->map->content[c->cell_y][c->cell_x] != 'T')
+		if (has_ceiling(g, c))
 			tex_pixel_put(&c->buff, x, HEIGHT - y - 1, c->color);
 	}
 }
