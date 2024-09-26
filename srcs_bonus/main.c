@@ -6,11 +6,27 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:05 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:55:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
+
+static int	close_game_bis(t_game *g)
+{
+	int	i;
+
+	i = -1;
+	while (++i < TEX_AMT)
+		mlx_destroy_image(g->mlx, g->tex[i].ptr);
+	free(g->tex);
+	mlx_destroy_window(g->mlx, g->win);
+	if (g->mlx)
+		mlx_destroy_display(g->mlx);
+	mlx_loop_end(g->mlx);
+	free(g->mlx);
+	return (0);
+}
 
 int	close_game(t_game *g)
 {
@@ -32,16 +48,7 @@ int	close_game(t_game *g)
 	free(g->p);
 	if (g->enemies)
 		free(g->enemies);
-	i = -1;
-	while (++i < TEX_AMT)
-		mlx_destroy_image(g->mlx, g->tex[i].ptr);
-	free(g->tex);
-	mlx_destroy_window(g->mlx, g->win);
-	if (g->mlx)
-		mlx_destroy_display(g->mlx);
-	mlx_loop_end(g->mlx);
-	free(g->mlx);
-	exit(0);
+	exit(close_game_bis(g));
 }
 
 int	main_loop(t_game *g)
@@ -70,6 +77,16 @@ int	main_loop(t_game *g)
 	return (0);
 }
 
+static void	do_hooks(t_game *g)
+{
+	mlx_hook(g->win, 2, 1L << 0, key_pressed, g);
+	mlx_hook(g->win, 3, 1L << 1, key_released, g);
+	mlx_hook(g->win, 17, 0L, close_game, g);
+	mlx_hook(g->win, 4, 1L << 2, mouse_click, g);
+	mlx_hook(g->win, 6, 1L << 6, mouse_move, g);
+	mlx_loop_hook(g->mlx, main_loop, g);
+}
+
 int	main(void)
 {
 	t_game		g;
@@ -91,12 +108,7 @@ int	main(void)
 	init_values(&g);
 	if (g.scene == 0)
 		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
-	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
-	mlx_hook(g.win, 3, 1L << 1, key_released, &g);
-	mlx_hook(g.win, 17, 0L, close_game, &g);
-	mlx_hook(g.win, 4, 1L << 2, mouse_click, &g);
-	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
-	mlx_loop_hook(g.mlx, main_loop, &g);
+	do_hooks(&g);
 	mlx_loop(g.mlx);
 	return (0);
 }

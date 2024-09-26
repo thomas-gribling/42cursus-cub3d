@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:03:06 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/11 15:38:39 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:52:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	tex_put_scale(t_tex *to, t_tex *from, int x, int y)
 		while (++y < to->height)
 		{
 			from_y++;
-			tex_pixel_put(to, x, y, tex_get_pixel(from, from_x * coeff[0], from_y * coeff[1]));
+			tex_pixel_put(to, x, y,
+				tex_get_pixel(from, from_x * coeff[0], from_y * coeff[1]));
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 19:57:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:51:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,11 @@ void	raycast_tex(t_game *g, t_cam *c, int x, t_coll co)
 static void	raycast_dda(t_game *g, t_cam *c, int x)
 {
 	t_coll	tmp;
-	//int	portal;
+
 	while (!c->hit)
 	{
 		raycast_step(c);
 		tmp.x = x;
-		//portal = is_it_portal(g, c->map_x, c->map_y)
-		//	&& g->portals[0].is_placed && g->portals[1].is_placed;
 		if (is_bounds(g, c->map_x, c->map_y))
 			c->hit = 1;
 		if (is_castable(g->map->content[c->map_y][c->map_x]))

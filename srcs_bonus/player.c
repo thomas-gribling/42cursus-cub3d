@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:02:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:51:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	change_level(t_game *g, int dest)
 		g->slots[1] = 0;
 		g->bullies_amt = 0;
 		g->hide_bullies_amt = 1;
-	}	
+	}
 	if (g->curr_level == 3)
 	{
 		g->show_map = 0;
