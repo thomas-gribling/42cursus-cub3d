@@ -4,6 +4,7 @@ O: outside (outside walls around, ground floor, no ceiling)
 G: grass (grass floor, no ceiling)
 T: tree (grass floor, no ceiling, tree sprite)
 E: exit (trap floor)
+F: entrance (trap ceiling)
 S: secret exit (broken ground)
 B: Boss
 1 / unassigned: wall.xpm (default)

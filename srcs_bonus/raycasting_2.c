@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 08:56:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:34:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	get_floor_tex(t_game *g, t_cam *ca)
 		return (TEX_GROUND_BACKROOMS);
 	if (c == 'G' || c == 'T')
 		return (TEX_GRASS);
+	if (c == 'E')
+		return (TEX_FLOOR_TRAPDOOR);
 	return (TEX_FLOOR);
 }
 
@@ -51,6 +53,8 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	{
 		tf = g->tex[get_floor_tex(g, c)];
 		tc = g->tex[TEX_CEILING];
+		if (g->map->content[c->cell_y][c->cell_x] == 'F')
+			tc = g->tex[TEX_CEILING_TRAPDOOR];
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);
 		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);

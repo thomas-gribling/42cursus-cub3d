@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:10:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:33:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,14 @@ static void	load_assets_3(t_game *g)
 
 static void	load_assets_2(t_game *g)
 {
+	g->tex[TEX_GROUND] = load_tex(g, "assets/ground.xpm");
 	g->tex[TEX_GROUND_BACKROOMS] = load_tex(g, "assets/ground_backrooms.xpm");
 	g->tex[TEX_GRASS] = load_tex(g, "assets/grass.xpm");
 	g->tex[TEX_CARPET] = load_tex(g, "assets/carpet.xpm");
 	g->tex[TEX_CEILING] = load_tex(g, "assets/ceiling.xpm");
+	g->tex[TEX_CEILING_TRAPDOOR] = load_tex(g, "assets/ceiling_trapdoor.xpm");
 	g->tex[TEX_SPR_TREE_0] = load_tex(g, "assets/tree_0.xpm");
 	g->tex[TEX_SPR_TREE_1] = load_tex(g, "assets/tree_1.xpm");
-	g->tex[TEX_SPR_LADDER] = load_tex(g, "assets/ladder.xpm");
 	g->tex[TEX_PORTAL_0] = load_tex(g, "assets/portal_0.xpm");
 	g->tex[TEX_PORTAL_1] = load_tex(g, "assets/portal_1.xpm");
 	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm");
@@ -118,6 +119,6 @@ void	load_assets(t_game *g)
 	g->tex[TEX_WALL_BACKROOMS_3] = load_tex(g, "assets/backrooms_3.xpm");
 	g->tex[TEX_WALL_BACKROOMS_4] = load_tex(g, "assets/backrooms_4.xpm");
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm");
-	g->tex[TEX_GROUND] = load_tex(g, "assets/ground.xpm");
+	g->tex[TEX_FLOOR_TRAPDOOR] = load_tex(g, "assets/floor_trapdoor.xpm");
 	load_assets_2(g);
 }
