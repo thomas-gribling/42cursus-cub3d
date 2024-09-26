@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:02:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:12:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 83
+# define TEX_AMT 81
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -100,34 +100,32 @@
 # define TEX_GUI_SPLASH_1 52
 # define TEX_GUI_SPLASH_2 53
 # define TEX_GUI_SPLASH_3 54
-# define TEX_PORTAL_0_0 55
-# define TEX_PORTAL_0_1 56
-# define TEX_PORTAL_1_0 57
-# define TEX_PORTAL_1_1 58
-# define TEX_NPC_JERAU 59
-# define TEX_NPC_PIRATE_0 60
-# define TEX_NPC_PIRATE_1 61
-# define TEX_NPC_PIRATE_2 62
-# define TEX_NPC_PIRATE_3 63
-# define TEX_NPC_PIRATE_4 64
-# define TEX_NPC_PIRATE_5 65
-# define TEX_NPC_PIRATE_6 66
-# define TEX_NPC_PIRATE_7 67
-# define TEX_NPC_POULET 68
-# define TEX_NPC_STUDENT_F_0 69
-# define TEX_NPC_STUDENT_F_1 70
-# define TEX_NPC_STUDENT_B_0 71
-# define TEX_NPC_STUDENT_B_1 72
-# define TEX_NPC_STUDENT_DEAD 73
-# define TEX_NPC_BULLY_F_0 74
-# define TEX_NPC_BULLY_F_1 75
-# define TEX_NPC_BULLY_B_0 76
-# define TEX_NPC_BULLY_B_1 77
-# define TEX_NPC_BULLY_DEAD 78
-# define TEX_NPC_CHAD_H 79
-# define TEX_NPC_CHAD_I 80
-# define TEX_NPC_CHAD_A 81
-# define TEX_NPC_CHAD_D 82
+# define TEX_PORTAL_0 55
+# define TEX_PORTAL_1 56
+# define TEX_NPC_JERAU 57
+# define TEX_NPC_PIRATE_0 58
+# define TEX_NPC_PIRATE_1 59
+# define TEX_NPC_PIRATE_2 60
+# define TEX_NPC_PIRATE_3 61
+# define TEX_NPC_PIRATE_4 62
+# define TEX_NPC_PIRATE_5 63
+# define TEX_NPC_PIRATE_6 64
+# define TEX_NPC_PIRATE_7 65
+# define TEX_NPC_POULET 66
+# define TEX_NPC_STUDENT_F_0 67
+# define TEX_NPC_STUDENT_F_1 68
+# define TEX_NPC_STUDENT_B_0 69
+# define TEX_NPC_STUDENT_B_1 70
+# define TEX_NPC_STUDENT_DEAD 71
+# define TEX_NPC_BULLY_F_0 72
+# define TEX_NPC_BULLY_F_1 73
+# define TEX_NPC_BULLY_B_0 74
+# define TEX_NPC_BULLY_B_1 75
+# define TEX_NPC_BULLY_DEAD 76
+# define TEX_NPC_CHAD_H 77
+# define TEX_NPC_CHAD_I 78
+# define TEX_NPC_CHAD_A 79
+# define TEX_NPC_CHAD_D 80
 
 typedef struct s_tex
 {
@@ -345,7 +343,7 @@ void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_z_buffer(t_game *g);
 void			raycast_sprite(t_game *g, t_cam *c, int i);
 void			raycast_enemy(t_game *g, t_cam *c, int i);
-int				is_it_portal(t_game *g, int x, int y);
+int				is_portal(t_game *g, int x, int y);
 int				get_texture(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);

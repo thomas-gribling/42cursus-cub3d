@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:07:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:10:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ static void	load_assets_2(t_game *g)
 	g->tex[TEX_SPR_TREE_0] = load_tex(g, "assets/tree_0.xpm");
 	g->tex[TEX_SPR_TREE_1] = load_tex(g, "assets/tree_1.xpm");
 	g->tex[TEX_SPR_LADDER] = load_tex(g, "assets/ladder.xpm");
-	g->tex[TEX_PORTAL_0_0] = load_tex(g, "assets/portal_0_0.xpm");
-	g->tex[TEX_PORTAL_0_1] = load_tex(g, "assets/portal_0_1.xpm");
-	g->tex[TEX_PORTAL_1_0] = load_tex(g, "assets/portal_1_0.xpm");
-	g->tex[TEX_PORTAL_1_1] = load_tex(g, "assets/portal_1_1.xpm");
+	g->tex[TEX_PORTAL_0] = load_tex(g, "assets/portal_0.xpm");
+	g->tex[TEX_PORTAL_1] = load_tex(g, "assets/portal_1.xpm");
 	g->tex[TEX_GUI_INV_00_0] = load_tex(g, "assets/gui/inv_00_0.xpm");
 	g->tex[TEX_GUI_INV_00_1] = load_tex(g, "assets/gui/inv_00_1.xpm");
 	g->tex[TEX_GUI_INV_10_0] = load_tex(g, "assets/gui/inv_10_0.xpm");
