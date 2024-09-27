@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgnnrs <bgnnrs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:34:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:00:57 by bgnnrs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include <string.h>
+# include <pulse/simple.h>
+# include <pulse/error.h>
 # include <sys/time.h>
 # include "gnl.h"
 # include "../mlx/mlx.h"
@@ -379,5 +382,7 @@ t_coll			*dup_coll(t_coll *old, t_cam *c);
 void			fill_z_buffer(t_game *g);
 void			append_z_buffer(t_game *g, void *ptr, int type);
 void			free_z_buffer(t_game *g);
+
+void			playsound(char *file, int wait, int stop, int attenued);
 
 #endif // CUB3D_BONUS_H

@@ -26,7 +26,7 @@ FILES_BONUS = main.c hooks.c map.c init.c  \
 			z_buffer_1.c z_buffer_2.c \
 			utils_1.c utils_2.c utils_3.c \
 			utils_raycasting_1.c utils_raycasting_2.c utils_raycasting_3.c \
-			gnl.c utils_gnl.c
+			gnl.c utils_gnl.c sound.c
 OBJECTS_BONUS = $(addprefix $(SRCS_BONUS), $(FILES_BONUS:.c=.o))
 
 %.o: %.c
@@ -40,7 +40,7 @@ all: mlx $(NAME)
 
 $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lm -I$(MLX_PATH) -I$(INCLUDE)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lpulse -lm -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "\n$(BOLD_GREEN)=== $@ successfully compiled! ===$(RESET)\n"
 
 bonus: $(OBJECTS_BONUS)
