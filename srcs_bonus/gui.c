@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 15:18:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:03:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	draw_gui(t_game *g, t_cam *c)
 	draw_digits(g, &c->buff, time_left % 60, 1);
 	draw_digits(g, &c->buff, time_left / 60, 2);
 	draw_digits(g, &c->buff, (int)floor(1.0 / g->fps), 3);
-	if (time_left == 0)
-		g->scene = 2;
 }
 
 void	draw_minimap(t_game *g, t_cam *c)

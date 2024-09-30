@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 10:50:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:03:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,30 @@ int	close_game(t_game *g)
 	exit(close_game_bis(g));
 }
 
+static int	main_loop_bis(t_game *g)
+{
+	t_tex	*b;
+
+	b = &g->p->cam->buff;
+	if (g->scene == 1)
+	{
+		if (COPS_TIMER - ((get_time() - g->start) / 1000) <= 0)
+		{
+			g->ending = 1;
+			if (g->curr_level == 2 || g->curr_level == 3)
+				g->ending = g->curr_level;
+			g->scene = 2;
+		}
+	}
+	if (g->scene == 2)
+	{
+		reset_buffer(b);
+		tex_put_scale(b, &g->tex[TEX_END_0_BG + g->ending], 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win, b->ptr, 0, 0);
+	}
+	return (0);
+}
+
 int	main_loop(t_game *g)
 {
 	int	pos[2];
@@ -75,7 +99,7 @@ int	main_loop(t_game *g)
 			&& pos[0] < WIDTH)
 			mouse_move(pos[0], pos[1], g);
 	}
-	return (0);
+	return (main_loop_bis(g));
 }
 
 static void	do_hooks(t_game *g)

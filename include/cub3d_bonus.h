@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 10:34:19 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:07:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 87
+# define TEX_AMT 92
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -135,6 +135,11 @@
 # define TEX_NPC_CHAD_I 84
 # define TEX_NPC_CHAD_A 85
 # define TEX_NPC_CHAD_D 86
+# define TEX_END_0_BG 87
+# define TEX_END_1_BG 88
+# define TEX_END_2_BG 89
+# define TEX_END_3_BG 90
+# define TEX_END_4_BG 91
 
 typedef struct s_tex
 {
@@ -327,6 +332,7 @@ typedef struct s_game
 	int				side;
 	double			ray_dir_x;
 	double			ray_dir_y;
+	int				ending;
 }				t_game;
 
 t_map			*load_map(char *path);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 13:21:45 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:51:54 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void	init_values(t_game *g)
 	g->bullies_amt = 0;
 	g->z_buffer = NULL;
 	g->z_buffer_size = 0;
+	g->ending = 0;
 	init_values_two(g);
 }

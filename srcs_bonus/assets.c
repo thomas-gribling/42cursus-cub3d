@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:46:30 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:51:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static void	load_assets_4(t_game *g)
 	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
 	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
 	g->tex[TEX_NPC_CHAD_D] = load_tex(g, "assets/npc/chad_d.xpm");
+	g->tex[TEX_END_0_BG] = load_tex(g, "assets/ending_0.xpm");
+	g->tex[TEX_END_1_BG] = load_tex(g, "assets/ending_1.xpm");
+	g->tex[TEX_END_2_BG] = load_tex(g, "assets/ending_2.xpm");
+	g->tex[TEX_END_3_BG] = load_tex(g, "assets/ending_3.xpm");
+	g->tex[TEX_END_4_BG] = load_tex(g, "assets/ending_4.xpm");
 }
 
 static void	load_assets_3(t_game *g)
