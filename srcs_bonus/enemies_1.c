@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 18:20:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:17:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	update_enemies(t_game *g)
 			check_moves(g, &g->enemies[i]);
 			if (g->enemies[i].type >= NEXTBOT_1
 				&& g->enemies[i].type <= NEXTBOT_1
-				&& dist_to_tile(g, g->enemies[i].x, g->enemies[i].y) < 0.75)
+				&& dist_to_tile(g, g->enemies[i].x, g->enemies[i].y) < 0.85)
 			{
 				g->ending = 5;
 				g->scene = 2;
