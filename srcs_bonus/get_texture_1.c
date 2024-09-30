@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:55:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:38:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_texture_outside(t_game *g, char c, int x, int y)
 	is_open = dist_to_tile(g, x, y) < 1.25;
 	i = -1;
 	while (!is_open && ++i < g->enemies_amt)
-		is_open = dist_enemy(g, i, x, y) < 1.25;
+		is_open = dist_enemy(g, i, x, y) < 1.25 && !g->enemies[i].is_dead;
 	if (c == '3')
 		return (TEX_DOOR_C_OUTSIDE + is_open);
 	if (c == '4')
@@ -95,7 +95,7 @@ int	get_texture(t_game *g, int x, int y)
 	is_open = dist_to_tile(g, x, y) < 1.25;
 	i = -1;
 	while (!is_open && ++i < g->enemies_amt)
-		is_open = dist_enemy(g, i, x, y) < 1.25;
+		is_open = dist_enemy(g, i, x, y) < 1.25 && !g->enemies[i].is_dead;
 	if (is_portal(g, x, y))
 		return (is_portal(g, x, y));
 	if (is_outside(g, ca, x, y) && c != '8' && c != '9')
