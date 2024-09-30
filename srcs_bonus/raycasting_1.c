@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:53:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 09:46:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ void	raycast_tex(t_game *g, t_cam *c, int x, t_coll co)
 		c->line_h = HEIGHT;
 	else
 		c->line_h = (int)(HEIGHT / c->perp_wall_dist);
+	if (x == WIDTH / 2 && co.solid)
+	{
+		g->looking_x = co.map_x;
+		g->looking_y = co.map_y;
+		g->side = co.side;
+		g->ray_dir_x = co.ray_dir_x;
+		g->ray_dir_y = co.ray_dir_y;
+	}
 	raycast_fill_buffer(c, x, co);
 }
 

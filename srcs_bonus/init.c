@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:02:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 09:50:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	init_values_two(t_game *g)
 	g->p->moving_y = 0;
 	g->p->rotating = 0;
 	g->hide_bullies_amt = 0;
+	g->looking_x = 0;
+	g->looking_y = 0;
 	generate_enemies(g, 1);
 	tp_player_spawn(g);
 }
@@ -86,14 +88,14 @@ void	init_values(t_game *g)
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
 	g->p->cam->colls = NULL;
-	g->portals[0].map_x = 16;
-	g->portals[0].map_y = 4;
-	g->portals[0].face = WEST;
-	g->portals[0].is_placed = 1;
-	g->portals[1].map_x = 16;
-	g->portals[1].map_y = 6;
-	g->portals[1].face = WEST;
-	g->portals[1].is_placed = 1;
+	g->portals[0].map_x = 0;
+	g->portals[0].map_y = 0;
+	g->portals[0].face = -1;
+	g->portals[0].is_placed = 0;
+	g->portals[1].map_x = 0;
+	g->portals[1].map_y = 0;
+	g->portals[1].face = -1;
+	g->portals[1].is_placed = 0;
 	g->enemies = NULL;
 	g->enemies_amt = 0;
 	g->bullies_amt = 0;

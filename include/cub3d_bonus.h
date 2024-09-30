@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:53:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:34:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,6 +322,11 @@ typedef struct s_game
 	t_actor			*z_buffer;
 	int				z_buffer_size;
 	int				hide_bullies_amt;
+	int				looking_x;
+	int				looking_y;
+	int				side;
+	double			ray_dir_x;
+	double			ray_dir_y;
 }				t_game;
 
 t_map			*load_map(char *path);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:48:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:46:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	change_level(t_game *g, int dest)
 	g->splash_timer = get_time();
 	free_enemies(g);
 	if (g->curr_level == 1)
-		generate_enemies(g, 5);
+		generate_enemies(g, 3);
 	if (g->curr_level >= 2)
 	{
 		g->slots[0] = 0;
@@ -66,16 +66,62 @@ static void	change_level(t_game *g, int dest)
 	tp_player_spawn(g);
 }
 
+static void	tp_portal(t_game *g, int dest)
+{
+	if (g->portals[dest].face == NORTH)
+	{
+		g->p->x = g->portals[dest].map_x + 0.5;
+		g->p->y = g->portals[dest].map_y - 0.2;
+	}
+	if (g->portals[dest].face == SOUTH)
+	{
+		g->p->x = g->portals[dest].map_x + 0.5;
+		g->p->y = g->portals[dest].map_y + 1.2;
+	}
+	if (g->portals[dest].face == WEST)
+	{
+		g->p->x = g->portals[dest].map_x - 0.2;
+		g->p->y = g->portals[dest].map_y + 0.5;
+	}
+	if (g->portals[dest].face == EAST)
+	{
+		g->p->x = g->portals[dest].map_x + 1.2;
+		g->p->y = g->portals[dest].map_y + 0.5;
+	}
+	turn_player_to(g->p->cam, g->portals[dest].face);
+}
+
+static void do_portals(t_game *g)
+{
+	int	i;
+	
+	if (!g->portals[0].is_placed || !g->portals[1].is_placed)
+		return ;
+	i = -1;
+	while (++i < 2)
+	{
+		if (g->portals[i].face == NORTH && (int)g->p->x == g->portals[i].map_x && fabs(g->p->y - g->portals[i].map_y) < 0.1)
+			tp_portal(g, 1 - i);
+		if (g->portals[i].face == SOUTH && (int)g->p->x == g->portals[i].map_x && fabs(g->p->y - (g->portals[i].map_y + 1)) < 0.1)
+			tp_portal(g, 1 - i);
+		if (g->portals[i].face == WEST && fabs(g->p->x - g->portals[i].map_x) < 0.1 && (int)g->p->y == g->portals[i].map_y)
+			tp_portal(g, 1 - i);
+		if (g->portals[i].face == EAST && fabs(g->p->x - (g->portals[i].map_x + 1)) < 0.1 && (int)g->p->y == g->portals[i].map_y)
+			tp_portal(g, 1 - i);
+	}
+}
+
 void	apply_moves(t_game *g, double *new)
 {
 	if (!is_collision(g->map->content[(int)g->p->y][(int)new[0]]))
 		g->p->x = new[0];
 	if (!is_collision(g->map->content[(int)new[1]][(int)g->p->x]))
 		g->p->y = new[1];
-	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && g->bullies_amt)
+	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && !g->bullies_amt)
 		change_level(g, g->curr_level + 1);
 	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'S')
 		change_level(g, 3);
+	do_portals(g);
 }
 
 void	move_player(t_game *g, t_cam *c, int keycode)

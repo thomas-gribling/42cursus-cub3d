@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 09:56:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,28 @@ int	key_released(int keycode, t_game *g)
 	return (0);
 }
 
+static void place_portal(t_game *g, int i)
+{
+	int	face;
+	
+	g->portals[i].map_x = g->looking_x;
+	g->portals[i].map_y = g->looking_y;
+	if (g->side == 0 && g->ray_dir_x >= 0)
+		face = WEST;
+	if (g->side == 0 && g->ray_dir_x < 0)
+		face = EAST;
+	if (g->side == 1 && g->ray_dir_y >= 0)
+		face = NORTH;
+	if (g->side == 1 && g->ray_dir_y < 0)
+		face = SOUTH;
+	if (g->portals[1 - i].is_placed && g->portals[1 - i].map_x == g->looking_x
+		&& g->portals[1 - i].map_y == g->looking_y
+		&& g->portals[1 - i].face == face)
+		return ;
+	g->portals[i].face = face;
+	g->portals[i].is_placed = 1;
+}
+
 int	mouse_click(int button, int x, int y, t_game *g)
 {
 	(void)x;
@@ -57,13 +79,18 @@ int	mouse_click(int button, int x, int y, t_game *g)
 		mlx_mouse_hide(g->mlx, g->win);
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	}
-	if (g->scene == 1 && (button == WHEEL_DOWN || button == WHEEL_UP))
+	if (g->scene == 1)
 	{
-		if (get_time() - g->last_wheel > 300.0)
+		if ((button == WHEEL_DOWN || button == WHEEL_UP)
+			&& get_time() - g->last_wheel > 300.0)
 		{
 			g->last_wheel = get_time();
 			g->curr_slot = !g->curr_slot;
 		}
+		if (button == LEFT_CLICK && g->curr_slot == 1 && g->slots[1])
+			place_portal(g, 0);
+		if (button == RIGHT_CLICK && g->curr_slot == 1 && g->slots[1])
+			place_portal(g, 1);
 	}
 	return (0);
 }
