@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 09:56:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:59:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ int	key_released(int keycode, t_game *g)
 static void place_portal(t_game *g, int i)
 {
 	int	face;
-	
-	g->portals[i].map_x = g->looking_x;
-	g->portals[i].map_y = g->looking_y;
+
 	if (g->side == 0 && g->ray_dir_x >= 0)
 		face = WEST;
 	if (g->side == 0 && g->ray_dir_x < 0)
@@ -62,6 +60,8 @@ static void place_portal(t_game *g, int i)
 		&& g->portals[1 - i].map_y == g->looking_y
 		&& g->portals[1 - i].face == face)
 		return ;
+	g->portals[i].map_x = g->looking_x;
+	g->portals[i].map_y = g->looking_y;
 	g->portals[i].face = face;
 	g->portals[i].is_placed = 1;
 }
