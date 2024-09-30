@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:51:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:53:26 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 		if (is_castable(g->map->content[c->map_y][c->map_x]))
 		{
 			tmp.tex = g->tex[get_texture(g, c->map_x, c->map_y)];
-			if (!is_transparent(g->map->content[c->map_y][c->map_x]))
+			if (!is_transparent(g, g->map->content[c->map_y][c->map_x]))
 				c->hit = 1;
 			else
 				append_z_buffer(g, (void *)dup_coll(&tmp, c), WALL);

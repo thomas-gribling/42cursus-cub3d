@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgnnrs <bgnnrs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/27 23:59:48 by bgnnrs           ###   ########.fr       */
+/*   Updated: 2024/09/30 08:50:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(void)
 	g.map = g.maps[0];
 	if (!g.maps[0] || !g.maps[1] || !g.maps[2] || !g.maps[3])
 		return (1);
-	playsound("gero", 0, 0, 0);
+	//playsound("gero", 0, 0, 0);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	g.scene = 0;

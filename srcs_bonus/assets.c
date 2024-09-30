@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:33:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:46:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,13 @@ void	load_assets(t_game *g)
 	g->tex[TEX_BOARD_3] = load_tex(g, "assets/board_3.xpm");
 	g->tex[TEX_WALL_OUTSIDE] = load_tex(g, "assets/wall_outside.xpm");
 	g->tex[TEX_WINDOW_OUTSIDE] = load_tex(g, "assets/win.xpm");
-	g->tex[TEX_DOOR_C_OUTSIDE] = load_tex(g, "assets/door_c.xpm");
-	g->tex[TEX_DOOR_O_OUTSIDE] = load_tex(g, "assets/door_o.xpm");
+	g->tex[TEX_DOOR_C_OUTSIDE] = load_tex(g, "assets/o_doorc.xpm");
+	g->tex[TEX_DOOR_O_OUTSIDE] = load_tex(g, "assets/o_dooro.xpm");
+	g->tex[TEX_WALL_BSMT] = load_tex(g, "assets/lvl2/wall.xpm");
+	g->tex[TEX_WALL_SIGN_BSMT] = load_tex(g, "assets/lvl2/wall_sign.xpm");
+	g->tex[TEX_WINDOW_BSMT] = load_tex(g, "assets/lvl2/window.xpm");
+	g->tex[TEX_DOOR_C_BSMT] = load_tex(g, "assets/lvl2/doorc.xpm");
+	g->tex[TEX_DOOR_O_BSMT] = load_tex(g, "assets/lvl2/dooro.xpm");
 	g->tex[TEX_WALL_BACKROOMS_0] = load_tex(g, "assets/backrooms_0.xpm");
 	g->tex[TEX_WALL_BACKROOMS_1] = load_tex(g, "assets/backrooms_1.xpm");
 	g->tex[TEX_WALL_BACKROOMS_2] = load_tex(g, "assets/backrooms_2.xpm");

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 08:32:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:31:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:52:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	is_castable(char c)
 	return (0);
 }
 
-int	is_transparent(char c)
+int	is_transparent(t_game *g, char c)
 {
-	if (c == '3' || c == '4')
+	if (c == '3' || (c == '4' && g->curr_level == 0))
 		return (1);
 	return (0);
 }

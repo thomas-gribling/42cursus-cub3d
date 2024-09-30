@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:34:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:54:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	if (c->cell_x >= 0 && c->cell_y >= 0
 		&& c->cell_y < g->map->height && c->cell_x < g->map->sizes[c->cell_y]
 		&& (!is_collision(g->map->content[c->cell_y][c->cell_x])
-		|| is_transparent(g->map->content[c->cell_y][c->cell_x]) == 1))
+		|| is_transparent(g, g->map->content[c->cell_y][c->cell_x]) == 1))
 	{
 		tf = g->tex[get_floor_tex(g, c)];
 		tc = g->tex[TEX_CEILING];

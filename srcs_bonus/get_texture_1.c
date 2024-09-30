@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 09:19:07 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 08:55:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ static int	get_texture_outside(t_game *g, char c, int x, int y)
 static int	get_texture_bis(t_game *g, char c, int is_open)
 {
 	if (c == '2')
-		return (TEX_WALL_SIGN);
+		return (TEX_WALL_SIGN + 15 * (g->curr_level > 0));
 	if (c == '3')
-		return (TEX_DOOR_C + is_open);
+		return (TEX_DOOR_C + is_open + 15 * (g->curr_level > 0));
 	if (c == '4')
-		return (TEX_WINDOW);
+		return (TEX_WINDOW + 12 * (g->curr_level > 0));
 	if (c >= '5' && c <= '7')
 		return (TEX_BOARD_1 + c - '5');
 	if (c == '8' || c == '9' || c == 'A')
 		return (TEX_BUSH + (c == 'A'));
 	if (c == '1' && g->curr_level == 3)
 		return (TEX_WALL_BACKROOMS_0);
-	return (TEX_WALL);
+	return (TEX_WALL + 15 * (g->curr_level > 0));
 }
 
 int	get_texture(t_game *g, int x, int y)
