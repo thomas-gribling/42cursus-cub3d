@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 09:50:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:21:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	turn_player_to_bis(t_cam *c, int dir)
 {
 	if (dir == EAST)
 	{
-		c->dir_x = 1;
+		c->dir_x = 0.999;
 		c->dir_y = 0;
 		c->plane_x = 0;
 		c->plane_y = 0.66;
 	}
 	if (dir == WEST)
 	{
-		c->dir_x = -1;
+		c->dir_x = -0.999;
 		c->dir_y = 0;
 		c->plane_x = 0;
 		c->plane_y = -0.66;
@@ -35,14 +35,14 @@ void	turn_player_to(t_cam *c, int dir)
 	if (dir == NORTH)
 	{
 		c->dir_x = 0;
-		c->dir_y = -1;
+		c->dir_y = -0.999;
 		c->plane_x = 0.66;
 		c->plane_y = 0;
 	}
 	if (dir == SOUTH)
 	{
 		c->dir_x = 0;
-		c->dir_y = 1;
+		c->dir_y = 0.999;
 		c->plane_x = -0.66;
 		c->plane_y = 0;
 	}
