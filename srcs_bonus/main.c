@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 18:20:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/01 09:19:05 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ static int	main_loop_bis(t_game *g)
 	t_tex	*b;
 
 	b = &g->p->cam->buff;
+	if (g->scene == 0)
+	{
+		reset_buffer(b);
+		tex_put_scale(b, &g->tex[TEX_MENU_BG], 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win, b->ptr, 0, 0);
+	}
 	if (g->scene == 1)
 	{
 		if (COPS_TIMER - ((get_time() - g->start) / 1000) <= 0)
@@ -130,8 +136,6 @@ int	main(void)
 	mlx_put_image_to_window(g.mlx, g.win, g.tmp_tex.ptr, 0, 0);
 	load_assets(&g);
 	init_values(&g);
-	if (g.scene == 0)
-		mlx_put_image_to_window(g.mlx, g.win, g.tex[TEX_MENU_BG].ptr, 0, 0);
 	do_hooks(&g);
 	mlx_loop(g.mlx);
 	return (0);
