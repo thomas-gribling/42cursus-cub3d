@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 17:03:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/01 08:50:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 
 void	draw_gui(t_game *g, t_cam *c)
 {
-	int	time_left;
+	int		time_left;
+	t_tex	t;
 
-	if (!g->slots[0] && !g->slots[1])
-		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_00_0 + g->curr_slot], 0, 0);
-	if (g->slots[0] && !g->slots[1])
-		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_10_0 + g->curr_slot], 0, 0);
-	if (!g->slots[0] && g->slots[1])
-		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_01_0 + g->curr_slot], 0, 0);
-	if (g->slots[0] && g->slots[1])
-		tex_put_scale(&c->buff, &g->tex[TEX_GUI_INV_11_0 + g->curr_slot], 0, 0);
+	t = g->tex[TEX_GUI_INV_EMPTY_0 + g->curr_slot];
+	if (g->slots[0] == 1 && g->slots[1] == 1)
+		t = g->tex[TEX_GUI_INV_FULL_0 + g->curr_slot];
+	if (g->slots[0] == 2 && !g->slots[1])
+		t = g->tex[TEX_GUI_INV_BB10_0 + g->curr_slot];
+	if (!g->slots[0] && g->slots[1] == 2)
+		t = g->tex[TEX_GUI_INV_BB01_0 + g->curr_slot];
+	if (g->slots[0] == 2 && g->slots[1] == 2)
+		t = g->tex[TEX_GUI_INV_BB11_0 + g->curr_slot];
+	tex_put(&c->buff, &t, WIDTH / 2 - t.width / 2, HEIGHT - 44 - t.height);
 	if (!g->hide_bullies_amt)
 		draw_digits(g, &c->buff, g->bullies_amt, 0);
 	time_left = ft_max(COPS_TIMER - ((get_time() - g->start) / 1000), 0);

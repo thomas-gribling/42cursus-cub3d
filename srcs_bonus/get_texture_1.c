@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 13:38:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/01 08:53:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	get_texture_bis(t_game *g, char c, int is_open)
 	if (c == '8' || c == '9' || c == 'A')
 		return (TEX_BUSH + (c == 'A'));
 	if (c == '1' && g->curr_level == 3)
-		return (TEX_WALL_BACKROOMS_0);
+		return (TEX_WALL_BACKROOMS);
 	return (TEX_WALL + 15 * (g->curr_level > 0));
 }
 

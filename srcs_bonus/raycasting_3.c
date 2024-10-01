@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:42:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/01 08:54:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_texture_enemy(int type, int is_dead)
 		return (TEX_NPC_PIRATE_0 + (get_time() % (8 * 150)) / 150);
 	if (type == NEXTBOT_3)
 		return (TEX_NPC_POULET);
-	return (TEX_WALL_BACKROOMS_0);
+	return (TEX_SPR_TREE_0);
 }
 
 static void	raycast_spr_draw(t_cam *c, t_tex tex)
