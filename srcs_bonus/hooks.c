@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 14:59:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/01 09:28:54 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	mouse_click(int button, int x, int y, t_game *g)
 		g->start = get_time();
 		g->last_frame = g->start;
 		g->splash_timer = g->start;
-		mlx_mouse_hide(g->mlx, g->win);
+		//mlx_mouse_hide(g->mlx, g->win);
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
 	}
 	if (g->scene == 1)
