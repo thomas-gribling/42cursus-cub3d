@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 07:55:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:56:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	rand_pos(t_game *g, double *posx, double *posy)
 		while (g->map->content[y][++x])
 		{
 			c = g->map->content[y][x];
-			if (!is_collision(c) && !is_castable(c)
+			if (!is_collision(c) && !is_castable(c) && c != ' '
 				&& rand() % (g->map->width * g->map->height / 2) == 0)
 			{
 				*posx = x + 0.5;
