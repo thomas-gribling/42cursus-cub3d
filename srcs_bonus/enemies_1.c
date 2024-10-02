@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 19:17:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:17:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,15 @@ void	free_enemies(t_game *g)
 		g->enemies = NULL;
 		g->enemies_amt = 0;
 	}
+}
+
+void	shoot_enemy(t_game *g)
+{
+	if (g->id_shootable == -1 || g->enemies[g->id_shootable].is_dead)
+		return ;
+	g->enemies[g->id_shootable].is_dead = 1;
+	if (g->enemies[g->id_shootable].type == BULLY)
+		g->bullies_amt--;
+	if (g->enemies[g->id_shootable].type == STUDENT)
+		g->time_m -= 20;
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 09:21:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:35:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	load_assets_3(t_game *g)
 	g->tex[TEX_GUI_SEP] = load_tex(g, "assets/gui/sep.xpm");
 	g->tex[TEX_GUI_MAPWALL] = load_tex(g, "assets/gui/minimap_wall.xpm");
 	g->tex[TEX_GUI_MAPPLAYER] = load_tex(g, "assets/gui/minimap_player.xpm");
+	g->tex[TEX_GUI_MAPBULLY] = load_tex(g, "assets/gui/minimap_bully.xpm");
+	g->tex[TEX_GUI_MAPEXIT] = load_tex(g, "assets/gui/minimap_exit.xpm");
 	g->tex[TEX_GUI_SPLASH_0] = load_tex(g, "assets/gui/splash_0.xpm");
 	g->tex[TEX_GUI_SPLASH_1] = load_tex(g, "assets/gui/splash_1.xpm");
 	g->tex[TEX_GUI_SPLASH_2] = load_tex(g, "assets/gui/splash_2.xpm");

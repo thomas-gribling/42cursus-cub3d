@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 09:28:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:13:26 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ int	mouse_click(int button, int x, int y, t_game *g)
 			g->last_wheel = get_time();
 			g->curr_slot = !g->curr_slot;
 		}
-		if (button == LEFT_CLICK && g->curr_slot == 1 && g->slots[1])
+		if (button == LEFT_CLICK && g->curr_slot == 1 && g->slots[1] == 1)
 			place_portal(g, 0);
-		if (button == RIGHT_CLICK && g->curr_slot == 1 && g->slots[1])
+		if (button == RIGHT_CLICK && g->curr_slot == 1 && g->slots[1] == 1)
 			place_portal(g, 1);
+		if (button == LEFT_CLICK && g->curr_slot == 0 && g->slots[0] == 1
+			&& get_time() - g->start > 100.0)
+			shoot_enemy(g);
 	}
 	return (0);
 }

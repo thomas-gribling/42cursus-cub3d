@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 08:50:19 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:43:14 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,38 +77,10 @@ void	draw_gui(t_game *g, t_cam *c)
 	if (!g->hide_bullies_amt)
 		draw_digits(g, &c->buff, g->bullies_amt, 0);
 	time_left = ft_max(COPS_TIMER - ((get_time() - g->start) / 1000), 0);
+	time_left = ft_max(time_left + g->time_m, 0);
 	draw_digits(g, &c->buff, time_left % 60, 1);
 	draw_digits(g, &c->buff, time_left / 60, 2);
 	draw_digits(g, &c->buff, (int)floor(1.0 / g->fps), 3);
-}
-
-void	draw_minimap(t_game *g, t_cam *c)
-{
-	int		x;
-	int		y;
-	t_tex	tex[3];
-
-	tex[0] = g->tex[TEX_GUI_MAPWALL];
-	tex[1] = g->tex[TEX_GUI_MAPPLAYER];
-	tex[2] = g->tex[TEX_GUI_0];
-	y = -1;
-	while (g->map->content[++y])
-	{
-		x = -1;
-		while (g->map->content[y][++x])
-		{
-			if (is_collision(g->map->content[y][x])
-				&& g->map->content[y][x] != ' ')
-				tex_put(&c->buff, &tex[0], 10 * (x + 1),
-					tex[2].height + 10 * (y + 1));
-			if (g->map->content[y][x] == 'E')
-				tex_put(&c->buff, &tex[1], 10 * (x + 1),
-					tex[2].height + 10 * (y + 1));
-		}
-	}
-	x = 10 * ((int)g->p->x + 1);
-	y = tex[2].height + 10 * ((int)g->p->y + 1);
-	tex_put(&c->buff, &g->tex[TEX_GUI_MAPPLAYER], x, y);
 }
 
 void	update_screen(t_game *g)

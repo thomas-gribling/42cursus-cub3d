@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 09:28:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:30:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	main_loop_bis(t_game *g)
 	}
 	if (g->scene == 1)
 	{
-		if (COPS_TIMER - ((get_time() - g->start) / 1000) <= 0)
+		if (COPS_TIMER - (int)((get_time() - g->start) / 1000) + g->time_m < 1)
 		{
 			g->ending = 1 + g->curr_level;
 			g->scene = 2;

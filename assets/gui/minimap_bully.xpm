@@ -1,7 +1,7 @@
 /* XPM */
-static char * minimap_player_xpm[] = {
+static char * minimap_bully_xpm[] = {
 "10 10 1 1",
-" 	c #00A2FF",
+" 	c #FF0000",
 "          ",
 "          ",
 "          ",

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 10:07:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 07:55:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	generate_nextbots(t_game *g)
 		g->enemies[i].dirx = -1 + 2 * (rand() % 2);
 		g->enemies[i].diry = -1 + 2 * (rand() % 2);
 		g->enemies[i].is_dead = 0;
+		g->enemies[i].id = i;
 	}
 	g->enemies[0].x = 107.5;
 	g->enemies[0].y = 34.5;
@@ -77,6 +78,7 @@ static void	generate_one_enemy(t_game *g, int difficulty, int i)
 	}
 	rand_pos(g, &g->enemies[i].x, &g->enemies[i].y);
 	g->enemies[i].is_dead = 0;
+	g->enemies[i].id = i;
 }
 
 void	generate_enemies(t_game *g, int difficulty)

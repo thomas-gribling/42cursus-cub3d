@@ -1,7 +1,7 @@
 /* XPM */
-static char * minimap_player_xpm[] = {
+static char * minimap_exit_xpm[] = {
 "10 10 1 1",
-" 	c #00A2FF",
+" 	c #00FF00",
 "          ",
 "          ",
 "          ",

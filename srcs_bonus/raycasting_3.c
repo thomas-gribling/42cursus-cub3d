@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 08:54:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:31:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	get_texture_enemy(int type, int is_dead)
 	return (TEX_SPR_TREE_0);
 }
 
-static void	raycast_spr_draw(t_cam *c, t_tex tex)
+static void	raycast_spr_draw(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 {
 	c->pix_x = c->draw_x[0] - 1;
 	while (c->pix_x++ < c->draw_x[1])
@@ -46,13 +46,16 @@ static void	raycast_spr_draw(t_cam *c, t_tex tex)
 				c->d = c->pix_y * 256 - HEIGHT * 128 + c->spr_h * 128;
 				c->tex_y = ((c->d * tex.height) / c->spr_h) / 256;
 				c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
+				if (e && c->pix_x > WIDTH / 2 - 35 && c->pix_x < WIDTH / 2 + 35
+					&& dist_to_tile(g, e->x, e->y) < 4.0 && !e->is_dead)
+					g->id_shootable = e->id;
 				tex_pixel_put(&c->buff, c->pix_x, c->pix_y, c->color);
 			}
 		}
 	}
 }
 
-static void	raycast_spr_calc(t_cam *c, t_tex tex)
+static void	raycast_spr_calc(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 {
 	c->i_det = 1.0 / (c->plane_x * c->dir_y - c->dir_x * c->plane_y);
 	c->transf_x = c->i_det
@@ -74,7 +77,7 @@ static void	raycast_spr_calc(t_cam *c, t_tex tex)
 	c->draw_x[1] = c->spr_w / 2 + c->spr_screen_x;
 	if (c->draw_x[1] > WIDTH)
 		c->draw_x[1] = WIDTH;
-	raycast_spr_draw(c, tex);
+	raycast_spr_draw(g, c, tex, e);
 }
 
 void	raycast_sprite(t_game *g, t_cam *c, int i)
@@ -86,7 +89,7 @@ void	raycast_sprite(t_game *g, t_cam *c, int i)
 	c->spr_x = t->x - g->p->x;
 	c->spr_y = t->y - g->p->y;
 	tex = g->tex[t->tex_id];
-	raycast_spr_calc(c, tex);
+	raycast_spr_calc(g, c, tex, NULL);
 }
 
 void	raycast_enemy(t_game *g, t_cam *c, int i)
@@ -98,5 +101,6 @@ void	raycast_enemy(t_game *g, t_cam *c, int i)
 	c->spr_x = t->x - g->p->x;
 	c->spr_y = t->y - g->p->y;
 	tex = g->tex[get_texture_enemy(t->type, t->is_dead)];
-	raycast_spr_calc(c, tex);
+	g->id_shootable = -1;
+	raycast_spr_calc(g, c, tex, t);
 }
