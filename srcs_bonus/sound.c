@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sound.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgnnrs <bgnnrs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 22:18:14 by bgnnrs            #+#    #+#             */
-/*   Updated: 2024/09/27 23:55:18 by bgnnrs           ###   ########.fr       */
+/*   Updated: 2024/10/02 09:04:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static unsigned long	hashstr(const char *str)
 static char	*is_attenued(char *base, int attenued)
 {
 	if (attenued)
-	base = "paplay --volume=30000 assets/audio/";
+		base = "paplay --volume=30000 assets/audio/";
 	else
-	base = "paplay --volume=40000 assets/audio/";
+		base = "paplay --volume=40000 assets/audio/";
 	return (base);
 }
 
@@ -51,7 +51,7 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	{
 		result = system("pkill -f paplay");
 		if (result != 0)
-		perror("");
+			perror("");
 	}
 	if (hashstr(file) == 2784)
 		return ;

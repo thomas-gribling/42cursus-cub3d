@@ -6,13 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 08:43:24 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:47:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:04:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static int enemy_here(t_game *g, int x, int y)
+static int	enemy_here(t_game *g, int x, int y)
 {
 	int	i;
 

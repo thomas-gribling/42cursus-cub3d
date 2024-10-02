@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:30:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:05:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,6 @@ int	main_loop(t_game *g)
 			mouse_move(pos[0], pos[1], g);
 	}
 	return (main_loop_bis(g));
-}
-
-static void	do_hooks(t_game *g)
-{
-	mlx_hook(g->win, 2, 1L << 0, key_pressed, g);
-	mlx_hook(g->win, 3, 1L << 1, key_released, g);
-	mlx_hook(g->win, 17, 0L, close_game, g);
-	mlx_hook(g->win, 4, 1L << 2, mouse_click, g);
-	mlx_hook(g->win, 6, 1L << 6, mouse_move, g);
-	mlx_loop_hook(g->mlx, main_loop, g);
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:44:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:02:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,10 +355,11 @@ void			tex_pixel_put(t_tex *tex, int x, int y, int color);
 unsigned int	tex_get_pixel(t_tex *tex, int x, int y);
 void			reset_buffer(t_tex *buff);
 
+void			do_hooks(t_game *g);
+int				main_loop(t_game *g);
 int				close_game(t_game *g);
 int				key_pressed(int keycode, t_game *g);
 int				key_released(int keycode, t_game *g);
-int				mouse_click(int button, int x, int y, t_game *g);
 int				mouse_move(int x, int y, t_game *g);
 
 void			update_screen(t_game *g);
@@ -375,6 +376,7 @@ void			move_player(t_game *g, t_cam *c, int keycode);
 void			rotate_player(t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);
 void			tp_player_spawn(t_game *g);
+void			do_portals(t_game *g);
 
 int				put_error(char *s);
 int				ft_strncmp(char *s1, char *s2, size_t n);
