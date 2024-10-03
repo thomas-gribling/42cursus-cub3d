@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:58:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:53:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	generate_nextbots(t_game *g)
 	g->enemies[2].y = 3.5;
 }
 
-static void generate_chad(t_game *g)
+static void	generate_chad(t_game *g)
 {
 	g->bullies_amt = 0;
 	g->enemies_amt = 1;
