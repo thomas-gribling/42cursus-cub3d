@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:17:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:07:21 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,18 @@ void	turn_player_to(t_cam *c, int dir)
 	turn_player_to_bis(c, dir);
 }
 
+static void	init_values_three(t_game *g)
+{
+	generate_enemies(g, 1);
+	tp_player_spawn(g);
+}
+
 static void	init_values_two(t_game *g)
 {
 	t_tex	*b;
 
+	g->z_buffer_size = 0;
+	g->ending = 0;
 	b = &g->p->cam->buff;
 	b->ptr = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	b->addr = mlx_get_data_addr(b->ptr, &b->bpp, &b->line_len, &b->endian);
@@ -73,8 +81,7 @@ static void	init_values_two(t_game *g)
 	g->looking_x = 0;
 	g->looking_y = 0;
 	g->time_m = 0;
-	generate_enemies(g, 1);
-	tp_player_spawn(g);
+	init_values_three(g);
 }
 
 void	init_values(t_game *g)
@@ -85,6 +92,8 @@ void	init_values(t_game *g)
 	g->mouse_middle_x = WIDTH / 2;
 	g->p->cam->speed_m = 0.1;
 	g->p->cam->speed_r = 0.033 * 1.8 / 1.5;
+	g->p->x = 0;
+	g->p->y = 0;
 	g->p->cam->map_x = (int)g->p->x;
 	g->p->cam->map_y = (int)g->p->y;
 	g->p->cam->hit = 0;
@@ -101,7 +110,5 @@ void	init_values(t_game *g)
 	g->enemies_amt = 0;
 	g->bullies_amt = 0;
 	g->z_buffer = NULL;
-	g->z_buffer_size = 0;
-	g->ending = 0;
 	init_values_two(g);
 }
