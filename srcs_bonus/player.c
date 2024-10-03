@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 14:35:19 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:25:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	tp_player_spawn(t_game *g)
 	}
 	if (g->curr_level == 2)
 	{
-		turn_player_to(g->p->cam, NORTH);
-		g->p->x = 5.5;
-		g->p->y = 8.5;
+		turn_player_to(g->p->cam, EAST);
+		g->p->x = 1.5;
+		g->p->y = 3.5;
 	}
 	if (g->curr_level == 3)
 	{

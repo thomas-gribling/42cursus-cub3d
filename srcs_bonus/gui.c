@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:43:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:31:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,8 @@ void	draw_gui(t_game *g, t_cam *c)
 	t_tex	t;
 
 	t = g->tex[TEX_GUI_INV_EMPTY_0 + g->curr_slot];
-	if (g->slots[0] == 1 && g->slots[1] == 1)
+	if (g->slots[0] && g->slots[1])
 		t = g->tex[TEX_GUI_INV_FULL_0 + g->curr_slot];
-	if (g->slots[0] == 2 && !g->slots[1])
-		t = g->tex[TEX_GUI_INV_BB10_0 + g->curr_slot];
-	if (!g->slots[0] && g->slots[1] == 2)
-		t = g->tex[TEX_GUI_INV_BB01_0 + g->curr_slot];
-	if (g->slots[0] == 2 && g->slots[1] == 2)
-		t = g->tex[TEX_GUI_INV_BB11_0 + g->curr_slot];
 	tex_put(&c->buff, &t, WIDTH / 2 - t.width / 2, HEIGHT - 44 - t.height);
 	if (!g->hide_bullies_amt)
 		draw_digits(g, &c->buff, g->bullies_amt, 0);

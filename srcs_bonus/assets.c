@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:18:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:30:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ t_tex	load_tex(t_game *g, char *path)
 
 static void	load_assets_4(t_game *g)
 {
-	g->tex[TEX_NPC_PIRATE_3] = load_tex(g, "assets/npc/pirate_3.xpm");
-	g->tex[TEX_NPC_PIRATE_4] = load_tex(g, "assets/npc/pirate_4.xpm");
-	g->tex[TEX_NPC_PIRATE_5] = load_tex(g, "assets/npc/pirate_5.xpm");
-	g->tex[TEX_NPC_PIRATE_6] = load_tex(g, "assets/npc/pirate_6.xpm");
 	g->tex[TEX_NPC_PIRATE_7] = load_tex(g, "assets/npc/pirate_7.xpm");
 	g->tex[TEX_NPC_POULET] = load_tex(g, "assets/npc/poulet.xpm");
 	g->tex[TEX_NPC_STUDENT_F_0] = load_tex(g, "assets/npc/student_uf.xpm");
@@ -53,10 +49,6 @@ static void	load_assets_4(t_game *g)
 
 static void	load_assets_3(t_game *g)
 {
-	g->tex[TEX_GUI_INV_BB11_0] = load_tex(g, "assets/gui/inv_bb11_0.xpm");
-	g->tex[TEX_GUI_INV_BB11_1] = load_tex(g, "assets/gui/inv_bb11_1.xpm");
-	g->tex[TEX_GUI_0] = load_tex(g, "assets/gui/0.xpm");
-	g->tex[TEX_GUI_1] = load_tex(g, "assets/gui/1.xpm");
 	g->tex[TEX_GUI_2] = load_tex(g, "assets/gui/2.xpm");
 	g->tex[TEX_GUI_3] = load_tex(g, "assets/gui/3.xpm");
 	g->tex[TEX_GUI_4] = load_tex(g, "assets/gui/4.xpm");
@@ -77,6 +69,10 @@ static void	load_assets_3(t_game *g)
 	g->tex[TEX_NPC_PIRATE_0] = load_tex(g, "assets/npc/pirate_0.xpm");
 	g->tex[TEX_NPC_PIRATE_1] = load_tex(g, "assets/npc/pirate_1.xpm");
 	g->tex[TEX_NPC_PIRATE_2] = load_tex(g, "assets/npc/pirate_2.xpm");
+	g->tex[TEX_NPC_PIRATE_3] = load_tex(g, "assets/npc/pirate_3.xpm");
+	g->tex[TEX_NPC_PIRATE_4] = load_tex(g, "assets/npc/pirate_4.xpm");
+	g->tex[TEX_NPC_PIRATE_5] = load_tex(g, "assets/npc/pirate_5.xpm");
+	g->tex[TEX_NPC_PIRATE_6] = load_tex(g, "assets/npc/pirate_6.xpm");
 	load_assets_4(g);
 }
 
@@ -104,10 +100,8 @@ static void	load_assets_2(t_game *g)
 	g->tex[TEX_GUI_INV_EMPTY_1] = load_tex(g, "assets/gui/inv_empty_1.xpm");
 	g->tex[TEX_GUI_INV_FULL_0] = load_tex(g, "assets/gui/inv_full_0.xpm");
 	g->tex[TEX_GUI_INV_FULL_1] = load_tex(g, "assets/gui/inv_full_1.xpm");
-	g->tex[TEX_GUI_INV_BB10_0] = load_tex(g, "assets/gui/inv_bb10_0.xpm");
-	g->tex[TEX_GUI_INV_BB10_1] = load_tex(g, "assets/gui/inv_bb10_1.xpm");
-	g->tex[TEX_GUI_INV_BB01_0] = load_tex(g, "assets/gui/inv_bb01_0.xpm");
-	g->tex[TEX_GUI_INV_BB01_1] = load_tex(g, "assets/gui/inv_bb01_1.xpm");
+	g->tex[TEX_GUI_0] = load_tex(g, "assets/gui/0.xpm");
+	g->tex[TEX_GUI_1] = load_tex(g, "assets/gui/1.xpm");
 	load_assets_3(g);
 }
 

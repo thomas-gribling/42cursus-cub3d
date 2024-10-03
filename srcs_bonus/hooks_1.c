@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 08:59:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:33:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	place_portal(t_game *g, int i)
 {
 	int	face;
 
+	if (g->curr_level >= 2)
+		return ;
 	if (g->side == 0 && g->ray_dir_x >= 0)
 		face = WEST;
 	if (g->side == 0 && g->ray_dir_x < 0)
