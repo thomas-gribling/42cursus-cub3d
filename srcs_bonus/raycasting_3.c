@@ -6,22 +6,22 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:48:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:58:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static int	get_texture_enemy(int type, int is_dead)
+static int	get_texture_enemy(int type, int is_dead, int b)
 {
 	if (type == STUDENT && is_dead)
 		return (TEX_NPC_STUDENT_DEAD);
 	if (type == BULLY && is_dead)
 		return (TEX_NPC_BULLY_DEAD);
 	if (type == STUDENT)
-		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 250)) / 250);
+		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 250)) / 250 + b * 2);
 	if (type == BULLY)
-		return (TEX_NPC_BULLY_F_1 - (get_time() % (2 * 250)) / 250);
+		return (TEX_NPC_BULLY_F_1 - (get_time() % (2 * 250)) / 250 + b * 2);
 	if (type == NEXTBOT_1)
 		return (TEX_NPC_JERAU);
 	if (type == NEXTBOT_2)
@@ -105,7 +105,7 @@ void	raycast_enemy(t_game *g, t_cam *c, int i)
 	t = (t_enemy *)g->z_buffer[i].ptr;
 	c->spr_x = t->x - g->p->x;
 	c->spr_y = t->y - g->p->y;
-	tex = g->tex[get_texture_enemy(t->type, t->is_dead)];
+	tex = g->tex[get_texture_enemy(t->type, t->is_dead, t->back)];
 	g->id_shootable = -1;
 	raycast_spr_calc(g, c, tex, t);
 }

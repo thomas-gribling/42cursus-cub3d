@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 14:13:54 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:09:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,28 @@ static void	check_moves(t_game *g, t_enemy *e)
 		e->y = p[1];
 }
 
+static void	calc_dirs(t_game *g, int i)
+{
+	if (rand() % 10 == 0)
+	{
+		g->enemies[i].dirx = rand() % 3 - 1;
+		if (g->enemies[i].dirx == g->enemies[i].olddirx)
+			g->enemies[i].back = 0;
+		else
+			g->enemies[i].back = 1;
+	}
+	if (rand() % 10 == 0)
+	{
+		g->enemies[i].diry = rand() % 3 - 1;
+		if (g->enemies[i].dirx == g->enemies[i].olddirx)
+			g->enemies[i].back = 0;
+		else if (g->enemies[i].back)
+			g->enemies[i].back = 1;
+	}
+	g->enemies[i].olddirx = g->enemies[i].dirx;
+	g->enemies[i].olddiry = g->enemies[i].diry;
+}
+
 void	update_enemies(t_game *g)
 {
 	int		i;
@@ -62,10 +84,7 @@ void	update_enemies(t_game *g)
 	{
 		if (!g->enemies[i].is_dead)
 		{
-			if (rand() % 10 == 0)
-				g->enemies[i].dirx = rand() % 3 - 1;
-			if (rand() % 10 == 0)
-				g->enemies[i].diry = rand() % 3 - 1;
+			calc_dirs(g, i);
 			check_moves(g, &g->enemies[i]);
 			if (g->enemies[i].type >= NEXTBOT_1
 				&& g->enemies[i].type <= NEXTBOT_3

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:48:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:58:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static void	generate_nextbots(t_game *g)
 		g->enemies[i].dist = 0.0;
 		g->enemies[i].dirx = -1 + 2 * (rand() % 2);
 		g->enemies[i].diry = -1 + 2 * (rand() % 2);
+		g->enemies[i].olddirx = g->enemies[i].dirx;
+		g->enemies[i].olddiry = g->enemies[i].diry;
+		g->enemies[i].back = 0;
 		g->enemies[i].is_dead = 0;
 		g->enemies[i].id = i;
 	}
@@ -46,6 +49,9 @@ static void generate_chad(t_game *g)
 	g->enemies[0].dist = 0.0;
 	g->enemies[0].dirx = 0;
 	g->enemies[0].diry = 0;
+	g->enemies[0].olddirx = 0;
+	g->enemies[0].olddiry = 0;
+	g->enemies[0].back = 0;
 	g->enemies[0].is_dead = 0;
 	g->enemies[0].id = 0;
 	g->enemies[0].x = 20.5;
@@ -84,6 +90,9 @@ static void	generate_one_enemy(t_game *g, int difficulty, int i)
 	g->enemies[i].dist = 0.0;
 	g->enemies[i].dirx = -1 + 2 * (rand() % 2);
 	g->enemies[i].diry = -1 + 2 * (rand() % 2);
+	g->enemies[i].olddirx = g->enemies[i].dirx;
+	g->enemies[i].olddiry = g->enemies[i].diry;
+	g->enemies[i].back = 0;
 	if (rand() % (difficulty + 1) == 0)
 		g->enemies[i].type = STUDENT;
 	else

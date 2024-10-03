@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:45:30 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:57:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,9 @@ typedef struct s_enemy
 	double	dist;
 	int		dirx;
 	int		diry;
+	int		olddirx;
+	int		olddiry;
+	int		back;
 	int		id;
 }				t_enemy;
 
