@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 14:22:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:48:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ static int	get_texture_enemy(int type, int is_dead)
 		return (TEX_NPC_PIRATE_0 + (get_time() % (8 * 150)) / 150);
 	if (type == NEXTBOT_3)
 		return (TEX_NPC_POULET);
+	if (type == CHAD && is_dead)
+		return (TEX_NPC_CHAD_D);
+	if (type == CHAD)
+		return (TEX_NPC_CHAD_H);
 	return (TEX_SPR_TREE_0);
 }
 

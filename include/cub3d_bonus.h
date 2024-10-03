@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:29:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:45:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ typedef struct s_enemy
 # define NEXTBOT_1 2
 # define NEXTBOT_2 3
 # define NEXTBOT_3 4
+# define CHAD 5
 
 typedef struct s_map
 {

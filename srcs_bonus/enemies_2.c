@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:35:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:48:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ static void	generate_nextbots(t_game *g)
 	g->enemies[1].y = 47.5;
 	g->enemies[2].x = 75.5;
 	g->enemies[2].y = 3.5;
+}
+
+static void generate_chad(t_game *g)
+{
+	g->bullies_amt = 0;
+	g->enemies_amt = 1;
+	g->enemies = malloc(g->enemies_amt * sizeof(t_enemy));
+	g->enemies[0].type = CHAD;
+	g->enemies[0].dist = 0.0;
+	g->enemies[0].dirx = 0;
+	g->enemies[0].diry = 0;
+	g->enemies[0].is_dead = 0;
+	g->enemies[0].id = 0;
+	g->enemies[0].x = 20.5;
+	g->enemies[0].y = 3.5;
 }
 
 static void	rand_pos(t_game *g, double *posx, double *posy)
@@ -87,11 +102,12 @@ void	generate_enemies(t_game *g, int difficulty)
 
 	free_enemies(g);
 	srand(rand() % get_time());
+	if (difficulty == -1)
+		generate_chad(g);
 	if (difficulty == -2)
-	{
 		generate_nextbots(g);
+	if (difficulty < 0)
 		return ;
-	}
 	g->bullies_amt = 0;
 	g->enemies_amt = 25 + rand() % (5 + difficulty * 5);
 	g->enemies = malloc(g->enemies_amt * sizeof(t_enemy));
