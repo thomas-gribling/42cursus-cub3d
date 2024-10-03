@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:10:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:18:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	load_assets_2(t_game *g)
 	g->tex[TEX_FLOOR] = load_tex(g, "assets/floor.xpm");
 	g->tex[TEX_FLOOR_TRAPDOOR] = load_tex(g, "assets/floor_trapdoor.xpm");
 	g->tex[TEX_GROUND] = load_tex(g, "assets/ground.xpm");
-	g->tex[TEX_GROUND_TRAPDOOR] = load_tex(g, "assets/ceiling_trapdoor.xpm");
+	g->tex[TEX_GROUND_TRAPDOOR] = load_tex(g, "assets/lvl2/ground_trap.xpm");
 	g->tex[TEX_GROUND_BACKROOMS] = load_tex(g, "assets/ground_backrooms.xpm");
 	g->tex[TEX_GRASS] = load_tex(g, "assets/grass.xpm");
 	g->tex[TEX_CARPET] = load_tex(g, "assets/carpet.xpm");
