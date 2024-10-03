@@ -6,7 +6,6 @@ T: tree (grass floor, no ceiling, tree sprite)
 E: exit (trap floor)
 F: entrance (trap ceiling)
 S: secret exit (broken ground)
-B: Boss
 1 / unassigned: wall.xpm (default)
 2: wall_sign.xpm
 3: door_c.xpm
@@ -17,3 +16,6 @@ B: Boss
 8: bush.xpm
 9: bush.xpm (no collision)
 A: bush_backrooms.xpm
+B: placar.xpm
+D: cell.xpm
+H: skelet.xpm

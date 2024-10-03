@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:22:53 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 08:54:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:11:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ static int	get_floor_tex(t_game *g, t_cam *ca)
 	c = g->map->content[ca->cell_y][ca->cell_x];
 	if (g->curr_level == 3)
 		return (TEX_CARPET);
-	if (c == 'O' || c == '9')
+	if (c == 'E' && g->curr_level == 0)
+		return (TEX_FLOOR_TRAPDOOR);
+	if (c == 'E' && g->curr_level == 1)
+		return (TEX_GROUND_TRAPDOOR);
+	if (c == 'O' || c == '9' || g->curr_level > 0)
 		return (TEX_GROUND);
 	if (c == 'S')
 		return (TEX_GROUND_BACKROOMS);
 	if (c == 'G' || c == 'T')
 		return (TEX_GRASS);
-	if (c == 'E')
-		return (TEX_FLOOR_TRAPDOOR);
 	return (TEX_FLOOR);
 }
 
@@ -53,8 +55,14 @@ static void	raycast_put_pixel(t_game *g, t_cam *c, int x, int y)
 	{
 		tf = g->tex[get_floor_tex(g, c)];
 		tc = g->tex[TEX_CEILING];
-		if (g->map->content[c->cell_y][c->cell_x] == 'F')
-			tc = g->tex[TEX_CEILING_TRAPDOOR];
+		if (g->curr_level == 1)
+			tc = g->tex[TEX_CEILING_BSMT];
+		if (g->curr_level == 2)
+			tc = g->tex[TEX_GROUND];
+		if (g->map->content[c->cell_y][c->cell_x] == 'F' && g->curr_level == 1)
+			tc = g->tex[TEX_CEILINGBSMT];
+		if (g->map->content[c->cell_y][c->cell_x] == 'F' && g->curr_level == 2)
+			tc = g->tex[TEX_GROUND_TRAPDOOR];
 		c->color = tex_get_pixel(&tf, c->tx[0], c->ty[0]);
 		tex_pixel_put(&c->buff, x, y, c->color);
 		c->color = tex_get_pixel(&tc, c->tx[1], c->ty[1]);
@@ -72,6 +80,8 @@ static void	raycast_cell(t_game *g, t_cam *c, int y)
 	x = -1;
 	tf = g->tex[TEX_FLOOR];
 	tc = g->tex[TEX_CEILING];
+	if (g->curr_level == 2)
+		tc = g->tex[TEX_GROUND];
 	while (++x < WIDTH)
 	{
 		c->cell_x = (int)(c->floor_x);

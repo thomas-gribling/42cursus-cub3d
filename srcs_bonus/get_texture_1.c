@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/01 08:53:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:53:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,26 @@ static int	get_texture_bis(t_game *g, char c, int is_open)
 {
 	if (c == '2')
 		return (TEX_WALL_SIGN + 15 * (g->curr_level > 0));
+	if (c == '3' && g->curr_level == 2)
+		return (TEX_DOOR_BOSS);
 	if (c == '3')
-		return (TEX_DOOR_C + is_open + 15 * (g->curr_level > 0));
+		return (TEX_DOOR_C + is_open + 16 * (g->curr_level > 0));
 	if (c == '4')
-		return (TEX_WINDOW + 12 * (g->curr_level > 0));
+		return (TEX_WINDOW + 13 * (g->curr_level > 0));
 	if (c >= '5' && c <= '7')
 		return (TEX_BOARD_1 + c - '5');
 	if (c == '8' || c == '9' || c == 'A')
 		return (TEX_BUSH + (c == 'A'));
 	if (c == '1' && g->curr_level == 3)
 		return (TEX_WALL_BACKROOMS);
+	if (c == 'B')
+		return (TEX_WALL_CLOSET);
+	if (c == 'D')
+		return (TEX_WALL_CELL);
+	if (c == 'H')
+		return (TEX_WALL_SKELETON);
+	if (g->curr_level == 2)
+		return (TEX_WALL_BOSS);
 	return (TEX_WALL + 15 * (g->curr_level > 0));
 }
 
