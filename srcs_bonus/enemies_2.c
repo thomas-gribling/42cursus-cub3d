@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 11:56:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:35:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	generate_enemies(t_game *g, int difficulty)
 
 	free_enemies(g);
 	srand(rand() % get_time());
-	if (difficulty == -1)
+	if (difficulty == -2)
 	{
 		generate_nextbots(g);
 		return ;

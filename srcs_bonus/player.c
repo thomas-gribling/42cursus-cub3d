@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:25:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:35:14 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,16 @@ static void	change_level(t_game *g, int dest)
 		generate_enemies(g, 3);
 	if (g->curr_level >= 2)
 	{
-		g->slots[0] = 0;
-		g->slots[1] = 0;
 		g->bullies_amt = 0;
 		g->hide_bullies_amt = 1;
+		//generate_enemies(g, -1);
 	}
 	if (g->curr_level == 3)
 	{
+		g->slots[0] = 0;
+		g->slots[1] = 0;
 		g->show_map = 0;
-		generate_enemies(g, -1);
+		generate_enemies(g, -2);
 	}
 	tp_player_spawn(g);
 }
