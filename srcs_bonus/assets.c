@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:30:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:44:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	load_assets_4(t_game *g)
 	g->tex[TEX_END_3_BG] = load_tex(g, "assets/ending_3.xpm");
 	g->tex[TEX_END_4_BG] = load_tex(g, "assets/ending_4.xpm");
 	g->tex[TEX_END_5_BG] = load_tex(g, "assets/ending_5.xpm");
+	g->tex[TEX_LOVEGIMP] = load_tex(g, "assets/ilovegimp.xpm");
 }
 
 static void	load_assets_3(t_game *g)

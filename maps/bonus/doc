@@ -6,6 +6,7 @@ T: tree (grass floor, no ceiling, tree sprite)
 E: exit (trap floor)
 F: entrance (trap ceiling)
 S: secret exit (broken ground)
+Z: i love gimp!
 1 / unassigned: wall.xpm (default)
 2: wall_sign.xpm
 3: door_c.xpm

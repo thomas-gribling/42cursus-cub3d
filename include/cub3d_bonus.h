@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:57:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:44:07 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 93
+# define TEX_AMT 94
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -141,6 +141,7 @@
 # define TEX_END_3_BG 90
 # define TEX_END_4_BG 91
 # define TEX_END_5_BG 92
+# define TEX_LOVEGIMP 93
 
 typedef struct s_tex
 {
