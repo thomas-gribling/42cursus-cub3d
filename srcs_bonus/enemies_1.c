@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 07:56:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:23:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,15 @@ void	update_enemies(t_game *g)
 				g->scene = 2;
 			}
 		}
+	}
+}
+
+void	free_enemies(t_game *g)
+{
+	if (g->enemies)
+	{
+		free(g->enemies);
+		g->enemies = NULL;
+		g->enemies_amt = 0;
 	}
 }

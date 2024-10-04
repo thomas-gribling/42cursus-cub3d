@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 07:57:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:27:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	rand_pos(t_game *g, double *posx, double *posy)
 		rand_pos(g, posx, posy);
 }
 
-static void	generate_one_enemy(t_game *g, int difficulty, int i)
+void	generate_one_enemy(t_game *g, int difficulty, int i)
 {
 	g->enemies[i].dist = 0.0;
 	g->enemies[i].dirx = -1 + 2 * (rand() % 2);
@@ -125,12 +125,20 @@ void	generate_enemies(t_game *g, int difficulty)
 		generate_one_enemy(g, difficulty, i);
 }
 
-void	free_enemies(t_game *g)
+t_enemy	copy_enemy(t_enemy *old)
 {
-	if (g->enemies)
-	{
-		free(g->enemies);
-		g->enemies = NULL;
-		g->enemies_amt = 0;
-	}
+	t_enemy	new;
+
+	new.back = old->back;
+	new.dirx = old->dirx;
+	new.diry = old->diry;
+	new.dist = old->dist;
+	new.id = old->id;
+	new.is_dead = old->is_dead;
+	new.olddirx = old->olddirx;
+	new.olddiry = old->olddiry;
+	new.type = old->type;
+	new.x = old->x;
+	new.y = old->y;
+	return (new);
 }

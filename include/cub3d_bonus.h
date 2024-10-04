@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:08:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:26:58 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,9 @@ t_map			*load_map(char *path);
 
 void			init_values(t_game *g);
 void			generate_enemies(t_game *g, int difficulty);
+void			generate_one_enemy(t_game *g, int difficulty, int i);
 void			update_enemies(t_game *g);
+t_enemy			copy_enemy(t_enemy *old);
 void			free_enemies(t_game *g);
 void			shoot_enemy(t_game *g);
 void			update_chad(t_game *g);
