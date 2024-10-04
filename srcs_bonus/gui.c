@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:07:43 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:17:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	draw_credits(t_game *g)
 	t = g->tex[TEX_CREDITS_0 + g->credits_curr];
 	tex_put(&g->p->cam->buff, &t, WIDTH / 2 - t.width / 2, g->credits_y);
 	if (!(g->credits_curr == 2 && g->credits_y == HEIGHT / 2 - t.height / 2))
-		g->credits_y--;
+		g->credits_y -= 2;
 	if (g->credits_y < 0 - t.height && g->credits_curr < 2)
 	{
 		g->credits_curr++;
