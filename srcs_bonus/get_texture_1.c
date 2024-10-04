@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 09:21:07 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:26:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	get_texture_outside(t_game *g, char c, int x, int y)
 
 static int	get_texture_bis(t_game *g, char c, int is_open)
 {
-	if (c == '2')
+	if (c == '2' && g->curr_level != 2)
 		return (TEX_WALL_SIGN + 15 * (g->curr_level > 0));
 	if (c == '3' && g->curr_level == 2)
 		return (TEX_DOOR_BOSS);
@@ -106,6 +106,8 @@ int	get_texture(t_game *g, int x, int y)
 	i = -1;
 	while (!is_open && ++i < g->enemies_amt)
 		is_open = dist_enemy(g, i, x, y) < 1.25 && !g->enemies[i].is_dead;
+	if (c == '2' && g->curr_level == 2 && get_dir(g->p->cam) == WEST)
+		return (TEX_WALL_CHOICE);
 	if (is_portal(g, x, y))
 		return (is_portal(g, x, y));
 	if (is_outside(g, ca, x, y) && c != '8' && c != '9')
