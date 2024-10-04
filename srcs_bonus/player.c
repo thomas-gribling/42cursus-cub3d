@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:50:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 08:23:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,13 @@ static void	change_level(t_game *g, int dest)
 	g->portals[0].is_placed = 0;
 	g->portals[1].is_placed = 0;
 	g->map = g->maps[g->curr_level];
-	g->splash_timer = get_time();
+	if (g->curr_level != 2)
+		g->splash_timer = get_time();
 	free_enemies(g);
 	if (g->curr_level == 1)
 		generate_enemies(g, 3);
 	if (g->curr_level == 2)
-	{
-		g->hide_bullies_amt = 1;
 		generate_enemies(g, -1);
-	}
 	if (g->curr_level == 3)
 	{
 		g->slots[0] = 0;
@@ -69,6 +67,8 @@ static void	change_level(t_game *g, int dest)
 
 void	apply_moves(t_game *g, double *new)
 {
+	if (g->freeze_player)
+		return ;
 	if (!is_collision(g->map->content[(int)g->p->y][(int)new[0]]))
 		g->p->x = new[0];
 	if (!is_collision(g->map->content[(int)new[1]][(int)g->p->x]))
@@ -109,10 +109,12 @@ void	move_player(t_game *g, t_cam *c, int keycode)
 	apply_moves(g, new);
 }
 
-void	rotate_player(t_cam *c, int keycode)
+void	rotate_player(t_game *g, t_cam *c, int keycode)
 {
 	double	tmp;
 
+	if (g->freeze_player)
+		return ;
 	if (keycode == KEY_RIGHT)
 	{
 		tmp = c->dir_x;

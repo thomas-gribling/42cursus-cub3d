@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:44:07 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:19:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 94
+# define TEX_AMT 96
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -71,6 +71,7 @@
 # define TEX_DOOR_C_BSMT 20
 # define TEX_DOOR_O_BSMT 21
 # define TEX_WALL_BOSS 22
+# define TEX_WALL_CHOICE 95
 # define TEX_WALL_CELL 23
 # define TEX_WALL_SKELETON 24
 # define TEX_DOOR_BOSS 25
@@ -109,39 +110,40 @@
 # define TEX_GUI_SPLASH_1 58
 # define TEX_GUI_SPLASH_2 59
 # define TEX_GUI_SPLASH_3 60
-# define TEX_PORTAL_0 61
-# define TEX_PORTAL_1 62
-# define TEX_NPC_JERAU 63
-# define TEX_NPC_PIRATE_0 64
-# define TEX_NPC_PIRATE_1 65
-# define TEX_NPC_PIRATE_2 66
-# define TEX_NPC_PIRATE_3 67
-# define TEX_NPC_PIRATE_4 68
-# define TEX_NPC_PIRATE_5 69
-# define TEX_NPC_PIRATE_6 70
-# define TEX_NPC_PIRATE_7 71
-# define TEX_NPC_POULET 72
-# define TEX_NPC_STUDENT_F_0 73
-# define TEX_NPC_STUDENT_F_1 74
-# define TEX_NPC_STUDENT_B_0 75
-# define TEX_NPC_STUDENT_B_1 76
-# define TEX_NPC_STUDENT_DEAD 77
-# define TEX_NPC_BULLY_F_0 78
-# define TEX_NPC_BULLY_F_1 79
-# define TEX_NPC_BULLY_B_0 80
-# define TEX_NPC_BULLY_B_1 81
-# define TEX_NPC_BULLY_DEAD 82
-# define TEX_NPC_CHAD_H 83
-# define TEX_NPC_CHAD_I 84
-# define TEX_NPC_CHAD_A 85
-# define TEX_NPC_CHAD_D 86
-# define TEX_END_0_BG 87
-# define TEX_END_1_BG 88
-# define TEX_END_2_BG 89
-# define TEX_END_3_BG 90
-# define TEX_END_4_BG 91
-# define TEX_END_5_BG 92
-# define TEX_LOVEGIMP 93
+# define TEX_GUI_HEALTHBAR 61
+# define TEX_PORTAL_0 62
+# define TEX_PORTAL_1 63
+# define TEX_NPC_JERAU 64
+# define TEX_NPC_PIRATE_0 65
+# define TEX_NPC_PIRATE_1 66
+# define TEX_NPC_PIRATE_2 67
+# define TEX_NPC_PIRATE_3 68
+# define TEX_NPC_PIRATE_4 69
+# define TEX_NPC_PIRATE_5 70
+# define TEX_NPC_PIRATE_6 71
+# define TEX_NPC_PIRATE_7 72
+# define TEX_NPC_POULET 73
+# define TEX_NPC_STUDENT_F_0 74
+# define TEX_NPC_STUDENT_F_1 75
+# define TEX_NPC_STUDENT_B_0 76
+# define TEX_NPC_STUDENT_B_1 77
+# define TEX_NPC_STUDENT_DEAD 78
+# define TEX_NPC_BULLY_F_0 79
+# define TEX_NPC_BULLY_F_1 80
+# define TEX_NPC_BULLY_B_0 81
+# define TEX_NPC_BULLY_B_1 82
+# define TEX_NPC_BULLY_DEAD 83
+# define TEX_NPC_CHAD_H 84
+# define TEX_NPC_CHAD_I 85
+# define TEX_NPC_CHAD_A 86
+# define TEX_NPC_CHAD_D 87
+# define TEX_END_0_BG 88
+# define TEX_END_1_BG 89
+# define TEX_END_2_BG 90
+# define TEX_END_3_BG 91
+# define TEX_END_4_BG 92
+# define TEX_END_5_BG 93
+# define TEX_LOVEGIMP 94
 
 typedef struct s_tex
 {
@@ -342,6 +344,10 @@ typedef struct s_game
 	int				ending;
 	int				id_shootable;
 	int				time_m;
+	int				freeze_player;
+	unsigned int	chad_timer;
+	int				chad_phase;
+	int				chad_hp;
 }				t_game;
 
 t_map			*load_map(char *path);
@@ -351,6 +357,8 @@ void			generate_enemies(t_game *g, int difficulty);
 void			update_enemies(t_game *g);
 void			free_enemies(t_game *g);
 void			shoot_enemy(t_game *g);
+void			update_chad(t_game *g);
+void			update_chad_healthbar(t_game *g);
 
 void			load_assets(t_game *g);
 t_tex			load_tex(t_game *g, char *path);
@@ -378,7 +386,7 @@ int				is_portal(t_game *g, int x, int y);
 void			draw_minimap(t_game *g, t_cam *c);
 int				get_texture(t_game *g, int x, int y);
 void			move_player(t_game *g, t_cam *c, int keycode);
-void			rotate_player(t_cam *c, int keycode);
+void			rotate_player(t_game *g, t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);
 void			tp_player_spawn(t_game *g);
 void			do_portals(t_game *g);

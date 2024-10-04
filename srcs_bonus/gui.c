@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:31:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:07:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ void	draw_gui(t_game *g, t_cam *c)
 	draw_digits(g, &c->buff, time_left % 60, 1);
 	draw_digits(g, &c->buff, time_left / 60, 2);
 	draw_digits(g, &c->buff, (int)floor(1.0 / g->fps), 3);
+	if (g->curr_level == 2 && g->chad_phase > 0)
+	{
+		t = g->tex[TEX_GUI_HEALTHBAR];
+		tex_put(&c->buff, &t, WIDTH / 2 - t.width / 2, 0);
+		update_chad_healthbar(g);
+	}
 }
 
 void	update_screen(t_game *g)

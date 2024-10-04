@@ -6,13 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:59:30 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 08:06:47 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static int	get_texture_enemy(int type, int is_dead, int b)
+static int	get_texture_enemy(int type, int is_dead, int b, int phase)
 {
 	if (type == STUDENT && is_dead)
 		return (TEX_NPC_STUDENT_DEAD);
@@ -31,7 +31,7 @@ static int	get_texture_enemy(int type, int is_dead, int b)
 	if (type == CHAD && is_dead)
 		return (TEX_NPC_CHAD_D);
 	if (type == CHAD)
-		return (TEX_NPC_CHAD_H);
+		return (TEX_NPC_CHAD_H + phase);
 	return (TEX_SPR_TREE_0);
 }
 
@@ -101,11 +101,13 @@ void	raycast_enemy(t_game *g, t_cam *c, int i)
 {
 	t_enemy		*t;
 	t_tex		tex;
+	int			phase;
 
 	t = (t_enemy *)g->z_buffer[i].ptr;
 	c->spr_x = t->x - g->p->x;
 	c->spr_y = t->y - g->p->y;
-	tex = g->tex[get_texture_enemy(t->type, t->is_dead, t->back)];
+	phase = g->chad_phase;
+	tex = g->tex[get_texture_enemy(t->type, t->is_dead, t->back, phase)];
 	g->id_shootable = -1;
 	raycast_spr_calc(g, c, tex, t);
 }

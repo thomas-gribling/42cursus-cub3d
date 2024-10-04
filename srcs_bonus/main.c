@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 09:05:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 07:59:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	main_loop(t_game *g)
 	{
 		update_enemies(g);
 		update_screen(g);
+		if (g->curr_level == 2)
+			update_chad(g);
 		if (g->p->moving_x && g->p->moving_y)
 			g->p->cam->speed_m = 0.05;
 		else
@@ -97,7 +99,7 @@ int	main_loop(t_game *g)
 		if (g->p->moving_y)
 			move_player(g, g->p->cam, g->p->moving_y);
 		if (g->p->rotating)
-			rotate_player(g->p->cam, g->p->rotating);
+			rotate_player(g, g->p->cam, g->p->rotating);
 		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
 		if ((pos[0] < 10 || pos[0] > WIDTH - 11) && pos[0] >= 0
 			&& pos[0] < WIDTH)

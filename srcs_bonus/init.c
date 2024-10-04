@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 14:07:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 08:20:14 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	turn_player_to(t_cam *c, int dir)
 
 static void	init_values_three(t_game *g)
 {
+	g->freeze_player = 0;
+	g->chad_timer = 0;
+	g->chad_phase = 0;
+	g->chad_hp = 100;
 	generate_enemies(g, 1);
 	tp_player_spawn(g);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 15:33:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 07:54:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	mouse_move(int x, int y, t_game *g)
 		move = KEY_LEFT;
 	if (move)
 	{
-		rotate_player(g->p->cam, move);
+		rotate_player(g, g->p->cam, move);
 		g->mouse_middle_x = x;
 	}
 	return (0);

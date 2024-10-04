@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:53:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 07:57:25 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,14 @@ void	generate_enemies(t_game *g, int difficulty)
 	i = -1;
 	while (++i < g->enemies_amt)
 		generate_one_enemy(g, difficulty, i);
+}
+
+void	free_enemies(t_game *g)
+{
+	if (g->enemies)
+	{
+		free(g->enemies);
+		g->enemies = NULL;
+		g->enemies_amt = 0;
+	}
 }
