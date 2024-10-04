@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 09:19:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:20:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 96
+# define TEX_AMT 99
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -144,6 +144,9 @@
 # define TEX_END_4_BG 92
 # define TEX_END_5_BG 93
 # define TEX_LOVEGIMP 94
+# define TEX_CREDITS_0 96
+# define TEX_CREDITS_1 97
+# define TEX_CREDITS_2 98
 
 typedef struct s_tex
 {
@@ -348,6 +351,8 @@ typedef struct s_game
 	unsigned int	chad_timer;
 	int				chad_phase;
 	int				chad_hp;
+	int				credits_curr;
+	int				credits_y;
 }				t_game;
 
 t_map			*load_map(char *path);
@@ -390,6 +395,7 @@ void			rotate_player(t_game *g, t_cam *c, int keycode);
 void			turn_player_to(t_cam *c, int dir);
 void			tp_player_spawn(t_game *g);
 void			do_portals(t_game *g);
+void			draw_credits(t_game *g);
 
 int				put_error(char *s);
 int				ft_strncmp(char *s1, char *s2, size_t n);

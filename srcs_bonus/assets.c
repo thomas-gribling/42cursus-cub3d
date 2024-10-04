@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 09:19:22 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:23:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ static void	load_assets_4(t_game *g)
 	g->tex[TEX_NPC_CHAD_I] = load_tex(g, "assets/npc/chad.xpm");
 	g->tex[TEX_NPC_CHAD_A] = load_tex(g, "assets/npc/chad_a.xpm");
 	g->tex[TEX_NPC_CHAD_D] = load_tex(g, "assets/npc/chad_d.xpm");
-	g->tex[TEX_END_0_BG] = load_tex(g, "assets/ending_0.xpm");
+	g->tex[TEX_END_0_BG] = load_tex(g, "assets/black.xpm");
 	g->tex[TEX_END_1_BG] = load_tex(g, "assets/ending_1.xpm");
 	g->tex[TEX_END_2_BG] = load_tex(g, "assets/ending_2.xpm");
 	g->tex[TEX_END_3_BG] = load_tex(g, "assets/ending_3.xpm");
 	g->tex[TEX_END_4_BG] = load_tex(g, "assets/ending_4.xpm");
 	g->tex[TEX_END_5_BG] = load_tex(g, "assets/ending_5.xpm");
 	g->tex[TEX_LOVEGIMP] = load_tex(g, "assets/ilovegimp.xpm");
+	g->tex[TEX_CREDITS_0] = load_tex(g, "assets/credits_0.xpm");
+	g->tex[TEX_CREDITS_1] = load_tex(g, "assets/credits_1.xpm");
+	g->tex[TEX_CREDITS_2] = load_tex(g, "assets/credits_2.xpm");
 }
 
 static void	load_assets_3(t_game *g)
