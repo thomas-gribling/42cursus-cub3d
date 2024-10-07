@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:41:49 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/16 09:12:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:36:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,13 @@ char	*ft_strdup_endl(char *s)
 		dest[i] = s[i];
 	dest[i] = '\0';
 	return (dest);
+}
+
+t_tex	load_tex(t_game *g, char *path)
+{
+	t_tex	s;
+
+	s.ptr = mlx_xpm_file_to_image(g->mlx, path, &s.width, &s.height);
+	s.addr = mlx_get_data_addr(s.ptr, &s.bpp, &s.line_len, &s.endian);
+	return (s);
 }

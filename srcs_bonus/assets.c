@@ -6,23 +6,30 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:12:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:38:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-t_tex	load_tex(t_game *g, char *path)
+static void	load_assets_5(t_game *g)
 {
-	t_tex	s;
-
-	s.ptr = mlx_xpm_file_to_image(g->mlx, path, &s.width, &s.height);
-	s.addr = mlx_get_data_addr(s.ptr, &s.bpp, &s.line_len, &s.endian);
-	return (s);
+	g->tex[TEX_END_2_BG] = load_tex(g, "assets/ending_2.xpm");
+	g->tex[TEX_END_3_BG] = load_tex(g, "assets/ending_3.xpm");
+	g->tex[TEX_END_4_BG] = load_tex(g, "assets/ending_4.xpm");
+	g->tex[TEX_END_5_BG] = load_tex(g, "assets/ending_5.xpm");
+	g->tex[TEX_LOVEGIMP] = load_tex(g, "assets/ilovegimp.xpm");
+	g->tex[TEX_CREDITS_0] = load_tex(g, "assets/credits_0.xpm");
+	g->tex[TEX_CREDITS_1] = load_tex(g, "assets/credits_1.xpm");
+	g->tex[TEX_CREDITS_2] = load_tex(g, "assets/credits_2.xpm");
 }
 
 static void	load_assets_4(t_game *g)
 {
+	g->tex[TEX_NPC_PIRATE_2] = load_tex(g, "assets/npc/pirate_2.xpm");
+	g->tex[TEX_NPC_PIRATE_3] = load_tex(g, "assets/npc/pirate_3.xpm");
+	g->tex[TEX_NPC_PIRATE_4] = load_tex(g, "assets/npc/pirate_4.xpm");
+	g->tex[TEX_NPC_PIRATE_5] = load_tex(g, "assets/npc/pirate_5.xpm");
 	g->tex[TEX_NPC_PIRATE_6] = load_tex(g, "assets/npc/pirate_6.xpm");
 	g->tex[TEX_NPC_PIRATE_7] = load_tex(g, "assets/npc/pirate_7.xpm");
 	g->tex[TEX_NPC_POULET] = load_tex(g, "assets/npc/poulet.xpm");
@@ -43,18 +50,12 @@ static void	load_assets_4(t_game *g)
 	g->tex[TEX_NPC_BULLY_BALL] = load_tex(g, "assets/npc/bully_ball.xpm");
 	g->tex[TEX_END_0_BG] = load_tex(g, "assets/black.xpm");
 	g->tex[TEX_END_1_BG] = load_tex(g, "assets/ending_1.xpm");
-	g->tex[TEX_END_2_BG] = load_tex(g, "assets/ending_2.xpm");
-	g->tex[TEX_END_3_BG] = load_tex(g, "assets/ending_3.xpm");
-	g->tex[TEX_END_4_BG] = load_tex(g, "assets/ending_4.xpm");
-	g->tex[TEX_END_5_BG] = load_tex(g, "assets/ending_5.xpm");
-	g->tex[TEX_LOVEGIMP] = load_tex(g, "assets/ilovegimp.xpm");
-	g->tex[TEX_CREDITS_0] = load_tex(g, "assets/credits_0.xpm");
-	g->tex[TEX_CREDITS_1] = load_tex(g, "assets/credits_1.xpm");
-	g->tex[TEX_CREDITS_2] = load_tex(g, "assets/credits_2.xpm");
+	load_assets_5(g);
 }
 
 static void	load_assets_3(t_game *g)
 {
+	g->tex[TEX_GUI_1] = load_tex(g, "assets/gui/1.xpm");
 	g->tex[TEX_GUI_2] = load_tex(g, "assets/gui/2.xpm");
 	g->tex[TEX_GUI_3] = load_tex(g, "assets/gui/3.xpm");
 	g->tex[TEX_GUI_4] = load_tex(g, "assets/gui/4.xpm");
@@ -78,15 +79,12 @@ static void	load_assets_3(t_game *g)
 	g->tex[TEX_NPC_JERAU] = load_tex(g, "assets/npc/jerau.xpm");
 	g->tex[TEX_NPC_PIRATE_0] = load_tex(g, "assets/npc/pirate_0.xpm");
 	g->tex[TEX_NPC_PIRATE_1] = load_tex(g, "assets/npc/pirate_1.xpm");
-	g->tex[TEX_NPC_PIRATE_2] = load_tex(g, "assets/npc/pirate_2.xpm");
-	g->tex[TEX_NPC_PIRATE_3] = load_tex(g, "assets/npc/pirate_3.xpm");
-	g->tex[TEX_NPC_PIRATE_4] = load_tex(g, "assets/npc/pirate_4.xpm");
-	g->tex[TEX_NPC_PIRATE_5] = load_tex(g, "assets/npc/pirate_5.xpm");
 	load_assets_4(g);
 }
 
 static void	load_assets_2(t_game *g)
 {
+	g->tex[TEX_WALL_CHOICE] = load_tex(g, "assets/lvl3/wall_choice.xpm");
 	g->tex[TEX_WALL_CELL] = load_tex(g, "assets/lvl3/cell.xpm");
 	g->tex[TEX_WALL_SKELETON] = load_tex(g, "assets/lvl3/skelet.xpm");
 	g->tex[TEX_DOOR_BOSS] = load_tex(g, "assets/lvl3/door.xpm");
@@ -110,7 +108,6 @@ static void	load_assets_2(t_game *g)
 	g->tex[TEX_GUI_INV_FULL_0] = load_tex(g, "assets/gui/inv_full_0.xpm");
 	g->tex[TEX_GUI_INV_FULL_1] = load_tex(g, "assets/gui/inv_full_1.xpm");
 	g->tex[TEX_GUI_0] = load_tex(g, "assets/gui/0.xpm");
-	g->tex[TEX_GUI_1] = load_tex(g, "assets/gui/1.xpm");
 	load_assets_3(g);
 }
 
@@ -140,6 +137,5 @@ void	load_assets(t_game *g)
 	g->tex[TEX_DOOR_C_BSMT] = load_tex(g, "assets/lvl2/doorc.xpm");
 	g->tex[TEX_DOOR_O_BSMT] = load_tex(g, "assets/lvl2/dooro.xpm");
 	g->tex[TEX_WALL_BOSS] = load_tex(g, "assets/lvl3/wall.xpm");
-	g->tex[TEX_WALL_CHOICE] = load_tex(g, "assets/lvl3/wall_choice.xpm");
 	load_assets_2(g);
 }
