@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 10:40:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:05:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,5 @@ void	raycast_enemy(t_game *g, t_cam *c, int i)
 	c->spr_y = t->y - g->p->y;
 	phase = g->chad_phase;
 	tex = g->tex[get_texture_enemy(t->type, t->is_dead, t->back, phase)];
-	g->id_shootable = -1;
 	raycast_spr_calc(g, c, tex, t);
 }

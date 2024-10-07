@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/26 10:33:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:05:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	raycast_z_buffer(t_game *g)
 	t_coll	*t;
 
 	i = -1;
+	g->id_shootable = -1;
 	sort_z_buffer(g);
 	while (++i < g->z_buffer_size)
 	{
