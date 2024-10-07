@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:59:16 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:37:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ static void	change_level(t_game *g, int dest)
 		generate_enemies(g, -2);
 	}
 	tp_player_spawn(g);
+	stopallsounds(g);
+	if (g->curr_level == 1)
+		playsoundloop(g, MUS_LVL2, MUS_LVL2_DUR);
+	else if (g->curr_level == 3)
+		playsoundloop(g, MUS_BACKROOMS, MUS_BACKROOMS_DUR);
 }
 
 void	apply_moves(t_game *g, double *new)

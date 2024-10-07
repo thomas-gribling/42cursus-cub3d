@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:21:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:34:03 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,11 +161,11 @@
 # define SND_SHOOT "shoot"
 # define SND_PORTAL_SHOOT "shoot"
 # define SND_PORTAL_TP "shoot"
-# define MUS_MENU_DUR 1000
-# define MUS_LVL1_DUR 1000
-# define MUS_LVL2_DUR 1000
-# define MUS_BOSS_DUR 1000
-# define MUS_BACKROOMS_DUR 1000
+# define MUS_MENU_DUR 154000
+# define MUS_LVL1_DUR 154000
+# define MUS_LVL2_DUR 154000
+# define MUS_BOSS_DUR 154000
+# define MUS_BACKROOMS_DUR 154000
 
 typedef struct s_tex
 {

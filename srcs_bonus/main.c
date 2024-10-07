@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:21:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:39:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static int	main_loop_bis(t_game *g)
 	}
 	if (g->scene == 2)
 	{
+		if (g->ending)
+			stopallsounds(g);
 		reset_buffer(b);
 		tex_put_scale(b, &g->tex[TEX_END_0_BG + g->ending], 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win, b->ptr, 0, 0);

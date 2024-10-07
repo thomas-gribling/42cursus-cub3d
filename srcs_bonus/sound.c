@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 22:18:14 by bgnnrs            #+#    #+#             */
-/*   Updated: 2024/10/07 15:12:19 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:45:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	playsoundloop(t_game *g, char *file, unsigned int duration)
 void	stopallsounds(t_game *g)
 {
 	int	result;
-	
+
 	result = system("pkill -f paplay");
 	(void)result;
 	g->loop_start = 0;

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 07:57:03 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:32:51 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:45:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,18 @@ void	update_chad(t_game *g)
 		g->chad_phase = 1;
 		g->freeze_player = 0;
 		g->chad_timer = 0;
+		playsoundloop(g, MUS_BOSS, MUS_BOSS_DUR);
 	}
 	if (!g->enemies[0].is_dead)
 		update_chad_fight(g);
 	if (g->enemies[0].is_dead && *exit == '1')
+	{
 		*exit = '3';
+		stopallsounds(g);
+	}
 	if (g->p->x > 33.5)
+	{
 		g->scene = 2;
+		playsound(MUS_END, 0, 0, 0);
+	}
 }

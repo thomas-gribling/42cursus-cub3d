@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:18:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:31:08 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	mouse_click(int button, int x, int y, t_game *g)
 		g->last_frame = g->start;
 		g->splash_timer = g->start;
 		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
+		playsoundloop(g, MUS_LVL1, MUS_LVL1_DUR);
 	}
 	if (g->scene == 1)
 	{
