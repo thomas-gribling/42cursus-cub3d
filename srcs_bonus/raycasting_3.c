@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 10:00:08 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:40:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	raycast_spr_draw(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 	c->pix_x = c->draw_x[0] - 1;
 	if (e && c->draw_x[1] > WIDTH / 2 - WIDTH / 4
 		&& c->draw_x[0] < WIDTH / 2 + WIDTH / 4
-		&& dist_to_tile(g, e->x, e->y) < 6.0 && !e->is_dead)
+		&& fabs(e->x - g->p->x) < 4 && fabs(e->y - g->p->y) < 4
+		&& !e->is_dead)
 		g->id_shootable = e->id;
 	while (c->pix_x++ < c->draw_x[1])
 	{
