@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 10:00:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:42:38 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	close_game(t_game *g)
 {
 	int	i;
 
-	i = -1;
-	//playsound("empty", 0, 1, 0); //playsound un empty
+	stopallsounds();
 	free_z_buffer(g);
+	i = -1;
 	while (g->maps[++i])
 	{
 		tab_free(g->maps[i]->content);
@@ -121,7 +121,6 @@ int	main(void)
 	g.map = g.maps[0];
 	if (!g.maps[0] || !g.maps[1] || !g.maps[2] || !g.maps[3])
 		return (1);
-	//playsound("gero", 0, 0, 0);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
 	g.scene = 0;
@@ -129,6 +128,7 @@ int	main(void)
 	mlx_put_image_to_window(g.mlx, g.win, g.tmp_tex.ptr, 0, 0);
 	load_assets(&g);
 	init_values(&g);
+	//playsound("gero", 0, 0, 0);
 	do_hooks(&g);
 	mlx_loop(g.mlx);
 	return (0);

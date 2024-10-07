@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 10:07:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:41:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,5 +437,6 @@ void			append_z_buffer(t_game *g, void *ptr, int type);
 void			free_z_buffer(t_game *g);
 
 void			playsound(char *file, int wait, int stop, int attenued);
+void			stopallsounds(void);
 
 #endif // CUB3D_BONUS_H

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 22:18:14 by bgnnrs            #+#    #+#             */
-/*   Updated: 2024/10/02 09:04:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:41:41 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,12 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	result = system(tmp);
 	if (result != 0)
 		perror("");
+}
+
+void	stopallsounds(void)
+{
+	int	result;
+	
+	result = system("pkill -f paplay");
+	(void)result;
 }
