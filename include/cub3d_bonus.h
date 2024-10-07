@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 14:41:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:49:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,16 @@
 # define TEX_CREDITS_0 100
 # define TEX_CREDITS_1 101
 # define TEX_CREDITS_2 102
+
+# define MUS_MENU "gero"
+# define MUS_LVL1 "gero"
+# define MUS_LVL2 "gero"
+# define MUS_BOSS "gero"
+# define MUS_BACKROOMS "gero"
+# define MUS_END "gero"
+# define SND_SHOOT "shoot"
+# define SND_PORTAL_SHOOT "shoot"
+# define SND_PORTAL_TP "shoot"
 
 typedef struct s_tex
 {

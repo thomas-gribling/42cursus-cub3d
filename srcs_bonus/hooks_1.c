@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:59:05 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:52:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static void	use_weapon(t_game *g, int button)
 		place_portal(g, 1);
 	if (button == LEFT_CLICK && g->curr_slot == 0 && g->slots[0] == 1
 		&& get_time() - g->start > 100.0)
+	{
+		playsound(SND_SHOOT, 0, 0, 0);
 		shoot_enemy(g);
+	}
 }
 
 static int	mouse_click(int button, int x, int y, t_game *g)

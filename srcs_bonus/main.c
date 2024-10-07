@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 14:42:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:50:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,10 @@ int	main(void)
 	g.scene = 0;
 	g.tmp_tex = load_tex(&g, "assets/loading_splash.xpm");
 	mlx_put_image_to_window(g.mlx, g.win, g.tmp_tex.ptr, 0, 0);
+	playsound(SND_SHOOT, 0, 0, 0);
 	load_assets(&g);
 	init_values(&g);
-	//playsound("gero", 0, 0, 0);
+	playsound(MUS_MENU, 0, 0, 0);
 	do_hooks(&g);
 	mlx_loop(g.mlx);
 	return (0);
