@@ -6,28 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 07:57:03 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:51:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:32:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-
-void	shoot_enemy(t_game *g)
-{
-	t_enemy	*e;
-	
-	if (g->id_shootable == -1 || g->enemies[g->id_shootable].is_dead)
-		return ;
-	e = &g->enemies[g->id_shootable];
-	if (e->type == CHAD && !e->is_dead && g->chad_phase == 1)
-		g->chad_hp--;
-	if (e->type != CHAD || g->chad_hp == 0)
-		e->is_dead = 1;
-	if (e->type == BULLY)
-		g->bullies_amt--;
-	if (e->type == STUDENT)
-		g->time_m -= 20;
-}
 
 void	update_chad_healthbar(t_game *g)
 {
@@ -51,6 +34,7 @@ void	update_chad_healthbar(t_game *g)
 static void	clean_bodies(t_game *g)
 {
 	t_enemy	*new;
+
 	new = malloc(sizeof(t_enemy));
 	new[0] = copy_enemy(&g->enemies[0]);
 	free_enemies(g);

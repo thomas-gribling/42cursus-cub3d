@@ -5,140 +5,117 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 10:04:43 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:27:30 by tgriblin         ###   ########.fr       */
+/*   Created: 2024/09/25 09:10:26 by tgriblin          #+#    #+#             */
+/*   Updated: 2024/10/07 09:33:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static void	generate_nextbots(t_game *g)
+static int	check_moves_nextbots(t_game *g, t_enemy *e, double *p)
 {
-	int	i;
+	if (e->type < NEXTBOT_1 || e->type > NEXTBOT_3)
+		return (0);
+	if (!is_collision(g->map->content[(int)e->y][(int)p[0]])
+		&& fabs(e->x - g->p->x) > 0.1)
+		e->x = p[0];
+	if (!is_collision(g->map->content[(int)p[1]][(int)e->x])
+		&& fabs(e->y - g->p->y) > 0.1)
+		e->y = p[1];
+	return (1);
+}
 
-	g->bullies_amt = 0;
-	g->enemies_amt = 3;
-	g->enemies = malloc(g->enemies_amt * sizeof(t_enemy));
-	i = -1;
-	while (++i < g->enemies_amt)
+static void	check_moves(t_game *g, t_enemy *e, double speed)
+{
+	double	p[2];
+
+	p[0] = e->x;
+	p[1] = e->y;
+	if (e->type == STUDENT || e->type == BULLY)
 	{
-		g->enemies[i].type = NEXTBOT_1 + i;
-		g->enemies[i].dist = 0.0;
-		g->enemies[i].dirx = -1 + 2 * (rand() % 2);
-		g->enemies[i].diry = -1 + 2 * (rand() % 2);
-		g->enemies[i].olddirx = g->enemies[i].dirx;
-		g->enemies[i].olddiry = g->enemies[i].diry;
-		g->enemies[i].back = 0;
-		g->enemies[i].is_dead = 0;
-		g->enemies[i].id = i;
+		p[0] = e->x + speed * e->dirx;
+		p[1] = e->y + speed * e->diry;
 	}
-	g->enemies[0].x = 107.5;
-	g->enemies[0].y = 34.5;
-	g->enemies[1].x = 20.5;
-	g->enemies[1].y = 47.5;
-	g->enemies[2].x = 75.5;
-	g->enemies[2].y = 3.5;
-}
-
-static void	generate_chad(t_game *g)
-{
-	g->bullies_amt = 0;
-	g->enemies_amt = 1;
-	g->enemies = malloc(g->enemies_amt * sizeof(t_enemy));
-	g->enemies[0].type = CHAD;
-	g->enemies[0].dist = 0.0;
-	g->enemies[0].dirx = 0;
-	g->enemies[0].diry = 0;
-	g->enemies[0].olddirx = 0;
-	g->enemies[0].olddiry = 0;
-	g->enemies[0].back = 0;
-	g->enemies[0].is_dead = 0;
-	g->enemies[0].id = 0;
-	g->enemies[0].x = 20.5;
-	g->enemies[0].y = 3.5;
-}
-
-static void	rand_pos(t_game *g, double *posx, double *posy)
-{
-	int		x;
-	int		y;
-	char	c;
-
-	y = -1;
-	*posx = 0.0;
-	*posy = 0.0;
-	while (g->map->content[++y] && !*posx)
+	if ((e->type >= NEXTBOT_1 && e->type <= NEXTBOT_3)
+		|| e->type == BULLY_BALL)
 	{
-		x = -1;
-		while (g->map->content[y][++x])
-		{
-			c = g->map->content[y][x];
-			if (!is_collision(c) && !is_castable(c) && c != ' '
-				&& rand() % (g->map->width * g->map->height / 2) == 0)
-			{
-				*posx = x + 0.5;
-				*posy = y + 0.5;
-			}
-		}
+		p[0] = e->x - speed * (-1 + 2 * ((g->p->x < e->x)));
+		p[1] = e->y - speed * (-1 + 2 * ((g->p->y < e->y)));
 	}
-	if (!*posx)
-		rand_pos(g, posx, posy);
+	if (p[0] < 0)
+		p[0] = 0;
+	if (p[1] < 0)
+		p[1] = 0;
+	if (check_moves_nextbots(g, e, p))
+		return ;
+	if (!is_collision(g->map->content[(int)e->y][(int)p[0]]))
+		e->x = p[0];
+	if (!is_collision(g->map->content[(int)p[1]][(int)e->x]))
+		e->y = p[1];
 }
 
-void	generate_one_enemy(t_game *g, int difficulty, int i)
+static void	calc_dirs(t_game *g, int i)
 {
-	g->enemies[i].dist = 0.0;
-	g->enemies[i].dirx = -1 + 2 * (rand() % 2);
-	g->enemies[i].diry = -1 + 2 * (rand() % 2);
+	if (rand() % 10 == 0)
+	{
+		g->enemies[i].dirx = rand() % 3 - 1;
+		if (g->enemies[i].dirx == g->enemies[i].olddirx)
+			g->enemies[i].back = 0;
+		else
+			g->enemies[i].back = 1;
+	}
+	if (rand() % 10 == 0)
+	{
+		g->enemies[i].diry = rand() % 3 - 1;
+		if (g->enemies[i].dirx == g->enemies[i].olddirx)
+			g->enemies[i].back = 0;
+		else if (g->enemies[i].back)
+			g->enemies[i].back = 1;
+	}
 	g->enemies[i].olddirx = g->enemies[i].dirx;
 	g->enemies[i].olddiry = g->enemies[i].diry;
-	g->enemies[i].back = 0;
-	if (rand() % (difficulty + 1) == 0)
-		g->enemies[i].type = STUDENT;
-	else
-	{
-		g->enemies[i].type = BULLY;
-		g->bullies_amt++;
-	}
-	rand_pos(g, &g->enemies[i].x, &g->enemies[i].y);
-	g->enemies[i].is_dead = 0;
-	g->enemies[i].id = i;
 }
 
-void	generate_enemies(t_game *g, int difficulty)
+static void	check_kill(t_game *g, t_enemy *e)
 {
-	int	i;
+	int	kill;
 
-	free_enemies(g);
-	srand(rand() % get_time());
-	if (difficulty == -1)
-		generate_chad(g);
-	if (difficulty == -2)
-		generate_nextbots(g);
-	if (difficulty < 0)
-		return ;
-	g->bullies_amt = 0;
-	g->enemies_amt = 25 + rand() % (5 + difficulty * 5);
-	g->enemies = malloc(g->enemies_amt * sizeof(t_enemy));
+	kill = 0;
+	if (e->type >= NEXTBOT_1
+		&& e->type <= NEXTBOT_3
+		&& dist_to_tile(g, e->x, e->y) < 0.85)
+		kill = 5;
+	if (e->type == BULLY_BALL && fabs(e->x - g->p->x) < 0.4
+		&& fabs(e->y - g->p->y) < 0.4)
+	{
+		g->p->hp--;
+		g->bullies_amt--;
+		e->is_dead = 1;
+	}
+	if (!g->p->hp)
+		kill = 3;
+	if (kill)
+	{
+		g->ending = kill;
+		g->scene = 2;
+	}
+}
+
+void	update_enemies(t_game *g)
+{
+	int		i;
+
 	i = -1;
 	while (++i < g->enemies_amt)
-		generate_one_enemy(g, difficulty, i);
-}
-
-t_enemy	copy_enemy(t_enemy *old)
-{
-	t_enemy	new;
-
-	new.back = old->back;
-	new.dirx = old->dirx;
-	new.diry = old->diry;
-	new.dist = old->dist;
-	new.id = old->id;
-	new.is_dead = old->is_dead;
-	new.olddirx = old->olddirx;
-	new.olddiry = old->olddiry;
-	new.type = old->type;
-	new.x = old->x;
-	new.y = old->y;
-	return (new);
+	{
+		if (!g->enemies[i].is_dead)
+		{
+			calc_dirs(g, i);
+			if (g->enemies[i].type == BULLY_BALL)
+				check_moves(g, &g->enemies[i], 0.01);
+			else
+				check_moves(g, &g->enemies[i], 0.05);
+			check_kill(g, &g->enemies[i]);
+		}
+	}
 }

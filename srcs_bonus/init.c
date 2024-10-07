@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:08:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:06:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	init_values_three(t_game *g)
 	g->chad_hp = 100;
 	g->credits_curr = 0;
 	g->credits_y = HEIGHT;
+	g->p->hp = 3;
 	generate_enemies(g, 1);
 	tp_player_spawn(g);
 }

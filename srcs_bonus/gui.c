@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 12:17:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:14:15 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	draw_gui(t_game *g, t_cam *c)
 	{
 		t = g->tex[TEX_GUI_HEALTHBAR];
 		tex_put(&c->buff, &t, WIDTH / 2 - t.width / 2, 0);
+		t = g->tex[TEX_GUI_HP_0 + g->p->hp - 1];
+		tex_put(&c->buff, &t, 10, g->tex[TEX_GUI_0].height + 10);
 		update_chad_healthbar(g);
 	}
 }

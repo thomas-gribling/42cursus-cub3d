@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:59:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:11:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 99
+# define TEX_AMT 103
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -71,82 +71,86 @@
 # define TEX_DOOR_C_BSMT 20
 # define TEX_DOOR_O_BSMT 21
 # define TEX_WALL_BOSS 22
-# define TEX_WALL_CHOICE 95
-# define TEX_WALL_CELL 23
-# define TEX_WALL_SKELETON 24
-# define TEX_DOOR_BOSS 25
-# define TEX_WALL_BACKROOMS 26
-# define TEX_FLOOR 27
-# define TEX_FLOOR_TRAPDOOR 28
-# define TEX_GROUND 29
-# define TEX_GROUND_TRAPDOOR 30
-# define TEX_GROUND_BACKROOMS 31
-# define TEX_GRASS 32
-# define TEX_CARPET 33
-# define TEX_CEILING 34
-# define TEX_CEILING_BSMT 35
-# define TEX_CEILINGBSMT 36
-# define TEX_SPR_TREE_0 37
-# define TEX_SPR_TREE_1 38
-# define TEX_GUI_INV_EMPTY_0 39
-# define TEX_GUI_INV_EMPTY_1 40
-# define TEX_GUI_INV_FULL_0 41
-# define TEX_GUI_INV_FULL_1 42
-# define TEX_GUI_0 43
-# define TEX_GUI_1 44
-# define TEX_GUI_2 45
-# define TEX_GUI_3 46
-# define TEX_GUI_4 47
-# define TEX_GUI_5 48
-# define TEX_GUI_6 49
-# define TEX_GUI_7 50
-# define TEX_GUI_8 51
-# define TEX_GUI_9 52
-# define TEX_GUI_SEP 53
-# define TEX_GUI_MAPWALL 54
-# define TEX_GUI_MAPPLAYER 55
-# define TEX_GUI_MAPEXIT 56
-# define TEX_GUI_SPLASH_0 57
-# define TEX_GUI_SPLASH_1 58
-# define TEX_GUI_SPLASH_2 59
-# define TEX_GUI_SPLASH_3 60
-# define TEX_GUI_HEALTHBAR 61
-# define TEX_PORTAL_0 62
-# define TEX_PORTAL_1 63
-# define TEX_NPC_JERAU 64
-# define TEX_NPC_PIRATE_0 65
-# define TEX_NPC_PIRATE_1 66
-# define TEX_NPC_PIRATE_2 67
-# define TEX_NPC_PIRATE_3 68
-# define TEX_NPC_PIRATE_4 69
-# define TEX_NPC_PIRATE_5 70
-# define TEX_NPC_PIRATE_6 71
-# define TEX_NPC_PIRATE_7 72
-# define TEX_NPC_POULET 73
-# define TEX_NPC_STUDENT_F_0 74
-# define TEX_NPC_STUDENT_F_1 75
-# define TEX_NPC_STUDENT_B_0 76
-# define TEX_NPC_STUDENT_B_1 77
-# define TEX_NPC_STUDENT_DEAD 78
-# define TEX_NPC_BULLY_F_0 79
-# define TEX_NPC_BULLY_F_1 80
-# define TEX_NPC_BULLY_B_0 81
-# define TEX_NPC_BULLY_B_1 82
-# define TEX_NPC_BULLY_DEAD 83
-# define TEX_NPC_CHAD_H 84
-# define TEX_NPC_CHAD_I 85
-# define TEX_NPC_CHAD_A 86
-# define TEX_NPC_CHAD_D 87
-# define TEX_END_0_BG 88
-# define TEX_END_1_BG 89
-# define TEX_END_2_BG 90
-# define TEX_END_3_BG 91
-# define TEX_END_4_BG 92
-# define TEX_END_5_BG 93
-# define TEX_LOVEGIMP 94
-# define TEX_CREDITS_0 96
-# define TEX_CREDITS_1 97
-# define TEX_CREDITS_2 98
+# define TEX_WALL_CHOICE 23
+# define TEX_WALL_CELL 24
+# define TEX_WALL_SKELETON 25
+# define TEX_DOOR_BOSS 26
+# define TEX_WALL_BACKROOMS 27
+# define TEX_FLOOR 28
+# define TEX_FLOOR_TRAPDOOR 29
+# define TEX_GROUND 30
+# define TEX_GROUND_TRAPDOOR 31
+# define TEX_GROUND_BACKROOMS 32
+# define TEX_GRASS 33
+# define TEX_CARPET 34
+# define TEX_CEILING 35
+# define TEX_CEILING_BSMT 36
+# define TEX_CEILINGBSMT 37
+# define TEX_SPR_TREE_0 38
+# define TEX_SPR_TREE_1 39
+# define TEX_GUI_INV_EMPTY_0 40
+# define TEX_GUI_INV_EMPTY_1 41
+# define TEX_GUI_INV_FULL_0 42
+# define TEX_GUI_INV_FULL_1 43
+# define TEX_GUI_0 44
+# define TEX_GUI_1 45
+# define TEX_GUI_2 46
+# define TEX_GUI_3 47
+# define TEX_GUI_4 48
+# define TEX_GUI_5 49
+# define TEX_GUI_6 50
+# define TEX_GUI_7 51
+# define TEX_GUI_8 52
+# define TEX_GUI_9 53
+# define TEX_GUI_SEP 54
+# define TEX_GUI_MAPWALL 55
+# define TEX_GUI_MAPPLAYER 56
+# define TEX_GUI_MAPEXIT 57
+# define TEX_GUI_SPLASH_0 58
+# define TEX_GUI_SPLASH_1 59
+# define TEX_GUI_SPLASH_2 60
+# define TEX_GUI_SPLASH_3 61
+# define TEX_GUI_HEALTHBAR 62
+# define TEX_GUI_HP_0 63
+# define TEX_GUI_HP_1 64
+# define TEX_GUI_HP_2 65
+# define TEX_PORTAL_0 66
+# define TEX_PORTAL_1 67
+# define TEX_NPC_JERAU 68
+# define TEX_NPC_PIRATE_0 69
+# define TEX_NPC_PIRATE_1 70
+# define TEX_NPC_PIRATE_2 71
+# define TEX_NPC_PIRATE_3 72
+# define TEX_NPC_PIRATE_4 73
+# define TEX_NPC_PIRATE_5 74
+# define TEX_NPC_PIRATE_6 75
+# define TEX_NPC_PIRATE_7 76
+# define TEX_NPC_POULET 77
+# define TEX_NPC_STUDENT_F_0 78
+# define TEX_NPC_STUDENT_F_1 79
+# define TEX_NPC_STUDENT_B_0 80
+# define TEX_NPC_STUDENT_B_1 81
+# define TEX_NPC_STUDENT_DEAD 82
+# define TEX_NPC_BULLY_F_0 83
+# define TEX_NPC_BULLY_F_1 84
+# define TEX_NPC_BULLY_B_0 85
+# define TEX_NPC_BULLY_B_1 86
+# define TEX_NPC_BULLY_DEAD 87
+# define TEX_NPC_CHAD_H 88
+# define TEX_NPC_CHAD_I 89
+# define TEX_NPC_CHAD_A 90
+# define TEX_NPC_CHAD_D 91
+# define TEX_NPC_BULLY_BALL 92
+# define TEX_END_0_BG 93
+# define TEX_END_1_BG 94
+# define TEX_END_2_BG 95
+# define TEX_END_3_BG 96
+# define TEX_END_4_BG 97
+# define TEX_END_5_BG 98
+# define TEX_LOVEGIMP 99
+# define TEX_CREDITS_0 100
+# define TEX_CREDITS_1 101
+# define TEX_CREDITS_2 102
 
 typedef struct s_tex
 {
@@ -188,6 +192,7 @@ typedef struct s_enemy
 # define NEXTBOT_2 3
 # define NEXTBOT_3 4
 # define CHAD 5
+# define BULLY_BALL 6
 
 typedef struct s_map
 {
@@ -286,6 +291,7 @@ typedef struct s_player
 	int		moving_y;
 	int		rotating;
 	t_cam	*cam;
+	int		hp;
 }			t_player;
 
 typedef struct s_portal

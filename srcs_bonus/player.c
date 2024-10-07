@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:36:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 11:52:11 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:41:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	apply_moves(t_game *g, double *new)
 		g->p->x = new[0];
 	if (!is_collision(g->map->content[(int)new[1]][(int)g->p->x]))
 		g->p->y = new[1];
-	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && !g->bullies_amt)
-		change_level(g, g->curr_level + 1);
+	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'E' && g->bullies_amt)
+		change_level(g, 2);//g->curr_level + 1);
 	if (g->map->content[(int)g->p->y][(int)g->p->x] == 'S')
 		change_level(g, 3);
 	do_portals(g);

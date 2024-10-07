@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 08:39:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:24:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	get_texture_enemy(int type, int is_dead, int b, int phase)
 {
 	if (type == STUDENT && is_dead)
 		return (TEX_NPC_STUDENT_DEAD);
-	if (type == BULLY && is_dead)
+	if ((type == BULLY || type == BULLY_BALL) && is_dead)
 		return (TEX_NPC_BULLY_DEAD);
 	if (type == STUDENT)
 		return (TEX_NPC_STUDENT_F_0 + (get_time() % (2 * 250)) / 250 + b * 2);
@@ -32,12 +32,18 @@ static int	get_texture_enemy(int type, int is_dead, int b, int phase)
 		return (TEX_NPC_CHAD_D);
 	if (type == CHAD)
 		return (TEX_NPC_CHAD_H + phase);
+	if (type == BULLY_BALL)
+		return (TEX_NPC_BULLY_BALL);
 	return (TEX_SPR_TREE_0);
 }
 
 static void	raycast_spr_draw(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 {
 	c->pix_x = c->draw_x[0] - 1;
+	if (e && c->draw_x[1] > WIDTH / 2 - WIDTH / 4
+		&& c->draw_x[0] < WIDTH / 2 + WIDTH / 4
+		&& dist_to_tile(g, e->x, e->y) < 6.0 && !e->is_dead)
+		g->id_shootable = e->id;	
 	while (c->pix_x++ < c->draw_x[1])
 	{
 		c->tex_x = (int)(256 * (c->pix_x - (-c->spr_w / 2 + c->spr_screen_x))
@@ -49,11 +55,7 @@ static void	raycast_spr_draw(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 			{
 				c->d = c->pix_y * 256 - HEIGHT * 128 + c->spr_h * 128;
 				c->tex_y = ((c->d * tex.height) / c->spr_h) / 256;
-				c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
-				if (e && c->pix_x > WIDTH / 2 - WIDTH / 4
-					&& c->pix_x < WIDTH / 2 + WIDTH / 4
-					&& dist_to_tile(g, e->x, e->y) < 6.0 && !e->is_dead)
-					g->id_shootable = e->id;
+				c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);	
 				tex_pixel_put(&c->buff, c->pix_x, c->pix_y, c->color);
 			}
 		}
