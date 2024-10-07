@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:31:44 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/30 09:46:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:07:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ void	raycast_tex(t_game *g, t_cam *c, int x, t_coll co)
 	else
 		c->line_h = (int)(HEIGHT / c->perp_wall_dist);
 	if (x == WIDTH / 2 && co.solid)
-	{
-		g->looking_x = co.map_x;
-		g->looking_y = co.map_y;
-		g->side = co.side;
-		g->ray_dir_x = co.ray_dir_x;
-		g->ray_dir_y = co.ray_dir_y;
-	}
+		save_looking_at(g, &co);
 	raycast_fill_buffer(c, x, co);
 }
 
@@ -89,15 +83,7 @@ static void	raycast_dda(t_game *g, t_cam *c, int x)
 				append_z_buffer(g, (void *)dup_coll(&tmp, c), WALL);
 		}
 	}
-	tmp.map_x = c->map_x;
-	tmp.map_y = c->map_y;
-	tmp.side = c->side;
-	tmp.tex = g->tex[get_texture(g, c->map_x, c->map_y)];
-	tmp.solid = 1;
-	tmp.ray_dir_x = c->ray_dir_x;
-	tmp.ray_dir_y = c->ray_dir_y;
-	tmp.step_x = c->step_x;
-	tmp.step_y = c->step_y;
+	save_to_coll(g, c, &tmp);
 	raycast_tex(g, c, x, tmp);
 }
 

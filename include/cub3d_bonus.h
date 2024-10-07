@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:11:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:07:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,6 +390,8 @@ int				mouse_move(int x, int y, t_game *g);
 
 void			update_screen(t_game *g);
 void			raycast(t_game *g, t_cam *c, int x);
+void			save_looking_at(t_game *g, t_coll *co);
+void			save_to_coll(t_game *g, t_cam *c, t_coll *tmp);
 void			raycast_tex(t_game *g, t_cam *c, int x, t_coll co);
 void			raycast_floor_ceiling(t_game *g, t_cam *c);
 void			raycast_z_buffer(t_game *g);

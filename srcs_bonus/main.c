@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 09:35:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:00:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	close_game(t_game *g)
 	int	i;
 
 	i = -1;
-	//playsound(NULL, 0, 1, 0);
+	//playsound("empty", 0, 1, 0); //playsound un empty
 	free_z_buffer(g);
 	while (g->maps[++i])
 	{

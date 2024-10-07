@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:47 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:45:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 10:07:16 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,26 @@ int	get_dir(t_cam *c)
 	if (c->side == 1 && c->ray_dir_y < 0)
 		dir = SOUTH;
 	return (dir);
+}
+
+void	save_looking_at(t_game *g, t_coll *co)
+{
+	g->looking_x = co->map_x;
+	g->looking_y = co->map_y;
+	g->side = co->side;
+	g->ray_dir_x = co->ray_dir_x;
+	g->ray_dir_y = co->ray_dir_y;
+}
+
+void	save_to_coll(t_game *g, t_cam *c, t_coll *tmp)
+{
+	tmp->map_x = c->map_x;
+	tmp->map_y = c->map_y;
+	tmp->side = c->side;
+	tmp->tex = g->tex[get_texture(g, c->map_x, c->map_y)];
+	tmp->solid = 1;
+	tmp->ray_dir_x = c->ray_dir_x;
+	tmp->ray_dir_y = c->ray_dir_y;
+	tmp->step_x = c->step_x;
+	tmp->step_y = c->step_y;
 }
