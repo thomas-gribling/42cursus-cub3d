@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 22:18:14 by bgnnrs            #+#    #+#             */
-/*   Updated: 2024/10/07 14:41:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:12:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,21 @@ void	playsound(char *file, int wait, int stop, int attenued)
 		perror("");
 }
 
-void	stopallsounds(void)
+/* Play the .ogg file every [duration] milliseconds */
+void	playsoundloop(t_game *g, char *file, unsigned int duration)
+{
+	g->loop_time = duration;
+	g->looped_snd = file;
+	playsound(file, 0, 0, 0);
+	g->loop_start = get_time();
+}
+
+/* Stops all playing sounds */
+void	stopallsounds(t_game *g)
 {
 	int	result;
 	
 	result = system("pkill -f paplay");
 	(void)result;
+	g->loop_start = 0;
 }

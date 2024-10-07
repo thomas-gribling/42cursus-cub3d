@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 14:49:45 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:21:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,11 @@
 # define SND_SHOOT "shoot"
 # define SND_PORTAL_SHOOT "shoot"
 # define SND_PORTAL_TP "shoot"
+# define MUS_MENU_DUR 1000
+# define MUS_LVL1_DUR 1000
+# define MUS_LVL2_DUR 1000
+# define MUS_BOSS_DUR 1000
+# define MUS_BACKROOMS_DUR 1000
 
 typedef struct s_tex
 {
@@ -369,6 +374,9 @@ typedef struct s_game
 	int				chad_hp;
 	int				credits_curr;
 	int				credits_y;
+	char			*looped_snd;
+	unsigned int	loop_time;
+	unsigned int	loop_start;
 }				t_game;
 
 t_map			*load_map(char *path);
@@ -447,6 +455,7 @@ void			append_z_buffer(t_game *g, void *ptr, int type);
 void			free_z_buffer(t_game *g);
 
 void			playsound(char *file, int wait, int stop, int attenued);
-void			stopallsounds(void);
+void			playsoundloop(t_game *g, char *file, unsigned int duration);
+void			stopallsounds(t_game *g);
 
 #endif // CUB3D_BONUS_H

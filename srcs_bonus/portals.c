@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:01:16 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/02 09:03:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:19:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	tp_portal(t_game *g, int dest)
 		g->p->y = g->portals[dest].map_y + 0.5;
 	}
 	turn_player_to(g->p->cam, g->portals[dest].face);
+	playsound(SND_PORTAL_TP, 0, 0, 0);
 }
 
 void	do_portals(t_game *g)

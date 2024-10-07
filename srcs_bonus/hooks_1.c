@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:37:57 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 14:52:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:18:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ static void	place_portal(t_game *g, int i)
 static void	use_weapon(t_game *g, int button)
 {
 	if (button == LEFT_CLICK && g->curr_slot == 1 && g->slots[1] == 1)
+	{
+		playsound(SND_PORTAL_SHOOT, 0, 0, 0);
 		place_portal(g, 0);
+	}
 	if (button == RIGHT_CLICK && g->curr_slot == 1 && g->slots[1] == 1)
+	{
+		playsound(SND_PORTAL_SHOOT, 0, 0, 0);
 		place_portal(g, 1);
+	}
 	if (button == LEFT_CLICK && g->curr_slot == 0 && g->slots[0] == 1
 		&& get_time() - g->start > 100.0)
 	{
@@ -56,6 +62,7 @@ static int	mouse_click(int button, int x, int y, t_game *g)
 	(void)y;
 	if (g->scene == 0 && button == LEFT_CLICK)
 	{
+		stopallsounds(g);
 		g->scene = 1;
 		g->start = get_time();
 		g->last_frame = g->start;

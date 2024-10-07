@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 14:50:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:21:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	close_game(t_game *g)
 {
 	int	i;
 
-	stopallsounds();
+	stopallsounds(g);
 	free_z_buffer(g);
 	i = -1;
 	while (g->maps[++i])
@@ -85,6 +85,11 @@ int	main_loop(t_game *g)
 {
 	int	pos[2];
 
+	if (g->loop_start && get_time() - g->loop_start >= g->loop_time)
+	{
+		playsound(g->looped_snd, 0, 0, 0);
+		g->loop_start = get_time();
+	}
 	if (g->scene == 1)
 	{
 		update_enemies(g);
@@ -129,7 +134,7 @@ int	main(void)
 	playsound(SND_SHOOT, 0, 0, 0);
 	load_assets(&g);
 	init_values(&g);
-	playsound(MUS_MENU, 0, 0, 0);
+	playsoundloop(&g, MUS_MENU, MUS_MENU_DUR);
 	do_hooks(&g);
 	mlx_loop(g.mlx);
 	return (0);
