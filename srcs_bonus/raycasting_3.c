@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:39:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 08:06:47 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/07 08:39:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	raycast_spr_draw(t_game *g, t_cam *c, t_tex tex, t_enemy *e)
 				c->d = c->pix_y * 256 - HEIGHT * 128 + c->spr_h * 128;
 				c->tex_y = ((c->d * tex.height) / c->spr_h) / 256;
 				c->color = tex_get_pixel(&tex, c->tex_x, c->tex_y);
-				if (e && c->pix_x > WIDTH / 2 - 130
-					&& c->pix_x < WIDTH / 2 + 130
-					&& dist_to_tile(g, e->x, e->y) < 4.0 && !e->is_dead)
+				if (e && c->pix_x > WIDTH / 2 - WIDTH / 4
+					&& c->pix_x < WIDTH / 2 + WIDTH / 4
+					&& dist_to_tile(g, e->x, e->y) < 6.0 && !e->is_dead)
 					g->id_shootable = e->id;
 				tex_pixel_put(&c->buff, c->pix_x, c->pix_y, c->color);
 			}
