@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/08 01:15:52 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:07:52 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@
 # define MUS_LVL1 "gero"
 # define MUS_LVL2 "gero"
 # define MUS_BOSS "TestDonjon"
-# define MUS_BACKROOMS "gero"
+# define MUS_BACKROOMS "Apprehension"
 # define MUS_END "gero"
 # define SND_SHOOT "shoot"
 # define SND_PORTAL_SHOOT "shoot"
@@ -165,7 +165,7 @@
 # define MUS_LVL1_DUR 154000
 # define MUS_LVL2_DUR 154000
 # define MUS_BOSS_DUR 103000
-# define MUS_BACKROOMS_DUR 154000
+# define MUS_BACKROOMS_DUR 80000
 
 typedef struct s_tex
 {
