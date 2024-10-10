@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:37:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:52:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ int	load_map(t_game *g, char *path)
 {
 	g->colors[0] = 0;
 	g->colors[1] = 0;
-	g->tex_paths = malloc(5 * sizeof(char *));
-	g->tex_paths[4] = NULL;
+	g->tex_paths = NULL;
 	if (parse_map_infos(g, path))
-		return (put_error("Error while parsing the map!\n"));
+		return (put_error("Error while parsing map infos!\n"));
 	if (parse_map_layout(g, path))
 	{
 		tab_free(g->map->content);
 		free(g->map);
-		return (put_error("Error while parsing the map!\n"));
+		return (put_error("Error while parsing map layout!\n"));
 	}
 	if (check_map_bounds(g->map->content, 0))
 	{

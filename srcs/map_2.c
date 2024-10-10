@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:49:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:27:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:55:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static int	get_texture(t_game *g, char *line)
 	j = i;
 	while (line[j] && line[j] != '\n')
 		j++;
+	if (!g->tex_paths)
+		g->tex_paths = malloc(5 * sizeof(char *));
 	g->tex_paths[tex] = malloc(j - i + 1);
 	j = i - 1;
 	while (line[++j] && line[j] != '\n')
@@ -112,7 +114,7 @@ int	parse_map_infos(t_game *g, char *path)
 	elements = 0;
 	f = open(path, O_RDONLY);
 	if (f < 0)
-		return (put_error("Error: unable to open the map!\n"));
+		return (1);
 	line = get_next_line(f);
 	while (line)
 	{
@@ -121,6 +123,8 @@ int	parse_map_infos(t_game *g, char *path)
 		free(line);
 		line = get_next_line(f);
 	}
+	if (g->tex_paths)
+		g->tex_paths[4] = NULL;
 	close(f);
 	return (error > 0 || elements < 6);
 }
