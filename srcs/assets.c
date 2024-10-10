@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 10:29:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:56:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	load_tex(t_game *g, char *path, int id)
 int	load_assets(t_game *g)
 {
 	int	error;
-	
+
 	error = 0;
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
 	error += load_tex(g, g->tex_paths[0], TEX_WALL_N);

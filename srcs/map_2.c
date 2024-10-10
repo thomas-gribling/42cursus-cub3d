@@ -6,31 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:49:10 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 10:20:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:57:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	check_map_format(char *map)
-{
-	int	i;
-
-	if (!map)
-		return (1);
-	i = 0;
-	while (map[i])
-		i++;
-	if (i < 4)
-		return (1);
-	i--;
-	if (map[i] == 'b')
-		if (map[i - 1] == 'u')
-			if (map[i - 2] == 'c')
-				if (map[i - 3] == '.')
-					return (0);
-	return (1);
-}
 
 static int	get_color(t_game *g, char *line)
 {
@@ -87,6 +67,20 @@ static int	get_texture(t_game *g, char *line)
 	return (0);
 }
 
+static void	check_dirs_vals(t_game *g, char *line, int *error)
+{
+	if (!ft_strncmp(line, "NO ", 3) && !g->dir_found[0])
+		g->dir_found[0] = 1;
+	else if (!ft_strncmp(line, "SO ", 3) && !g->dir_found[1])
+		g->dir_found[1] = 1;
+	else if (!ft_strncmp(line, "WE ", 3) && !g->dir_found[2])
+		g->dir_found[2] = 1;
+	else if (!ft_strncmp(line, "EA ", 3) && !g->dir_found[3])
+		g->dir_found[3] = 1;
+	else
+		(*error)++;
+}
+
 static void	parse_infos_loop(t_game *g, char *line, int *error, int *elements)
 {
 	if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
@@ -103,30 +97,19 @@ static void	parse_infos_loop(t_game *g, char *line, int *error, int *elements)
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
 	{
-		if (!ft_strncmp(line, "NO ", 3) && !g->dir_found[0])
-			g->dir_found[0] = 1;
-		else if (!ft_strncmp(line, "SO ", 3) && !g->dir_found[1])
-			g->dir_found[1] = 1;
-		else if (!ft_strncmp(line, "WE ", 3) && !g->dir_found[2])
-			g->dir_found[2] = 1;
-		else if (!ft_strncmp(line, "EA ", 3) && !g->dir_found[3])
-			g->dir_found[3] = 1;
-		else
-			(*error)++;
+		check_dirs_vals(g, line, error);
 		*error += get_texture(g, line);
 		(*elements)++;
 	}
 }
 
-int	parse_map_infos(t_game *g, char *path)
+int	parse_map_infos(t_game *g, char *path, int error)
 {
 	int		f;
 	char	*line;
-	int		error;
 	int		elements;
 	int		i;
 
-	error = 0;
 	elements = 0;
 	f = open(path, O_RDONLY);
 	if (f < 0)

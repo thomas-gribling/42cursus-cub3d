@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 10:27:23 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:55:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_game
 }				t_game;
 
 int				check_map_format(char *map);
-int				parse_map_infos(t_game *g, char *path);
+int				parse_map_infos(t_game *g, char *path, int error);
 int				parse_map_layout(t_game *g, char *path);
 int				check_map_bounds(char **map, int y);
 int				check_map_chars(char **map);

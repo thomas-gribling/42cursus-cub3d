@@ -6,13 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 10:37:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:56:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void pre_init(t_game *g)
+static void	pre_init(t_game *g)
 {
 	g->colors[0] = 0;
 	g->colors[1] = 0;
@@ -51,7 +51,7 @@ int	close_game(t_game *g)
 int	load_map(t_game *g, char *path)
 {
 	pre_init(g);
-	if (parse_map_infos(g, path))
+	if (parse_map_infos(g, path, 0))
 		return (put_error("Error while parsing map infos!\n"));
 	if (parse_map_layout(g, path))
 	{

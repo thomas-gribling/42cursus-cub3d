@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -O3 -g
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c hooks.c map_1.c map_2.c init.c  \
+FILES = main.c hooks.c map_1.c map_2.c map_3.c init.c  \
 		assets.c player.c raycasting.c \
 		utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
