@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:39:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:41:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int	main(void)
 		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
-	g.scene = 0;
+	g.scene = 2;
 	g.tmp_tex = load_tex(&g, "assets/loading_splash.xpm");
 	mlx_put_image_to_window(g.mlx, g.win, g.tmp_tex.ptr, 0, 0);
 	playsound(SND_SHOOT, 0, 0, 0);

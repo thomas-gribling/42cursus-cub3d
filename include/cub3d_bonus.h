@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/08 17:57:25 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:40:56 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@
 # define MUS_MENU "Mechanolith"
 # define MUS_LVL1 "Ecole"
 # define MUS_LVL2 "gero"
-# define MUS_BOSS "TestDonjon"
+# define MUS_BOSS "Donjon"
 # define MUS_BACKROOMS "Apprehension"
 # define MUS_END "gero"
 # define SND_SHOOT "shoot"
