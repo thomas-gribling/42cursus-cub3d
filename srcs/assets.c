@@ -6,28 +6,34 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:27:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:29:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_tex	load_tex(t_game *g, char *path)
+int	load_tex(t_game *g, char *path, int id)
 {
 	t_tex	s;
 
 	s.ptr = mlx_xpm_file_to_image(g->mlx, path, &s.width, &s.height);
-	s.addr = mlx_get_data_addr(s.ptr, &s.bpp, &s.line_len, &s.endian);
-	return (s);
+	if (s.ptr)
+		s.addr = mlx_get_data_addr(s.ptr, &s.bpp, &s.line_len, &s.endian);
+	g->tex[id] = s;
+	return (!s.ptr);
 }
 
-void	load_assets(t_game *g)
+int	load_assets(t_game *g)
 {
+	int	error;
+	
+	error = 0;
 	g->tex = malloc(TEX_AMT * sizeof(t_tex));
-	g->tex[TEX_WALL_N] = load_tex(g, g->tex_paths[0]);
-	g->tex[TEX_WALL_E] = load_tex(g, g->tex_paths[3]);
-	g->tex[TEX_WALL_S] = load_tex(g, g->tex_paths[1]);
-	g->tex[TEX_WALL_W] = load_tex(g, g->tex_paths[2]);
+	error += load_tex(g, g->tex_paths[0], TEX_WALL_N);
+	error += load_tex(g, g->tex_paths[1], TEX_WALL_S);
+	error += load_tex(g, g->tex_paths[2], TEX_WALL_W);
+	error += load_tex(g, g->tex_paths[3], TEX_WALL_E);
+	return (error);
 }
 
 void	tex_pixel_put(t_tex *tex, int x, int y, int color)

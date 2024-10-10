@@ -6,11 +6,24 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 09:52:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:37:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void pre_init(t_game *g)
+{
+	g->colors[0] = 0;
+	g->colors[1] = 0;
+	g->tex_paths = NULL;
+	g->f_found = 0;
+	g->c_found = 0;
+	g->dir_found[0] = 0;
+	g->dir_found[1] = 0;
+	g->dir_found[2] = 0;
+	g->dir_found[3] = 0;
+}
 
 int	close_game(t_game *g)
 {
@@ -24,7 +37,8 @@ int	close_game(t_game *g)
 	free(g->p);
 	i = -1;
 	while (++i < TEX_AMT)
-		mlx_destroy_image(g->mlx, g->tex[i].ptr);
+		if (g->tex[i].ptr)
+			mlx_destroy_image(g->mlx, g->tex[i].ptr);
 	free(g->tex);
 	mlx_destroy_window(g->mlx, g->win);
 	if (g->mlx)
@@ -36,14 +50,13 @@ int	close_game(t_game *g)
 
 int	load_map(t_game *g, char *path)
 {
-	g->colors[0] = 0;
-	g->colors[1] = 0;
-	g->tex_paths = NULL;
+	pre_init(g);
 	if (parse_map_infos(g, path))
 		return (put_error("Error while parsing map infos!\n"));
 	if (parse_map_layout(g, path))
 	{
-		tab_free(g->map->content);
+		if (g->map)
+			tab_free(g->map->content);
 		free(g->map);
 		return (put_error("Error while parsing map layout!\n"));
 	}
@@ -53,7 +66,13 @@ int	load_map(t_game *g, char *path)
 		free(g->map);
 		return (put_error("Error: map bounds must be walls!\n"));
 	}
-	return (check_map_chars(g->map->content));
+	if (check_map_chars(g->map->content))
+	{
+		tab_free(g->map->content);
+		free(g->map);
+		return (1);
+	}
+	return (0);
 }
 
 int	main_loop(t_game *g)
@@ -84,8 +103,9 @@ int	main(int ac, char **av)
 		return (tab_free(g.tex_paths), 1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, GAME_TITLE);
-	load_assets(&g);
 	init_values(&g);
+	if (load_assets(&g))
+		return (put_error("Error while loading textures!\n"), close_game(&g));
 	raycast(&g, g.p->cam, -1);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 3, 1L << 1, key_released, &g);

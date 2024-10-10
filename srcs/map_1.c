@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:30:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/09/25 18:27:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:46:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	read_layout(t_game *g, char *line, int f)
 {
+	g->map = NULL;
 	if (!line)
 		return (put_error("Error: missing map in file.\n"));
 	g->map = malloc(sizeof(t_map));
@@ -79,6 +80,10 @@ int	check_map_chars(char **map)
 				return (put_error("Error: invalid characters in map!\n"));
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
+				if (!(x == 0 || y == 0 || !map[y + 1] || map[y][x + 1] == '\0'
+					|| map[y][x + 1] == '\n' || map[y + 1][x] == ' '
+					|| map[y - 1][x] == ' '  || map[y][x + 1] == ' '
+					|| map[y][x - 1] == ' '))
 				count++;
 		}
 	}
