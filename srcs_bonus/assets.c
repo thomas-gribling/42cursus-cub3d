@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:38:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:31:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ static void	load_assets_5(t_game *g)
 	g->tex[TEX_CREDITS_0] = load_tex(g, "assets/credits_0.xpm");
 	g->tex[TEX_CREDITS_1] = load_tex(g, "assets/credits_1.xpm");
 	g->tex[TEX_CREDITS_2] = load_tex(g, "assets/credits_2.xpm");
+	g->tex[TEX_GUN_0] = load_tex(g, "assets/weapon/gun1.xpm");
+	g->tex[TEX_GUN_1] = load_tex(g, "assets/weapon/gun2.xpm");
+	g->tex[TEX_GUN_2] = load_tex(g, "assets/weapon/gun3.xpm");
+	g->tex[TEX_PORTALG_0] = load_tex(g, "assets/weapon/portal1.xpm");
+	g->tex[TEX_PORTALG_1B] = load_tex(g, "assets/weapon/portalb.xpm");
+	g->tex[TEX_PORTALG_1R] = load_tex(g, "assets/weapon/portalr.xpm");
+	g->tex[TEX_PORTALG_BROKEN] = load_tex(g, "assets/weapon/impotent.xpm");
 }
 
 static void	load_assets_4(t_game *g)

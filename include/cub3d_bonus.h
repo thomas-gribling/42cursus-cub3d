@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 09:40:56 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:41:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 103
+# define TEX_AMT 110
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -151,19 +151,26 @@
 # define TEX_CREDITS_0 100
 # define TEX_CREDITS_1 101
 # define TEX_CREDITS_2 102
+# define TEX_GUN_0 103
+# define TEX_GUN_1 104
+# define TEX_GUN_2 105
+# define TEX_PORTALG_0 106
+# define TEX_PORTALG_1B 107
+# define TEX_PORTALG_1R 108
+# define TEX_PORTALG_BROKEN 109
 
 # define MUS_MENU "Mechanolith"
 # define MUS_LVL1 "Ecole"
-# define MUS_LVL2 "gero"
+# define MUS_LVL2 "caca"
 # define MUS_BOSS "Donjon"
 # define MUS_BACKROOMS "Apprehension"
 # define MUS_END "gero"
 # define SND_SHOOT "shoot"
-# define SND_PORTAL_SHOOT "shoot"
-# define SND_PORTAL_TP "shoot"
+# define SND_PORTAL_SHOOT "portal_shoot"
+# define SND_PORTAL_TP "portal_tp"
 # define MUS_MENU_DUR 55000
 # define MUS_LVL1_DUR 75000
-# define MUS_LVL2_DUR 154000
+# define MUS_LVL2_DUR 132000
 # define MUS_BOSS_DUR 103000
 # define MUS_BACKROOMS_DUR 80000
 
@@ -377,6 +384,9 @@ typedef struct s_game
 	char			*looped_snd;
 	unsigned int	loop_time;
 	unsigned int	loop_start;
+	int				shoot_state;
+	unsigned int	shoot_timer;
+	int				curr_click;
 }				t_game;
 
 t_map			*load_map(char *path);

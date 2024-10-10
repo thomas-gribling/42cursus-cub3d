@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:43:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:08:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:28:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static void	init_values_three(t_game *g)
 	g->looped_snd = NULL;
 	g->loop_start = 0;
 	g->loop_time = 0;
+	g->shoot_state = 0;
+	g->shoot_timer = 0;
+	g->curr_click = 0;
 	generate_enemies(g, 1);
 	tp_player_spawn(g);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 09:14:15 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:35:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,33 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 	}
 }
 
+static void draw_weapons(t_game *g, t_cam *c, int curr)
+{
+	t_tex	t;
+
+	if (!g->curr_slot && curr >= 300)
+	{
+		g->shoot_state = 0;
+		g->shoot_timer = 0;
+	}
+	else if (!g->curr_slot && g->shoot_timer && curr >= 200)
+		g->shoot_state = 1;
+	else if (!g->curr_slot && g->shoot_timer && curr >= 100)
+		g->shoot_state = 2;
+	if (g->curr_slot && g->curr_level == 2)
+		g->shoot_state = 3;
+	else if (g->curr_slot && curr >= 200)
+	{
+		g->shoot_state = 0;
+		g->shoot_timer = 0;
+	}
+	else if (g->curr_slot && g->shoot_timer && curr >= 100)
+		g->shoot_state = 1 + 1 * (g->curr_click == RIGHT_CLICK);
+	t = g->tex[TEX_GUN_0 + g->shoot_state + 3 * g->curr_slot];
+	if (g->slots[0] && g->slots[1])
+		tex_put_scale(&c->buff, &t, 0, 0);
+}
+
 void	draw_gui(t_game *g, t_cam *c)
 {
 	int		time_left;
@@ -83,6 +110,7 @@ void	draw_gui(t_game *g, t_cam *c)
 		tex_put(&c->buff, &t, 10, g->tex[TEX_GUI_0].height + 10);
 		update_chad_healthbar(g);
 	}
+	draw_weapons(g, g->p->cam, get_time() - g->shoot_timer);
 }
 
 void	update_screen(t_game *g)
