@@ -6,50 +6,35 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:09:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 09:44:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:54:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-static int	close_game_bis(t_game *g)
+static int	main_loop_bis_bis(t_game *g)
 {
-	int	i;
+	int		pos[2];
+	t_tex	*b;
 
-	i = -1;
-	while (++i < TEX_AMT)
-		mlx_destroy_image(g->mlx, g->tex[i].ptr);
-	free(g->tex);
-	mlx_destroy_window(g->mlx, g->win);
-	if (g->mlx)
-		mlx_destroy_display(g->mlx);
-	mlx_loop_end(g->mlx);
-	free(g->mlx);
-	return (0);
-}
-
-int	close_game(t_game *g)
-{
-	int	i;
-
-	stopallsounds(g);
-	free_z_buffer(g);
-	i = -1;
-	while (g->maps[++i])
+	b = &g->p->cam->buff;
+	if (g->scene == 1)
 	{
-		tab_free(g->maps[i]->content);
-		free(g->maps[i]->sizes);
-		free(g->maps[i]->spr);
-		free(g->maps[i]);
+		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
+		if ((pos[0] < 10 || pos[0] > WIDTH - 11) && pos[0] >= 0
+			&& pos[0] < WIDTH)
+			mouse_move(pos[0], pos[1], g);
 	}
-	if (g->scene == 0)
-		mlx_destroy_image(g->mlx, g->tmp_tex.ptr);
-	mlx_destroy_image(g->mlx, g->p->cam->buff.ptr);
-	free(g->p->cam);
-	free(g->p);
-	if (g->enemies)
-		free(g->enemies);
-	exit(close_game_bis(g));
+	if (g->scene == 2)
+	{
+		if (g->ending)
+			stopallsounds(g);
+		reset_buffer(b);
+		tex_put_scale(b, &g->tex[TEX_END_0_BG + g->ending], 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win, b->ptr, 0, 0);
+		draw_credits(g);
+	}
+	return (0);
 }
 
 static int	main_loop_bis(t_game *g)
@@ -71,22 +56,11 @@ static int	main_loop_bis(t_game *g)
 			g->scene = 2;
 		}
 	}
-	if (g->scene == 2)
-	{
-		if (g->ending)
-			stopallsounds(g);
-		reset_buffer(b);
-		tex_put_scale(b, &g->tex[TEX_END_0_BG + g->ending], 0, 0);
-		mlx_put_image_to_window(g->mlx, g->win, b->ptr, 0, 0);
-		draw_credits(g);
-	}
-	return (0);
+	return (main_loop_bis_bis(g));
 }
 
 int	main_loop(t_game *g)
 {
-	int	pos[2];
-
 	if (g->loop_start && get_time() - g->loop_start >= g->loop_time)
 	{
 		playsound(g->looped_snd, 0, 0, 0);
@@ -108,10 +82,6 @@ int	main_loop(t_game *g)
 			move_player(g, g->p->cam, g->p->moving_y);
 		if (g->p->rotating)
 			rotate_player(g, g->p->cam, g->p->rotating);
-		mlx_mouse_get_pos(g->mlx, g->win, &pos[0], &pos[1]);
-		if ((pos[0] < 10 || pos[0] > WIDTH - 11) && pos[0] >= 0
-			&& pos[0] < WIDTH)
-			mouse_move(pos[0], pos[1], g);
 	}
 	return (main_loop_bis(g));
 }

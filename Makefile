@@ -20,9 +20,9 @@ FILES = main.c hooks.c map_1.c map_2.c map_3.c init.c  \
 		assets.c player.c raycasting.c \
 		utils_1.c utils_2.c utils_3.c gnl.c utils_gnl.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
-FILES_BONUS = main.c hooks_1.c hooks_2.c map.c init.c  \
+FILES_BONUS = main.c close_game.c hooks_1.c hooks_2.c map.c init.c  \
 			assets.c player.c portals.c enemies_1.c enemies_2.c enemies_3.c enemies_4.c \
-			gui.c minimap.c textures.c get_texture_1.c get_texture_2.c \
+			gui_1.c gui_2.c minimap.c textures.c get_texture_1.c get_texture_2.c \
 			raycasting_1.c raycasting_2.c raycasting_3.c \
 			z_buffer_1.c z_buffer_2.c \
 			utils_1.c utils_2.c utils_3.c \
@@ -36,15 +36,15 @@ OBJECTS_BONUS = $(addprefix $(SRCS_BONUS), $(FILES_BONUS:.c=.o))
 
 all: mlx $(NAME)
 
-#mlx:
-#	@make -sC $(MLX_PATH)
+mlx:
+	@make -sC $(MLX_PATH)
 
 $(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -lpulse -lm -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "\n$(BOLD_GREEN)=== $@ successfully compiled! ===$(RESET)\n"
 
-bonus: $(OBJECTS_BONUS)
+bonus: mlx $(OBJECTS_BONUS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$(NAME)$(RESET)] : $(YELLOW)Compiling $(NAME) (bonus)$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS_BONUS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -lm -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "\n$(BOLD_GREEN)=== $(NAME) successfully compiled! ===$(RESET)\n"
@@ -56,7 +56,7 @@ clean:
 fclean: clean
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing $(NAME)"
 	@rm -rf $(NAME)
-#	@make clean -sC $(MLX_PATH)
+	@make clean -sC $(MLX_PATH)
 
 re: fclean all
 

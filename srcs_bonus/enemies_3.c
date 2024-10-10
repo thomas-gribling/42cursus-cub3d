@@ -6,30 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 07:57:03 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:45:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:51:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-
-void	update_chad_healthbar(t_game *g)
-{
-	int	bounds[2];
-	int	thickness;
-	int	x;
-	int	y;
-
-	bounds[0] = WIDTH / 2 - 200;
-	bounds[1] = bounds[0] + g->chad_hp * 4;
-	y = 99;
-	thickness = 10 + y + 1;
-	while (++y < thickness && g->chad_hp)
-	{
-		x = bounds[0] - 1;
-		while (++x < bounds[1])
-			tex_pixel_put(&g->p->cam->buff, x, y, 0x00CC00);
-	}
-}
 
 static void	clean_bodies(t_game *g)
 {
@@ -98,20 +79,8 @@ static void	update_chad_fight(t_game *g)
 	}
 }
 
-void	update_chad(t_game *g)
+static void	update_chad_bis(t_game *g, char *exit)
 {
-	char	*entrance;
-	char	*exit;
-
-	entrance = &g->map->content[3][16];
-	exit = &g->map->content[3][22];
-	if (g->p->x >= 17.5 && !g->chad_timer && !g->chad_phase)
-	{
-		g->chad_timer = get_time();
-		g->freeze_player = 1;
-		*entrance = '1';
-		g->splash_timer = get_time();
-	}
 	if (g->chad_timer && get_time() - g->chad_timer >= 3000 && !g->chad_phase)
 	{
 		g->chad_phase = 1;
@@ -131,4 +100,21 @@ void	update_chad(t_game *g)
 		g->scene = 2;
 		playsound(MUS_END, 0, 0, 0);
 	}
+}
+
+void	update_chad(t_game *g)
+{
+	char	*entrance;
+	char	*exit;
+
+	entrance = &g->map->content[3][16];
+	exit = &g->map->content[3][22];
+	if (g->p->x >= 17.5 && !g->chad_timer && !g->chad_phase)
+	{
+		g->chad_timer = get_time();
+		g->freeze_player = 1;
+		*entrance = '1';
+		g->splash_timer = get_time();
+	}
+	update_chad_bis(g, exit);
 }

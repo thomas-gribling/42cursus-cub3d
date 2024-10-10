@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui.c                                              :+:      :+:    :+:   */
+/*   gui_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:51 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 11:35:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:48:52 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_digits(t_game *g, t_tex *to, long digits, int align)
 	}
 }
 
-static void draw_weapons(t_game *g, t_cam *c, int curr)
+static void	draw_weapons(t_game *g, t_cam *c, int curr)
 {
 	t_tex	t;
 
@@ -139,21 +139,4 @@ void	update_screen(t_game *g)
 		g->last_fps_update = get_time();
 	}
 	g->last_frame = get_time();
-}
-
-void	draw_credits(t_game *g)
-{
-	t_tex	t;
-
-	if (g->ending)
-		return ;
-	t = g->tex[TEX_CREDITS_0 + g->credits_curr];
-	tex_put(&g->p->cam->buff, &t, WIDTH / 2 - t.width / 2, g->credits_y);
-	if (!(g->credits_curr == 2 && g->credits_y == HEIGHT / 2 - t.height / 2))
-		g->credits_y -= 2;
-	if (g->credits_y < 0 - t.height && g->credits_curr < 2)
-	{
-		g->credits_curr++;
-		g->credits_y = HEIGHT;
-	}
 }
