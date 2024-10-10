@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:16:40 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/04 09:26:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:44:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static int	get_texture_bis(t_game *g, char c, int is_open)
 		return (TEX_WALL_CELL);
 	if (c == 'H')
 		return (TEX_WALL_SKELETON);
+	if (c == 'Y')
+		return (TEX_WALL_END_DOOR);
 	if (g->curr_level == 2)
 		return (TEX_WALL_BOSS);
 	return (TEX_WALL + 15 * (g->curr_level > 0));

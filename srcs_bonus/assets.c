@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:46:26 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 11:31:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:43:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	load_assets_5(t_game *g)
 	g->tex[TEX_PORTALG_1B] = load_tex(g, "assets/weapon/portalb.xpm");
 	g->tex[TEX_PORTALG_1R] = load_tex(g, "assets/weapon/portalr.xpm");
 	g->tex[TEX_PORTALG_BROKEN] = load_tex(g, "assets/weapon/impotent.xpm");
+	g->tex[TEX_WALL_END_DOOR] = load_tex(g, "assets/lvl3/end_door.xpm");
 }
 
 static void	load_assets_4(t_game *g)

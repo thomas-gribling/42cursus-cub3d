@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:10:05 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/10/10 11:41:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:42:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-# define TEX_AMT 110
+# define TEX_AMT 111
 # define TEX_MENU_BG 0
 # define TEX_WALL 1
 # define TEX_WALL_SIGN 2
@@ -158,6 +158,7 @@
 # define TEX_PORTALG_1B 107
 # define TEX_PORTALG_1R 108
 # define TEX_PORTALG_BROKEN 109
+# define TEX_WALL_END_DOOR 110
 
 # define MUS_MENU "Mechanolith"
 # define MUS_LVL1 "Ecole"
