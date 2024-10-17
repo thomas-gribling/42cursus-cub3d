@@ -169,11 +169,11 @@
 # define SND_SHOOT "shoot"
 # define SND_PORTAL_SHOOT "portal_shoot"
 # define SND_PORTAL_TP "portal_tp"
-# define MUS_MENU_DUR 55000
-# define MUS_LVL1_DUR 75000
-# define MUS_LVL2_DUR 132000
-# define MUS_BOSS_DUR 103000
-# define MUS_BACKROOMS_DUR 80000
+# define MUS_MENU_DUR 55510
+# define MUS_LVL1_DUR 75789
+# define MUS_LVL2_DUR 132923
+# define MUS_BOSS_DUR 103784
+# define MUS_BACKROOMS_DUR 80248
 
 typedef struct s_tex
 {
